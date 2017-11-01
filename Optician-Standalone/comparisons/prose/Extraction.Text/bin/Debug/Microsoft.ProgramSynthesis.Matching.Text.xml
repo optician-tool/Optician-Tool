@@ -1,0 +1,498 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Matching.Text</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.MultiLearner">
+            <summary>
+                A learner for a Matching.Text MultiProgram (for multi-column profiling).
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.MultiLearner.Instance">
+            <summary>
+                The singleton instance of this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.MultiLearner.ScoreFeature">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.FeatureInfo" /> used for ranking the top-k programs in
+                <see cref="M:Microsoft.ProgramSynthesis.Wrangling.ProgramLearner`3.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{`1,`2}},System.Int32,System.Collections.Generic.IEnumerable{`1},System.Nullable{System.Threading.CancellationToken})" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.MultiLearner.LearnImpl(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Boolean}}},System.Nullable{System.Int32},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learn a <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /> of all programs satisfying the training constraints.
+            </summary>
+            <param name="constraints">The set of constraints.</param>
+            <param name="k">The number of top programs or null for all programs.</param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>
+                All programs satisfying the training examples (or the best <paramref name="k" />
+                if <paramref name="k" /> is not null).
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.MultiLearner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Boolean}}},System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <paramref name="k" /> top-ranked programs from the given positive and negative examples.
+                Returns all tied results in case of a tie.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="k">The number of programs returned.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn and
+                rank programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The top-ranked programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.MultiLearner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Boolean}}},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns all programs from the given positive and negative examples.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn
+                programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The set of all programs consistent with the examples.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.MultiLoader">
+            <summary>
+                A loader for a Matching.Text MultiProgram (for multi-column profiling).
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.MultiLoader.Instance">
+            <summary>
+                The singleton instance of this class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.MultiLoader.Load(System.String,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)">
+            <summary>
+                Loads a <typeparamref name="TProgram" /> that has been serialized to
+                <paramref name="serializedProgram" />.
+            </summary>
+            <param name="serializedProgram">
+                The serialized program generated by
+                <see cref="M:Microsoft.ProgramSynthesis.Program`2.Serialize(Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)" />.
+            </param>
+            <param name="serializationFormat">The serialization format of <paramref name="serializedProgram" />.</param>
+            <returns>A <typeparamref name="TProgram" /> deserialized from <paramref name="serializedProgram" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.MultiLoader.Create(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Creates a <typeparamref name="TProgram" /> for a <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" />. <paramref name="program" /> must be a
+                valid program for a <typeparamref name="TProgram" />.
+            </summary>
+            <param name="program">The code of the program.</param>
+            <returns>A strongly-typed <typeparamref name="TProgram" /> object wrapping <paramref name="program" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.MultiProgram">
+            <summary>
+                A Matching.Text MultiProgram (for multi-column profiling).
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.MultiProgram.#ctor(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Constructs a program wrapping the <paramref name="node" />.
+                Since LabelledPrograms are never directly extracted from VSAs, we don't need the score.
+            </summary>
+            <param name="node">The program to wrap.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.MultiProgram.LabeledProgramNode">
+            <summary>
+                Gets the labelled version of the current program which outputs the matching description
+                rather than a boolean result.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.MultiProgram.Run(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+                Executes the program on the <paramref name="input" /> to obtain the output.
+            </summary>
+            <param name="input">The input strings.</param>
+            <returns>The result of matching each string with the learned profile.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.MultiProgram.GetMatchingTokens(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+                Executes the program on the <paramref name="input" /> to obtain the output Tokens
+                and joins them to produce a description.
+            </summary>
+            <param name="input">The input strings.</param>
+            <returns>An Enumerable of matching tokens for each string.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Session">
+            <summary>
+                A session for Matching.Text which retains the last learned patterns.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Session.#ctor(Microsoft.ProgramSynthesis.Wrangling.Session.IJournalStorage,System.Globalization.CultureInfo,Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger)">
+            <summary>
+                Creates a new session.
+            </summary>
+            <param name="journalStorage">
+                Backing store for the journal of user actions used to adapt to user preferences. May be
+                null to not save this data.
+            </param>
+            <param name="culture">
+                The <see cref="T:System.Globalization.CultureInfo" /> to use when learning programs; accessible using
+                <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3.Culture" />. Used to select preferred date and number formats and
+                defaults for other culture-specific settings.
+            </param>
+            <param name="logger">
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger" /> implementation to use for providing telemetry information.
+            </param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Session.Patterns">
+            <summary>
+                The last learned patterns.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Session.LearnPatterns">
+            <summary>
+                Profiles the provided examples and saves the learned patterns.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.PatternInfo">
+            <summary>
+                Information about a learned pattern.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.PatternInfo.Description">
+            <summary>
+                A <c>string</c> description of the pattern.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.PatternInfo.MatchingFraction">
+            <summary>
+                Fraction of examples matching the pattern.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.PatternInfo.Examples">
+            <summary>
+                Some representative examples for the pattern.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.AllowedTokens`2">
+            <summary>
+                A constraint that allows the learner to use additional <see cref="P:Microsoft.ProgramSynthesis.Matching.Text.AllowedTokens`2.Tokens" />s.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.AllowedTokens`2.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{`0,`1})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.AllowedTokens`2.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{`0,`1})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.AllowedTokens`2.Valid(Microsoft.ProgramSynthesis.Program{`0,`1})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.AllowedTokens`2.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.ForbidConstantTokens`2">
+            <summary>
+                A constraint that forbids learning of constant (or dynamic) tokens.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Translation.Python.PythonTranslator">
+            <summary>
+                A Python translator for the Transformation.Text DSL. Like the
+                <see cref="T:Microsoft.ProgramSynthesis.Translation.Python.PythonTranslator`3" /> class,
+                this class is not thread safe.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Translation.Python.PythonTranslator.CreateModule(System.String)">
+            <summary>
+                Creates a new module with the given name.
+            </summary>
+            <param name="moduleName">The name of the module to create.</param>
+            <returns>A new <see cref="T:Microsoft.ProgramSynthesis.Translation.Module`1" /> named <see cref="!:moduleName" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Translation.Python.PythonTranslator.GenerateHeaderModule(Microsoft.ProgramSynthesis.Matching.Text.Program,System.String)">
+            <summary>
+                Generates a module containing the header (if any) for the given program <see cref="!:p" />.
+                The header can include any definitions required for the generated
+                program corresponding to <see cref="!:p" /> to execute.
+            </summary>
+            <param name="p">A generated program</param>
+            <param name="headerModuleName">The name of the header module.</param>
+            <returns>
+                A <see cref="T:Microsoft.ProgramSynthesis.Translation.Module`1" /> which contains the definitions that all code generated by this translator can
+                implicitly depend on.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Translation.Python.PythonTranslator.GenerateOperatorApplication(System.String,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Translation.SSARegister{System.String}})">
+            <summary>
+                Generates an application of the operator named <see cref="!:operatorName" />
+                with <see cref="!:arguments" /> as its arguments.
+            </summary>
+            <param name="operatorName">The name of the operator which is to be applied</param>
+            <param name="arguments">The arguments to the operator <see cref="!:operatorName" /></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Translation.Python.PythonTranslator.GenerateLiteralRepresentation(System.Object,System.Type)">
+            <summary>
+                Generates the representation of the literal in the target language.
+            </summary>
+            <param name="literalValue">An <see cref="T:System.Object" /> representing the value of the literal.</param>
+            <param name="literalType">The type of the literal.</param>
+            <returns>
+                A representation of <see cref="!:literalValue" /> interpreted as a value
+                of the type <see cref="!:literalType" /> in the target language.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Translation.Python.PythonTranslator.Translate(Microsoft.ProgramSynthesis.Matching.Text.Program,Microsoft.ProgramSynthesis.Translation.Module{System.String},System.String)">
+            <summary>
+                Translates a program <paramref name="root" /> into a representation of a function corresponding to the program
+                <paramref name="root" />.
+            </summary>
+            <param name="root">The program to be translated.</param>
+            <param name="translationModule">The module into which all lambdas in the program will be placed.</param>
+            <param name="headerModuleReference">
+                The name of the module in which any auxiliary functions required for this program
+                are assumed to reside. e.g. semantics for various operators, any datatypes required by the program, etc.
+            </param>
+            <returns>
+                A <see cref="T:Microsoft.ProgramSynthesis.Translation.GeneratedFunction`1" /> that corresponds to the translation of the program
+                <paramref name="root" />.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.DisjunctionsLimit`2">
+            <summary>
+                A constraint on the number of disjunctions expected in the matching program.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.DisjunctionsLimit`2.DefaultCategoricalLimit">
+            <summary>
+                The default limits on number of disjuncts for categorical variables.
+                Categorical variables have values over a very small range (relative to the size of the data).
+                When clustered in a hierarchy, the valued would be grouped into few singleton clusters,
+                so we can safely set a higher upper bound on the number of disjuncts, without over-splitting.
+                Some examples of categorical values: Gender, Month/Day names, Booleans etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.DisjunctionsLimit`2.DefaultQuantitativeLimit">
+            <summary>
+                The default limits on number of disjuncts for quantitative variables.
+                Quantitative variables have values over a much larger range, and we would like to group them
+                together into a relatively small number of clusters - highlighting the differences in patterns
+                at a coarser granularity. Setting a higher upper bound on the number of disjuncts may result
+                in over-splitting of the clusters.
+                Some examples of categorical values: Income, Score, Names, Phone numbers etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.DisjunctionsLimit`2.MinDisjuncts">
+            <summary>
+                Minimum number of disjuncts.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.DisjunctionsLimit`2.MaxDisjuncts">
+            <summary>
+                Maximum number of disjuncts.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.DisjunctionsLimit`2.SetOptions(Microsoft.ProgramSynthesis.Matching.Text.Learning.Witnesses.Options)">
+            <summary>
+                Set the options defined by this constraint in <paramref name="options" />.
+            </summary>
+            <param name="options">The <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Learning.Witnesses.Options" /> object to mutate.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.DisjunctionsLimit`2.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{`0,`1})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.DisjunctionsLimit`2.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{`0,`1})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.DisjunctionsLimit`2.Valid(Microsoft.ProgramSynthesis.Program{`0,`1})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.DisjunctionsLimit`2.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Learner">
+            <summary>
+                The program learning class for text matching DSL.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Learner.Instance">
+            <summary>
+                The singleton instance of this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Learner.ScoreFeature">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.FeatureInfo" /> used for ranking the top-k programs in <see cref="M:Microsoft.ProgramSynthesis.Matching.Text.Learner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.String,System.Boolean}},System.Int32,System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.Threading.CancellationToken})" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Learner.DisjunctsFeature">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.FeatureInfo" /> for extracting individual disjuncts.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Learner.LabelFeature">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.FeatureInfo" /> for labelleling a program node with descriptions of disjuncts.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Learner.DecideDisjunctionsLimit(System.Collections.Generic.IReadOnlyCollection{System.Collections.Generic.KeyValuePair{Microsoft.ProgramSynthesis.State,System.Collections.Generic.KeyValuePair{System.Object,System.UInt32}}})">
+            <summary>
+                Check and set the default limits on number of disjuncts for possibly categorical variables.
+                Categorical variables have values over a very small range (relative to the size of the data).
+                When clustered in a hierarchy, the valued would be grouped into few singleton clusters,
+                so we can safely set a higher upper bound on the number of disjuncts, without over-splitting.
+            </summary>
+            <param name="groupedExamples"></param>
+            <returns>
+                A <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.DisjunctionsLimit`2" /> object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Learner.LearnImpl(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.String,System.Boolean}},System.Nullable{System.Int32},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learn a <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /> of all programs satisfying the training constraints.
+            </summary>
+            <param name="constraints">The set of constraints.</param>
+            <param name="k">The number of top programs or null for all programs.</param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>
+                All programs satisfying the training examples (or the best <paramref name="k" />
+                if <paramref name="k" /> is not null).
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Learner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.String,System.Boolean}},System.Int32,System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <paramref name="k" /> top-ranked programs from the given positive and negative examples.
+                Returns all tied results in case of a tie.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="k">The number of programs returned.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn and
+                rank programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The top-ranked programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Learner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.String,System.Boolean}},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns all programs from the given positive and negative examples.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn
+                programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The set of all programs consistent with the examples.</returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Loader.Instance">
+            <summary>
+                The singleton instance of this class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Loader.Load(System.String,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)">
+            <summary>
+                Loads a <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Program" /> that has been serialized to
+                <paramref name="serializedProgram" />.
+            </summary>
+            <param name="serializedProgram">
+                The serialized program generated by
+                <see cref="M:Microsoft.ProgramSynthesis.Program`2.Serialize(Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)" />.
+            </param>
+            <param name="serializationFormat">The serialization format of <paramref name="serializedProgram" />.</param>
+            <returns>A <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Program" /> deserialized from <paramref name="serializedProgram" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Loader.Create(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Program" /> for a <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" />. <paramref name="program" /> must be a
+                valid program for a <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Program" />.
+            </summary>
+            <param name="program">The code of the program.</param>
+            <returns>A strongly-typed <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Program" /> object wrapping <paramref name="program" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Program">
+            <summary>
+                A program in the text matching DSL.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Program.#ctor(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Constructs a program wrapping the <paramref name="node" />.
+            </summary>
+            <param name="node">The program to wrap.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Program.LabeledProgramNode">
+            <summary>
+                Gets the labelled version of the current program which outputs the matching description
+                rather than a boolean result.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Program.Run(System.String)">
+            <summary>
+                Executes the program on the <paramref name="input" /> to obtain the output.
+            </summary>
+            <param name="input">The input.</param>
+            <returns>The result of matching the string with the learned profile.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Program.GetMatchingTokens(System.String)">
+            <summary>
+                Executes the program on the <paramref name="input" /> to obtain the output Tokens
+                and joins them to produce a description.
+            </summary>
+            <param name="input">The input string.</param>
+            <returns>The matching tokens.</returns>
+        </member>
+    </members>
+</doc>

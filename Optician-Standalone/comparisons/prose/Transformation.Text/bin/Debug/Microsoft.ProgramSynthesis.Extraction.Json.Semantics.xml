@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Extraction.Json.Semantics</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Json.Semantics.Semantics">
+            <summary>
+                The implementations of the operators in the JSON Extraction language.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Json.Semantics.Semantics.Sequence(System.String,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion})">
+            <summary>
+                Creates a sequence from its elements selected from the document.
+            </summary>
+            <param name="id">The name of this sequence.</param>
+            <param name="selectSequence">The elements selected from the document.</param>
+            <returns>The output sequence.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Json.Semantics.Semantics.DummySequence(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Schema.TreeOutput.ITreeOutput{Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion}})">
+            <summary>
+                Creates a dummy sequence from its elements.
+            </summary>
+            <param name="sequenceBody">The elements.</param>
+            <returns>The dummy sequence.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Json.Semantics.Semantics.Struct(Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Schema.TreeOutput.ITreeOutput{Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion}})">
+            <summary>
+                Creates a struct from its children.
+            </summary>
+            <param name="v">The input region.</param>
+            <param name="structBodyRec">The children.</param>
+            <returns>The output struct.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Json.Semantics.Semantics.Field(Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion,System.String,Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion)">
+            <summary>
+                Creates a field selected from the document.
+            </summary>
+            <param name="v">The input region.</param>
+            <param name="id">The name of the field.</param>
+            <param name="selectRegion">The region selected from the document.</param>
+            <returns>The output field.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Json.Semantics.Semantics.Concat(Microsoft.ProgramSynthesis.Wrangling.Schema.TreeOutput.ITreeOutput{Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion},System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Schema.TreeOutput.ITreeOutput{Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion}})">
+            <summary>
+                Concatenates a node to a list of nodes to form a longer list.
+            </summary>
+            <param name="treeOutput">The node.</param>
+            <param name="structBodyRec">The list.</param>
+            <returns>The output list</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Json.Semantics.Semantics.ToList(Microsoft.ProgramSynthesis.Wrangling.Schema.TreeOutput.ITreeOutput{Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion})">
+            <summary>
+                Creates a singleton list.
+            </summary>
+            <param name="treeOutput">The single node.</param>
+            <returns>The output list.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Json.Semantics.Semantics.SelectRegion(Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion,Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+                Returns the region identified by <paramref name="path" /> starting from <paramref name="v" />.
+            </summary>
+            <param name="v">The referencing region.</param>
+            <param name="path">The path.</param>
+            <returns>The output region.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Json.Semantics.Semantics.SelectSequence(Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion,Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+                Returns the sequence identified by <paramref name="path" /> starting from <paramref name="v" />.
+            </summary>
+            <param name="v">The referencing region.</param>
+            <param name="path">The path.</param>
+            <returns>The output sequence.</returns>
+        </member>
+    </members>
+</doc>

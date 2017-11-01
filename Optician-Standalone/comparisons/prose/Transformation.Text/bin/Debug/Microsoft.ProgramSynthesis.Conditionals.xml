@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Conditionals</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Constraints.ClusterCount">
+            <summary>
+                The constraint to specify the number of clusters to split.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.ClusterCount.#ctor(System.Int32)">
+            <summary>
+                Constructs the constraint to split into <paramref name="count"/> clusters.
+            </summary>
+            <param name="count">The number of clusters to split</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Conditionals.Constraints.ClusterCount.Count">
+            <summary>
+                The number of clusters.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.ClusterCount.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}}})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.ClusterCount.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}}})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.ClusterCount.Valid(Microsoft.ProgramSynthesis.Program{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}}})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.ClusterCount.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Constraints.InDifferentCluster">
+            <summary>
+                The constraint to enforce that some elements must be in different clusters.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.InDifferentCluster.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+                Constructs the constraint to enforce that some elements must be in different clusters.
+            </summary>
+            <param name="elements">The elements must be in different clusters.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Conditionals.Constraints.InDifferentCluster.Elements">
+            <summary>
+                The elements must be in different clusters.
+                This set should not be modified.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.InDifferentCluster.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}}})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.InDifferentCluster.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}}})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.InDifferentCluster.Valid(Microsoft.ProgramSynthesis.Program{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}}})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.InDifferentCluster.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Constraints.InSameCluster">
+            <summary>
+                The constraint to enforce that some elements must be in the same cluster.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.InSameCluster.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+                Constructs the constraint to enforce that some elements must be in the same cluster.
+            </summary>
+            <param name="elements">The elements must be in the same cluster.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Conditionals.Constraints.InSameCluster.Elements">
+            <summary>
+                The elements must be in the same cluster.
+                This set should not be modified.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.InSameCluster.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}}})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.InSameCluster.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}}})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.InSameCluster.Valid(Microsoft.ProgramSynthesis.Program{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}}})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Constraints.InSameCluster.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Learner">
+            <summary>
+                The program learning class for conditionals DSL.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Conditionals.Learner.Instance">
+            <summary>
+                The singleton instance of this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Conditionals.Learner.ScoreFeature">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.FeatureInfo" /> used for ranking the top-k programs in <see cref="M:Microsoft.ProgramSynthesis.Conditionals.Learner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}}}},System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}},System.Nullable{System.Threading.CancellationToken})" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Learner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}}}},System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <paramref name="k" /> top-ranked programs from the given positive and negative examples.
+                Returns all tied results in case of a tie.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="k">The number of programs returned.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn and
+                rank programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The top-ranked programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Learner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}}}},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns all programs from the given positive and negative examples.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn
+                programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The set of all programs consistent with the examples.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.PredicateLoader">
+            <summary>
+                The class to load a deserialized <see cref="T:Microsoft.ProgramSynthesis.Conditionals.PredicateProgram" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Conditionals.PredicateLoader.Instance">
+            <summary>
+                The singleton instance of this class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.PredicateLoader.Load(System.String,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)">
+            <summary>
+                Loads a <see cref="T:Microsoft.ProgramSynthesis.Conditionals.PredicateProgram" /> that has been serialized to
+                <paramref name="serializedProgram" />.
+            </summary>
+            <param name="serializedProgram">
+                The serialized program generated by
+                <see cref="M:Microsoft.ProgramSynthesis.Program`2.Serialize(Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)" />.
+            </param>
+            <param name="serializationFormat">The serialization format of <paramref name="serializedProgram" />.</param>
+            <returns>A <see cref="T:Microsoft.ProgramSynthesis.Conditionals.Program" /> deserialized from <paramref name="serializedProgram" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.PredicateLoader.Create(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Conditionals.Program" /> for a <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" />. <paramref name="program" /> must be a
+                valid program for a <see cref="T:Microsoft.ProgramSynthesis.Conditionals.Program" />.
+            </summary>
+            <param name="program">The code of the program.</param>
+            <returns>A strongly-typed <see cref="T:Microsoft.ProgramSynthesis.Conditionals.Program" /> object wrapping <paramref name="program" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Loader">
+            <summary>
+                The class to load a deserialized <see cref="T:Microsoft.ProgramSynthesis.Conditionals.Program" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Conditionals.Loader.Instance">
+            <summary>
+                The singleton instance of this class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Loader.Load(System.String,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)">
+            <summary>
+                Loads a <see cref="T:Microsoft.ProgramSynthesis.Conditionals.Program" /> that has been serialized to
+                <paramref name="serializedProgram" />.
+            </summary>
+            <param name="serializedProgram">
+                The serialized program generated by
+                <see cref="M:Microsoft.ProgramSynthesis.Program`2.Serialize(Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)" />.
+            </param>
+            <param name="serializationFormat">The serialization format of <paramref name="serializedProgram" />.</param>
+            <returns>A <see cref="T:Microsoft.ProgramSynthesis.Conditionals.Program" /> deserialized from <paramref name="serializedProgram" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Loader.Create(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Conditionals.Program" /> for a <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" />. <paramref name="program" /> must be a
+                valid program for a <see cref="T:Microsoft.ProgramSynthesis.Conditionals.Program" />.
+            </summary>
+            <param name="program">The code of the program.</param>
+            <returns>A strongly-typed <see cref="T:Microsoft.ProgramSynthesis.Conditionals.Program" /> object wrapping <paramref name="program" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.PredicateProgram">
+            <summary>
+                Represents the branch predicate (one disjunct in <see cref="T:Microsoft.ProgramSynthesis.Conditionals.Program" />).
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.PredicateProgram.#ctor(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Constructs the program.
+            </summary>
+            <param name="node">The underlying program node.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.PredicateProgram.Run(System.String)">
+            <summary>
+                Returns the result of the predicate on <paramref name="input" />.
+            </summary>
+            <param name="input">The input.</param>
+            <returns>True if <paramref name="input" /> satisfies the predicate, false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.PredicateProgram.Describe(System.Globalization.CultureInfo)">
+            <summary>
+                Describes the predicate at a high level.
+                Returns null if program description is not available.
+            </summary>
+            <param name="cultureInfo">The culture info.</param>
+            <returns>The program description (null if not available)</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Program">
+            <summary>
+                A program in the conditionals DSL.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Program.#ctor(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Constructs a program wrapping the <paramref name="node" />.
+            </summary>
+            <param name="node">The program to wrap.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Conditionals.Program.PredicatePrograms">
+            <summary>
+                The list of predicates, each of which correspond to one branch.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Program.Run(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+                Executes the program on the <paramref name="inputs" /> to obtain the output.
+            </summary>
+            <param name="inputs">The input.</param>
+            <returns>The output.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Session">
+            <summary>
+                A conditional learning session. See <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3" /> for the API for
+                learning sessions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Session.#ctor(Microsoft.ProgramSynthesis.Wrangling.Session.IJournalStorage,System.Globalization.CultureInfo,Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger)">
+            <param name="journalStorage">
+                Backing store for the journal of user actions used to adapt to user preferences. May be
+                null to not save this data.
+            </param>
+            <param name="culture">
+                The <see cref="T:System.Globalization.CultureInfo" /> to use when learning programs; accessible using
+                <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3.Culture" />. Used to select preferred date and number formats and
+                defaults for other culture-specific settings.
+            </param>
+            <param name="logger">
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger" /> implementation to use for providing telemetry information.
+            </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Session.CreateSubstring(System.String)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring" /> for a string.
+            </summary>
+            <param name="s">The input string.</param>
+            <returns>The corresponding <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring" />.</returns>
+        </member>
+    </members>
+</doc>

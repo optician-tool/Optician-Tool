@@ -1,0 +1,1415 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Extraction.Text.Semantics</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.CachedList">
+            <summary>
+                A cache of <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch" /> objects corresponding to a regular expression matching operation. This is
+                used to quickly run regular expression matching a substring. Must be kept sorted.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.CachedList.#ctor">
+            <summary>
+                Constructs an empty <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.CachedList" />. <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch" /> objects must be added in sorted order.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.CachedList.#ctor(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch})">
+            <summary>
+                Constructs a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.CachedList" /> containing the matches in <paramref name="l" />.
+            </summary>
+            <param name="l">A sorted enumerable of <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch" /> objects.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.CachedList.GetValues(System.UInt32,System.UInt32)">
+            <summary>
+                Return the index span of the cached values within the range
+            </summary>
+            <param name="start">The beginning of the range</param>
+            <param name="end">The end of the range</param>
+            <returns>The index span of the cached values within the range</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.CachedList.BinarySearchForFirstGreaterOrEqual(System.UInt32)">
+            <summary>
+                Finds the index in this list of the first match with a <see cref="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch.Position" /> at or after
+                <paramref name="key" />.
+            </summary>
+            <param name="key">The starting string index to start looking for matches at.</param>
+            <returns>
+                The index of the first <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch" /> after <paramref name="key" /> or -1 if no such match
+                exists.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.CachedList.BinarySearchForFirstLessThanOrEqual(System.UInt32)">
+            <summary>
+                Finds the index in this list of the first match with a <see cref="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch.Right" /> at or before
+                <paramref name="key" />.
+            </summary>
+            <param name="key">The ending string index to start looking for matches at.</param>
+            <returns>
+                The index of the last <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch" /> before <paramref name="key" /> or -1 if no such match
+                exists.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.DynamicTokenExtractor.LearnDynamicTokens(System.Collections.Generic.List{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})">
+            <summary>
+            Learn the (possible) dynamic tokens wrt the positive examples.
+            A dynamic token is a shared string that start/end at the beginning/end of the examples.
+            We only learn dynamic tokens if we have more than 1 example.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.DynamicTokenExtractor.LearnDynamicTokensAt(System.Collections.Generic.List{System.Tuple{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.UInt32}},System.Boolean)">
+            <summary>
+            If <paramref name="forwardDirection"/> is true, we find the shared string that starts from <paramref name="positions"/> (i.e., suffix).
+            Otherwise, we find the shared string that ends at <paramref name="positions"/> (i.e., prefix).
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring">
+            <summary>
+                A <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring"/> with a string learning cache included.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring.#ctor(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token})">
+            <summary>
+                Creates a region for <paramref name="s" />.
+            </summary>
+            <param name="s">The document region.</param>
+            <param name="tokens">The tokens used to build the cache.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring.Cache">
+            <summary>
+                The learning cache for <see cref="!:S" /> which is used during learning.
+                This cache is shared among different regions in <see cref="!:S" />.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.NamespaceDoc">
+            <summary>
+                <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics"/> defines the operators for the Extraction.Text language.
+                <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion"/> and <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache"/> are used for
+                handling strings in multiple DSLs. <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression"/> and the
+                related classes define the specialized version of regular expressions for
+                use in Extraction.Text and FlashFill.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics">
+            <summary>
+                The implementations of the operators in the Extraction.Text language.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.Tokens">
+            <summary>
+                The list of tokens to learn from.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.NonDisjunctiveTokens">
+            <summary>
+                The list of non disjunctive tokens. This list is similar to <see cref="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.Tokens" /> except that the
+                alphabet and alphanumeric token do not contain "-" and ".".
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.GetStaticTokenByName(System.String)">
+            <summary>
+                Returns the token having name matches <paramref name="name" />.
+            </summary>
+            <param name="name">The token name.</param>
+            <returns>The token matching <paramref name="name" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.SplitLines(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Splits <paramref name="v" /> into lines, auto-detecting the line separators.
+            </summary>
+            <param name="v">The input string</param>
+            <returns>A sequence of strings, one for each line</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.StartPosSplitRegionSequence(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Collections.Generic.IEnumerable{System.Nullable{System.UInt32}})">
+            <summary>
+                Splits <paramref name="v" /> into a set of substrings, where <paramref name="positionSequence" /> indicates the
+                start of each substring.
+                The last substring starts where <paramref name="v" /> end
+            </summary>
+            <param name="v">The entire string</param>
+            <param name="positionSequence">The positions where to cut the string</param>
+            <returns>Sequence of substrings</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.EndPosSplitRegionSequence(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Collections.Generic.IEnumerable{System.Nullable{System.UInt32}})">
+            <summary>
+                Splits <paramref name="v" /> into a set of substrings, where <paramref name="positionSequence" /> indicates the end
+                of each substring.
+                The first substring starts where <paramref name="v" /> starts
+            </summary>
+            <param name="v">The entire string</param>
+            <param name="positionSequence">The positions where to cut the string</param>
+            <returns>Sequence of substrings</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.PositionPairRegion(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Nullable{System.UInt32},System.Nullable{System.UInt32})">
+            <summary>
+                Builds a new <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> with the <see cref="!:StringRegion.S" /> of <paramref name="s" />.
+            </summary>
+            <param name="s">Region to use the <see cref="!:StringRegion.S" /> property of.</param>
+            <param name="P1">Start index of the region.</param>
+            <param name="P2">End index of the region.</param>
+            <returns>
+                A new <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> of the substring starting at <paramref name="P1" /> and ending at
+                <paramref name="P2" />, or null if those are invalid or null.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.PosToEndRegion(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Nullable{System.UInt32})">
+            <summary>
+                Takes a substring of the <see cref="!:StringRegion.S" /> of <paramref name="s" /> from <paramref name="P1" /> to the
+                end of <paramref name="s" />. (Same as <see cref="!:RefEndPositionPairRegion" />.)
+            </summary>
+            <param name="s">Region to use the <see cref="!:StringRegion.S" /> and <see cref="!:StringRegion.End" /> properties of.</param>
+            <param name="P1">Start index of the region.</param>
+            <returns>
+                A new <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> of the substring starting at <paramref name="P1" /> and ending where
+                <paramref name="s" /> does, or null if those are invalid or null.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.StartToPosRegion(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Nullable{System.UInt32})">
+            <summary>
+                Takes a substring of the <see cref="!:StringRegion.S" /> of <paramref name="s" /> from the start of
+                <paramref name="s" /> to <paramref name="P2" />. (Same as <see cref="!:RefStartPositionPairRegion" />.)
+            </summary>
+            <param name="s">Region to use the <see cref="!:StringRegion.S" /> and <see cref="!:StringRegion.Start" /> properties of.</param>
+            <param name="P2">End index of the region.</param>
+            <returns>
+                A new <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> of the substring starting where <paramref name="s" /> does  and ending at
+                <paramref name="P2" />, or null if those are invalid or null.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.AbsolutePosition(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Int32)">
+            <summary>
+                Computes the position within the entire <see cref="!:StringRegion.S" /> string of an index <paramref name="k" /> into
+                <paramref name="s" />. Note that <paramref name="k" /> may be negative to count relative to the end of
+                <paramref name="s" />.
+            </summary>
+            <param name="s"><see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> index is relative to.</param>
+            <param name="k">Index into <paramref name="s" />. Relative to start if positive or end if negative.</param>
+            <returns>
+                Index into the <see cref="!:StringRegion.S" /> of <paramref name="s" /> or null if <paramref name="k" /> is an
+                invalid index.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.RegexPosition(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Tuple{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression},System.Int32)">
+            <summary>
+                Finds the <paramref name="k" />-th match of regular expression <paramref name="rr" /> in <paramref name="s" />.
+                If <paramref name="k" /> is negative finds the <paramref name="k" />-th match from the end.
+            </summary>
+            <param name="s">String to look for matches in.</param>
+            <param name="rr">
+                Regular expression to find matches for. Matches are for the two regular expressions concatenated
+                together and the index is the index between the matches for the two regular expressions.
+            </param>
+            <param name="k">
+                A non-zero index into the matches: positive indexes count from the start with 1 being the first match
+                and negative indexes count from the end with -1 being the last match.
+            </param>
+            <returns>
+                The index where the match for the first regular expression in <paramref name="rr" /> ends and the match for
+                the second regular expression in <paramref name="rr" /> begins.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics._RegexPosition(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.Tuple{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression},System.Int32)">
+            <summary>
+                Finds the <paramref name="k" />-th match of regular expression <paramref name="rr" /> in <paramref name="s" />.
+                If <paramref name="k" /> is negative finds the <paramref name="k" />-th match from the end.
+            </summary>
+            <param name="s">String to look for matches in.</param>
+            <param name="rr">
+                Regular expression to find matches for. Matches are for the two regular expressions concatenated
+                together and the index is the index between the matches for the two regular expressions.
+            </param>
+            <param name="k">
+                A non-zero index into the matches: positive indexes count from the start with 1 being the first match
+                and negative indexes count from the end with -1 being the last match.
+            </param>
+            <returns>
+                The index where the match for the first regular expression in <paramref name="rr" /> ends and the match for
+                the second regular expression in <paramref name="rr" /> begins.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.RegexRegion(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,System.Int32)">
+            <summary>
+                Finds the <paramref name="k" />-th match of <paramref name="rRegex" /> (from the end if <paramref name="k" />
+                negative) which is immediately surrounded by a match of <paramref name="pRegex" /> before and a match of
+                <paramref name="sRegex" /> after.
+            </summary>
+            <param name="s">The string to search in.</param>
+            <param name="pRegex">
+                The look-behind (or prefix) regular expression that must match immediately before
+                <paramref name="rRegex" />.
+            </param>
+            <param name="rRegex">The regular expression to match, whose match is returned.</param>
+            <param name="sRegex">
+                The look-ahead (or suffix) regular expression that must match immediately after
+                <paramref name="rRegex" />.
+            </param>
+            <param name="k">
+                A non-zero index into the matches: positive indexes count from the start with 1 being the first match
+                and negative indexes count from the end with -1 being the last match.
+            </param>
+            <returns>The string matching <paramref name="rRegex" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.True">
+            <summary>
+                Returns the boolean constant true.
+            </summary>
+            <returns>True.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.StartsWith(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression)">
+            <summary>
+                Checks if <paramref name="s" /> starts with regular expression <paramref name="r" />.
+            </summary>
+            <param name="s">The string to test.</param>
+            <param name="r">The regular expression.</param>
+            <returns>True if <paramref name="r" /> matches the beginning of <paramref name="s" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.EndsWith(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression)">
+            <summary>
+                Checks if <paramref name="s" /> starts with regular expression <paramref name="r" />.
+            </summary>
+            <param name="s">The string to test.</param>
+            <param name="r">The regular expression.</param>
+            <returns>True if <paramref name="r" /> matches the end of <paramref name="s" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.Contains(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,System.Int32)">
+            <summary>
+                Checks if <paramref name="s" /> contains <paramref name="k" /> matches of the regular expression
+                <paramref name="r" />.
+            </summary>
+            <param name="s">The string to test.</param>
+            <param name="r">The regular expression.</param>
+            <param name="k">The number of matches.</param>
+            <returns>True if <paramref name="r" /> matches <paramref name="s" /> exactly <paramref name="k" /> times.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.GetPredLine(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+            Returns the preceding line of <paramref name="s"/> in the region <paramref name="v"/>.
+            Returns null if <paramref name="s"/> is not in <paramref name="v"/> or the first line in <paramref name="v"/>.
+            </summary>
+            <param name="v">The region to find from.</param>
+            <param name="s">The line to find preceding line.</param>
+            <returns>The preceding line of <paramref name="s"/>.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.GetSuccLine(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+            Returns the succeeding line of <paramref name="s"/> in the region <paramref name="v"/>.
+            Returns null if <paramref name="s"/> is not in <paramref name="v"/> or the last line in <paramref name="v"/>.
+            </summary>
+            <param name="v">The region to find from.</param>
+            <param name="s">The line to find succeeding line.</param>
+            <returns>The succeeding line of <paramref name="s"/>.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics._RunRR(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.Tuple{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression})">
+            <summary>
+                Returns all positions where <paramref name="rr" />.Item1 matches to the left and <paramref name="rr" />.Item2
+                matches to the right.
+            </summary>
+            <param name="s">String to find matches in.</param>
+            <param name="rr">A tuple defining the left (Item1) and right (Item2) boundary regular expressions.</param>
+            <returns>A sequences of positions in <paramref name="s" /> that match.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.RunRR(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Tuple{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression})">
+            <summary>
+                Returns all positions where <paramref name="rr" />.Item1 matches to the left and <paramref name="rr" />.Item2
+                matches to the right.
+            </summary>
+            <param name="s">String to find matches in.</param>
+            <param name="rr">A tuple defining the left (Item1) and right (Item2) boundary regular expressions.</param>
+            <returns>A sequences of positions in <paramref name="s" /> that match.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Semantics.RunPrefixRegexSuffix(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression)">
+            <summary>
+                Finds matches <paramref name="regex" /> in <paramref name="s" /> which are between matches of
+                <paramref name="prefixRegex" /> and <paramref name="suffixRegex" />.
+            </summary>
+            <param name="s">String to look for matches in.</param>
+            <param name="prefixRegex">Regular expression that must match immediately before <paramref name="regex" />.</param>
+            <param name="regex">Regular expression to look for matches for.</param>
+            <param name="suffixRegex">Regular expression that must match immediately after <paramref name="regex" />.</param>
+            <returns>
+                The set of all matches of <paramref name="regex" /> in <paramref name="s" /> that are surrounded by matches of
+                <paramref name="prefixRegex" /> before and <paramref name="suffixRegex" /> after.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression">
+            <summary>
+                A regular expression is a sequence of tokens. Its length is limited to 3 tokens for performance reasons.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.DefaultTokenCount">
+            <summary>
+                The default number of tokens in a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.#ctor(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token},System.Int32)">
+            <summary>
+                Constructs a regular expression from a sequence of <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" />s. Use <see cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Create(System.Int32)" /> and
+                its overloads instead of calling this constructor directory.
+            </summary>
+            <param name="tokens">The first token, or null if regular expression has zero tokens.</param>
+            <param name="exampleCount">The <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.ExampleCount" />.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Tokens">
+            <summary>
+                The constituent tokens.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Count">
+            <summary>
+                How many <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" />s in this regular expression (up to 3).
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.ExampleCount">
+            <summary>
+                The number of examples provided by the user in a current learning session.
+            </summary>
+            <seealso cref="!:StringLearningCache.ExampleCount" />
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Score">
+            <summary>
+                The ranking score of the regular expression. The higher the better.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Regex">
+            <summary>
+                Converts this to an equivalent <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Regex" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.RenderHumanReadable">
+            <summary>
+                Render regular expression for output in a human-readable AST.
+            </summary>
+            <returns>A human-readable code string of this regular expression.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.RenderXML">
+            <summary>
+                Render regular expression for output in an XML AST.
+            </summary>
+            <returns>An <see cref="T:System.Xml.Linq.XElement" /> of this regular expression.</returns>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.TryParseFromXML(System.Xml.Linq.XElement)" />
+            <seealso cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.ToXml" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Run(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring)">
+            <summary>
+                Return all matching positions within a range in a string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.MatchesAt(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.UInt32)">
+            <summary>
+                Checks if this regular expression matches the string at <paramref name="position" /> within a substring.
+            </summary>
+            <param name="s">The <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring" /> to match on.</param>
+            <param name="position">The position to look for a match at.</param>
+            <returns>
+                True if this regular expression match a string starting at <paramref name="position" />.
+            </returns>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.LeftMatchesAt(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.UInt32)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.LeftMatchesAt(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.UInt32)">
+            <summary>
+                Checks if this regular expression matches a string ending at <paramref name="position" /> within a substring.
+            </summary>
+            <param name="s">The <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring" /> to match on.</param>
+            <param name="position">The position to look for a match ending at.</param>
+            <returns>
+                True if this regular expression matches a substring ending at <paramref name="position" />.
+            </returns>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.MatchesAt(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.UInt32)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="other">The object to compare with the current object. </param>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Equals(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.ToString">
+            <summary>
+                Returns a string representation of this regular expression.
+            </summary>
+            <returns>A string representation of this regular expression.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.TryParseFromXML(System.Xml.Linq.XElement)">
+            <summary>
+                Loads a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" /> that had been serialized to XML using <see cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.RenderXML" />.
+            </summary>
+            <param name="literal">An XML element generated by <see cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.RenderXML" />.</param>
+            <returns>The <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" /> deserialized from <paramref name="literal" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.ToRegexJsonArray">
+            <summary>
+                Returns the associated complete regular expression.
+                Use this to let the user re-match this regular expression on his text.
+            </summary>
+            <returns>
+                A string array of tokens suitable for constructing <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Regex" /> objects equivalent to the tokens which
+                concatenated together make up this regular expression.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Create(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token},System.Int32)">
+            <summary>
+                Constructs a regular expression matching a sequence tokens concatenated together.
+            </summary>
+            <param name="tokens">The sequence of <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" />s this regular expression matches.</param>
+            <param name="exampleCount">The <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.ExampleCount" />.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.LearnFullMatches(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.Int32,System.Int32)">
+            <summary>
+                Learns a list of regexes that matches <paramref name="s" /> entirely.
+            </summary>
+            <param name="s">The string region to learn from.</param>
+            <param name="maxTokenCount">The maximum number of tokens in the returned <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />.</param>
+            <param name="exampleCount">The number of given examples.</param>
+            <returns>A list of matching <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.LearnRightMatches(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.UInt32,System.Int32,System.Int32)">
+            <summary>
+                Learns a list of regexes that matches <paramref name="pos" /> on its right in a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring" />.
+            </summary>
+            <param name="s">The string region to learn from.</param>
+            <param name="pos">The matching position.</param>
+            <param name="maxTokenCount">The maximum number of tokens in the returned <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />.</param>
+            <param name="exampleCount">The number of given examples.</param>
+            <returns>A list of matching <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.LearnRightMatches(System.Collections.Generic.IEnumerable{System.Tuple{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.UInt32}},System.Collections.Generic.IEnumerable{System.Tuple{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.UInt32}},System.Int32,System.Int32)">
+            <summary>
+                Learns a list of <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s that matches all positions in
+                <paramref name="positivePosInSubstrings" />
+                on their right in a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring" /> and does not match any positions in
+                <paramref name="negativePosInSubstrings" />.
+            </summary>
+            <param name="positivePosInSubstrings">
+                The list of positions within a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring" /> which the learned <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s should
+                match on the right.
+            </param>
+            <param name="negativePosInSubstrings">
+                The list of positions within a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring" /> which the learned <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s should
+                NOT match on the right.
+            </param>
+            <param name="maxTokenCount">The maximum number of tokens in the returned <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />.</param>
+            <param name="exampleCount">The number of given examples.</param>
+            <returns>A list of matching <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.LearnRightMatches(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.UInt32,System.Int32,System.Boolean,System.Int32)">
+            <summary>
+                Learns a list of regexes that matches <paramref name="pos" /> on its right in a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring" />.
+                If <paramref name="fullMatch" /> is set, will only return regexes that that will have matches of length (end -
+                pos).
+            </summary>
+            <param name="s">The string region to learn from.</param>
+            <param name="pos">The matching position.</param>
+            <param name="maxTokenCount">The maximum number of tokens in the returned <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />.</param>
+            <param name="fullMatch">
+                Specify whether the <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" /> should match the entire
+                <paramref name="s" /> or not.
+            </param>
+            <param name="exampleCount">The number of given examples.</param>
+            <returns>A list of matching <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.LearnLeftMatches(System.Collections.Generic.IEnumerable{System.Tuple{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.UInt32}},System.Collections.Generic.IEnumerable{System.Tuple{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.UInt32}},System.Int32,System.Int32)">
+            <summary>
+                Learns a list of <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s that matches all positions in
+                <paramref name="positivePosInSubstrings" />
+                on their left in a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring" /> and does not match any positions in
+                <paramref name="negativePosInSubstrings" />.
+            </summary>
+            <param name="positivePosInSubstrings">
+                The list of positions within a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring" /> which the learned <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s should
+                match on the left.
+            </param>
+            <param name="negativePosInSubstrings">
+                The list of positions within a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring" /> which the learned <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s should
+                NOT match on the left.
+            </param>
+            <param name="maxTokenCount">The maximum number of tokens in the returned <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />.</param>
+            <param name="exampleCount">The number of given examples.</param>
+            <returns>A list of matching <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.LearnLeftMatches(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,System.UInt32,System.Int32,System.Int32)">
+            <summary>
+                Learns a list of regexes that matches <paramref name="pos" /> on its left.
+            </summary>
+            <param name="s">The string region to learn from.</param>
+            <param name="pos">The matching position.</param>
+            <param name="maxTokenCount">The maximum number of tokens in the returned <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />.</param>
+            <param name="exampleCount">The number of given examples.</param>
+            <returns>A list of matching <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Create(System.Int32)">
+            <summary>
+                Constructs an empty regular expression with the given <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.ExampleCount" />.
+            </summary>
+            <param name="exampleCount">The <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.ExampleCount" />.</param>
+            <returns>A regular expression matching the empty string.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Create(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,System.Int32)">
+            <summary>
+                Constructs a regular expression containing a single token.
+            </summary>
+            <param name="token">The <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" /> this regular expression matches.</param>
+            <param name="exampleCount">The <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.ExampleCount" />.</param>
+            <returns>A regular expression matching <paramref name="token" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Create(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,System.Int32)">
+            <summary>
+                Constructs a regular expression matching two tokens concatenated together.
+            </summary>
+            <param name="token1">The <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" /> this regular expression matches first.</param>
+            <param name="token2">The <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" /> this regular expression matches second.</param>
+            <param name="exampleCount">The <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.ExampleCount" />.</param>
+            <returns>A regular expression matching <paramref name="token1" /> followed by <paramref name="token2" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.Create(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,System.Int32)">
+            <summary>
+                Constructs a regular expression matching three tokens concatenated together.
+            </summary>
+            <param name="token1">The <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" /> this regular expression matches first.</param>
+            <param name="token2">The <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" /> this regular expression matches second.</param>
+            <param name="token3">The <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" /> this regular expression matches third.</param>
+            <param name="exampleCount">The <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression.ExampleCount" />.</param>
+            <returns>
+                A regular expression matching <paramref name="token1" /> followed by <paramref name="token2" /> followed by
+                <paramref name="token3" />.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion">
+            <summary>
+                Represents a substring in a string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.#ctor(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token})">
+            <summary>
+                Creates a region for <paramref name="s" />.
+            </summary>
+            <param name="s">The document region.</param>
+            <param name="tokens">The tokens used to build the cache.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.StartPositionIsPrecise">
+            <summary>
+                Determines the validity of the start position of the boundary.
+                True if this position is precise, which allows the program to make reference to the starting position.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.EndPositionIsPrecise">
+            <summary>
+                Determine the validity of the end position of the boundary.
+                True if this position is precise, which allows the program to make reference to the ending position.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.WholeRegion">
+            <summary>
+                Gets the <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> covering the entire document this is a substring of.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.Equals(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.CompareTo(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Compares the current instance with another object of the same type and returns an integer that indicates whether
+                the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+                Regions are sorted by their <see cref="!:LearningCacheSubstring.Start" /> position and then by their <see cref="!:LearningCacheSubstring.End" /> position.
+            </summary>
+            <returns>
+                A value that indicates the relative order of the objects being compared. The return value has these meanings: Value
+                Meaning Less than zero This instance precedes <paramref name="other" /> in the sort order.  Zero This instance
+                occurs in the same position in the sort order as <paramref name="other" />. Greater than zero This instance follows
+                <paramref name="other" /> in the sort order.
+            </returns>
+            <param name="other">An object to compare with this instance. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.IntersectNonEmpty(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Checks if this region intersects with <paramref name="region" />.
+            </summary>
+            <param name="region">The region needs to check for intersection.</param>
+            <returns>True if they intersect, false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.Contains(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Checks if this region contains <paramref name="other" /> region.
+            </summary>
+            <param name="other">The region to look for in this region.</param>
+            <returns>True if <paramref name="other" /> is a region in the same document contained inside or equal to this region.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.IsBefore(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Checks if this region starts before <paramref name="other" /> starts and ends before <paramref name="other" />
+                ends. Note that the regions may still be overlapping.
+            </summary>
+            <param name="other">Region to compare against.</param>
+            <returns>True if this both starts first and ends first.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.ClipBefore(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Clip this region to end before <paramref name="other" /> if they overlap.
+            </summary>
+            <param name="other">A region starting after this one.</param>
+            <returns>
+                A region that starts at the same position but ends at the same position or immediately before
+                <paramref name="other" />.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.op_Equality(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Checks if <paramref name="left" /> and <paramref name="right" /> are the same region.
+            </summary>
+            <param name="left">The first <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> to compare.</param>
+            <param name="right">The second <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> to compare.</param>
+            <returns>
+                True if <paramref name="left" /> and <paramref name="right" /> have the same <see cref="!:LearningCacheSubstring.S" />,
+                <see cref="!:LearningCacheSubstring.Value" />, <see cref="!:LearningCacheSubstring.Start" />, and <see cref="!:LearningCacheSubstring.End" />.
+            </returns>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.Equals(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.op_Inequality(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Checks if <paramref name="left" /> and <paramref name="right" /> are different regions.
+            </summary>
+            <param name="left">The first <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> to compare.</param>
+            <param name="right">The second <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> to compare.</param>
+            <returns>
+                False if <paramref name="left" /> and <paramref name="right" /> have the same <see cref="!:LearningCacheSubstring.S" />,
+                <see cref="!:LearningCacheSubstring.Value" />, <see cref="!:LearningCacheSubstring.Start" />, and <see cref="!:LearningCacheSubstring.End" />.
+            </returns>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.Equals(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.ToString">
+            <summary>
+                Returns a string showing the <see cref="!:LearningCacheSubstring.Value" /> of this.
+            </summary>
+            <returns>
+                A human- and machine-readable string including <see cref="!:LearningCacheSubstring.Value" />.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.Slice(System.UInt32,System.UInt32)">
+            <summary>
+                Return a sub-region of <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo.S" /> between <paramref name="start" /> and <paramref name="end" />
+                .
+            </summary>
+            <param name="start">The starting position of the slice.</param>
+            <param name="end">The ending position of the slice.</param>
+            <returns>The sliced sub-region.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+            <seealso cref="!:SubstringWithLearningCacheWithLearningCache.Equals(T)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegionSerializer.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+                Writes the JSON representation of the object.
+            </summary>
+            <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>
+            <param name="value">The value.</param>
+            <param name="serializer">The calling serializer.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegionSerializer.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+                Reads the JSON representation of the object.
+            </summary>
+            <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader" /> to read from.</param>
+            <param name="objectType">Type of the object.</param>
+            <param name="existingValue">The existing value of object being read.</param>
+            <param name="serializer">The calling serializer.</param>
+            <returns>
+                The object value.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegionSerializer.CanConvert(System.Type)">
+            <summary>
+                Determines whether this instance can convert the specified object type.
+            </summary>
+            <param name="objectType">Type of the object.</param>
+            <returns>
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache">
+            <summary>
+                Represents the token matching cache for a string.
+                It contains the tokens (both static and dynamics) and their matches in the string.
+                Implemented as Singleton.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache._endingTokenMatches">
+            <summary>
+                Stores all matches that end at a position.
+                In general a token might have multiple matches that end at the same spot, hence the MultiValueDictionary.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache._matchPositions">
+            <summary>
+                Store all matching position of all tokens
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache._startingTokenMatches">
+            <summary>
+                Stores all matches that start at a position.
+                In general a token might have multiple matches that start at the same spot, hence the MultiValueDictionary.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache._tokens">
+            <summary>
+                All tokens in the cache (both static and dynamic)
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache._populatedTokenCaches">
+            <summary>
+                Indicates that we have populated the caches for static tokens.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.StaticTokens">
+            <summary>
+                The list of static tokens in the cache.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.#ctor(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token})">
+            <summary>
+                Constructs the cache for a string.
+            </summary>
+            <param name="s">The string to construct cache for.</param>
+            <param name="tokens">The tokens used to build the cache.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.Content">
+            <summary>
+                The (modified) string content.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.StartPosition">
+            <summary>
+                The starting position.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.EndPosition">
+            <summary>
+                Determines the validity of the start position of the boundary.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.TryGetAllMatchesStartingAt(System.UInt32,System.Collections.Generic.MultiValueDictionary{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch}@)">
+            <summary>
+                Gets all token matches at a specific location.
+            </summary>
+            <param name="pos">The look up location.</param>
+            <param name="matches">The matches at the location if found, null otherwise.</param>
+            <returns>true if there exists matches at the location.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.TryGetTokenMatchStartingAt(System.UInt32,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch}@)">
+            <summary>
+                Gets all the matches for a token at a specific location.
+            </summary>
+            <param name="pos">The look up location.</param>
+            <param name="token">The token to look up.</param>
+            <param name="match">The matches if found, null otherwise.</param>
+            <returns>true if there exists a match at the location.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.TryGetAllMatchesEndingAt(System.UInt32,System.Collections.Generic.MultiValueDictionary{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch}@)">
+            <summary>
+                Gets all token matches that <b>end</b> at a specific location.
+            </summary>
+            <param name="pos">The look up location.</param>
+            <param name="matches">The matches if found, null otherwise.</param>
+            <returns>true if there exists matches ending at the location.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.TryGetTokenMatchEndingAt(System.UInt32,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch}@)">
+            <summary>
+                Gets all the matches that end at a specific location for a token.
+            </summary>
+            <param name="pos">The look up location.</param>
+            <param name="token">The token to look up.</param>
+            <param name="match">The matches if found, null otherwise.</param>
+            <returns>true if there exists a match ending at the location.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.TryGetMatchPositionsFor(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.CachedList@)">
+            <summary>
+                Gets all matches of a token.
+            </summary>
+            <param name="token">The token to get matches for.</param>
+            <param name="matchPositions">The matches if found, null otherwise.</param>
+            <returns>true if there exists matches for the token.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.GetAllTokensMatchPositions(System.UInt32,System.UInt32)">
+            <summary>
+                Gets all matches of all tokens within <paramref name="start" /> and <paramref name="end" /> (inclusive).
+            </summary>
+            <param name="start">The starting of the range.</param>
+            <param name="end">The ending of the range.</param>
+            <returns>All token matches.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.AddStaticTokensEndingPosition(System.UInt32)">
+            <summary>
+                Adds all static tokens that end at the given index into the string content
+            </summary>
+            <param name="endingPosition">The index into the string at which the static tokens must end.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.AddStaticTokensStartingPosition(System.UInt32)">
+            <summary>
+                Adds all static tokens that start at the given index into the string content
+            </summary>
+            <param name="startingPosition">The index into the string at which the static tokens must start.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.AddTokensAroundDynamic">
+            <summary>
+                Finds tokens that start/end at the boundaries of dynamic tokens and adds them to the string learning cached
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.GetStaticTokenByName(System.String)">
+            <summary>
+                Gets the token by its name.
+            </summary>
+            <param name="name">The name of the token.</param>
+            <returns>The token if found, null otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.InitializeStaticTokens(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token})">
+            <summary>
+                Initializes the static tokens with some tokens.
+            </summary>
+            <param name="supportedTokens">The list of tokens to initialize.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.AddTokens(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token})">
+            <summary>
+                Adds a sequence of tokens to the cache.
+            </summary>
+            <param name="tokens">The tokens to add.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.AddMatch(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,System.UInt32,System.UInt32)">
+            <summary>
+                Adds a match for <paramref name="token" /> beginning at the position <paramref name="matchIndex" />, and of length
+                <paramref name="matchLength" />.
+            </summary>
+            <param name="token">The token which has been matched.</param>
+            <param name="matchIndex">The index at which <paramref name="token" /> has matched in this <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />.</param>
+            <param name="matchLength">The length of the match.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.MatchStartPositions">
+            <summary>
+                Collection of all positions at which any token starts. These are the positions that
+                <see cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.TryGetAllMatchesStartingAt(System.UInt32,System.Collections.Generic.MultiValueDictionary{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch}@)" /> works for.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.MatchEndPositions">
+            <summary>
+                Collection of all positions at which any token ends. These are the positions that
+                <see cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache.TryGetAllMatchesEndingAt(System.UInt32,System.Collections.Generic.MultiValueDictionary{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch}@)" /> works for.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring">
+            <summary>
+                An efficient representation for substrings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring.S">
+            <summary>
+                The original string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring.Start">
+            <summary>
+                The starting position of this region in <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring.S" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring.End">
+            <summary>
+                The ending position of this region in <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring.S" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring.Value">
+            <summary>
+                The string value of this region. This is the substring of <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo.S" /> determined by
+                <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo.Start" /> and
+                <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo.End" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring.Length">
+            <summary>
+                Returns the length of this region.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringUtils">
+            <summary>
+                Extension methods for providing additional functionality for <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringUtils.StartsWith(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring)">
+            <summary>
+                Checks if <paramref name="fullString" /> starts with <paramref name="start" />. This method does not perform
+                Unicode normalization.
+            </summary>
+            <param name="fullString">The substring to compare.</param>
+            <param name="start">The substring to look for at the beginning of <paramref name="fullString" />.</param>
+            <returns>
+                True if the <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring.Value" /> of <paramref name="fullString" /> starts with the
+                <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Substring.Value" /> of <paramref name="start" />, false otherwise.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo">
+            <summary>
+                Represents a substring as a <see cref="T:System.String" /> and <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo.Start" /> and <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo.End" /> indexes into that
+                string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo.#ctor(System.String,System.UInt32,System.UInt32)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo.S">
+            <summary>
+                The original string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo.Start">
+            <summary>
+                The starting position of this region in <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo.S" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo.End">
+            <summary>
+                The ending position of this region in <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.SubstringInfo.S" />.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token">
+            <summary>
+                A token is a sequence of characters of a particular kind.
+                There are two kinds of token: static tokens (predefined) and dynamic tokens (string literal that are learned from
+                the context).
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.MinScore">
+            <summary>
+                The minimum <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Score" /> for a token.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.VariableLengthPenalty">
+            <summary>
+                A penalty to the log likelihood for tokens have an unknown length <see cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.EvaluateLogLikelihood(System.String)" />.
+                Ideally you would define a prior distribution over lengths.  Equivalent to an uninformative prior
+                (https://en.wikipedia.org/wiki/Prior_probability#Improper_priors) -2.3 was chosen because there are
+                about order ten plausible lengths, and log(1/10)~-2.3
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.LogDefaultStaticPrior">
+            <summary>
+                A log prior probability of a particular static token <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.LogPrior" />.
+                20% static tokens, ~50 static tokens, so ln(0.2) - ln(50) ~ -5.5
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.LineSeparatorName">
+            <summary>
+                The name for the token matching the line separator (new line character or start/end of line).
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.AlphanumericName">
+            <summary>
+                The name for the token matching the alphanumeric.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.CamelCaseName">
+            <summary>
+                The name for the token matching the CamelCase word.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.LowerCaseName">
+            <summary>
+                The name for the token matching the lower case word.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.UpperCaseName">
+            <summary>
+                The name for the token matching the upper case word.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.NumberName">
+            <summary>
+                The name for the token matching the number.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.SignedNumberName">
+            <summary>
+                The name for the token matching the signed number.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.DigitsName">
+            <summary>
+                The name for the token matching the digits.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.WordDotHyphenName">
+            <summary>
+                The name for the token matching the word/dot/hyphen.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.AlphabetName">
+            <summary>
+                The name for the token matching the alphabet.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.AlphanumName">
+            <summary>
+                The name for the token matching the alphanumeric.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.PositiveIntegerName">
+            <summary>
+                The name for the token matching the positive integer.
+            </summary>
+            <summary>
+                The name for the token matching the alphanumeric.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.DoubleQuoteName">
+            <summary>
+                The name for the token matching the double quote character.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.DynamicLogPrior">
+            <summary>
+                Arbitrary large penalty on using a dynamic token.
+            </summary>        
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.DynamicLogPriorPerCharacter">
+            <summary>
+                Cost per character of a dynamic token: -ln(26 * 2 + 10)
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.#ctor(System.Text.RegularExpressions.Regex,System.String,System.Int32,System.Double,System.Func{System.String,System.Double},System.Boolean,System.Boolean,System.String)">
+            <summary>
+                Constructs a token for use in <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" /> objects.
+            </summary>
+            <param name="regex">The <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Regex" /> this wraps. Should be compiled (<see cref="F:System.Text.RegularExpressions.RegexOptions.Compiled" />).</param>
+            <param name="name">
+                The human-readable name describing what <paramref name="regex" /> matches. The name of a dynamic
+                token should be the string it matches enclosed in double quotes (").
+            </param>
+            <param name="score">
+                The score of this token used to determine how good programs are that use it. Tokens with higher
+                scores are preferred. Static token scores should not be below <see cref="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.MinScore" />.
+            </param>
+            <param name="useForLearning">
+                If true, this may appear in learned regular expressions. Otherwise, this is just for
+                <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache" /> to cache matches of it.
+            </param>
+            <param name="evaluateLogLikelihood">Given a regex match, what is the log probability of a string being generated by the token?</param>
+            <param name="isSymbol">Is this a symbol (as opposed to alphanumeric)?</param>
+            <param name="logPrior">What is the log probability of this token being used vs a different token?</param>
+            <param name="canonicalRepresentation">If this is not null, a default string for the token to match.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.#ctor(System.String,System.String,System.Int32,System.Double,System.Func{System.String,System.Double},System.Boolean,System.Boolean,System.String)">
+            <summary>
+                Constructs a token for use in <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" /> objects.
+            </summary>
+            <param name="pattern">The pattern for the <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Regex" /> this wraps.</param>
+            <param name="name">
+                The human-readable name describing what <paramref name="pattern" /> matches. The name of a dynamic
+                token should be the string it matches enclosed in double quotes (").
+            </param>
+            <param name="score">
+                The score of this token used to determine how good programs are that use it. Tokens with higher
+                scores are preferred. Static token scores should not be below <see cref="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.MinScore" />.
+            </param>
+            <param name="useForLearning">
+                If true, this may appear in learned regular expressions. Otherwise, this is just for
+                <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache" /> to cache matches of it.
+            </param>
+            <param name="evaluateLogLikelihood">Given a regex match, what is the log probability of a string being generated by the token?</param>
+            <param name="isSymbol">Is this a symbol (as opposed to alphanumeric)?</param>
+            <param name="logPrior">What is the log probability of this token being used vs a different token?</param>
+            <param name="canonicalRepresentation">If this is not null, a default string for the token to match.</param>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.AllDslsTokens">
+            <summary>
+                The list of tokens from all DSLs used for parsing.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.RegisterTokens(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token}})">
+            <summary>
+                Registers the DSLs' tokens for parsing.
+            </summary>
+            <param name="tokens">The tokens to register.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Name">
+            <summary>
+                Human-readable description of what this token matches. For dynamic tokens, this should just be the string it
+                matches enclosed in double quotes (").
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Regex">
+            <summary>
+                The regular expression defining what this matches.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.CanonicalRepresentation">
+            <summary>
+                A canonical string that matches this token, or null if one does not exist.
+                For example, the canonical representation of the whitespace token is " ",
+                while the canonical representation of Alphanumeric is null.
+                You can think of this as a default string for this token;
+                tokens like FirstName and Digits don't have a default,
+                but tokens like Percent have the canonical representation "%", etc.
+                We enforce that the <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Regex" /> matches CanonicalRepresentation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Score">
+            <summary>
+                The ranking score of the token. The higher the better.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.LogPrior">
+            <summary>
+                The log prior probability of the token, which is in (-\infty, 0).
+                Higher values (closer to zero) indicate more common tokens.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.EvaluateLogLikelihood(System.String)">
+            <summary>
+                The log likelihood of a string given the token, which is in (-\infty, 0].
+                The higher (closer to zero) the more representative the string is of the token.
+                The likelihood calculation assumes that the string matches the regular expression.
+            </summary>
+            <param name="x">The candidate string.</param>
+            <returns>\log P(x|this)</returns>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token._evaluateLogLikelihood">
+            <summary>
+                Callback function that evaluates the log likelihood of the string given this token.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.UseForLearning">
+            <summary>
+                If true, this token may be part of learned <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s. Otherwise, it exists just for
+                <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringLearningCache" /> to cache matches of it.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.IsSymbol">
+            <summary>
+                Does this match one or more symbols (as opposed to alphanumeric characters)?
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.IsDynamicToken">
+            <summary>
+                Was this token learned (as opposed to appearing in a hard-coded list of static tokens)?
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.CompareTo(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token)">
+            <summary>
+                Compares the current instance with another object of the same type and returns an integer that indicates whether
+                the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+                Sort order is <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Score" /> first, then the string length of <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Regex" />.
+            </summary>
+            <returns>
+                A value that indicates the relative order of the objects being compared. The return value has these meanings: Value
+                Meaning Less than zero This instance precedes <paramref name="other" /> in the sort order.  Zero This instance
+                occurs in the same position in the sort order as <paramref name="other" />. Greater than zero This instance follows
+                <paramref name="other" /> in the sort order.
+            </returns>
+            <param name="other">An object to compare with this instance. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.FromRegex(System.Text.RegularExpressions.Regex,System.Int32)">
+            <summary>
+                Builds a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" /> from a <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Regex" /> so no explicit name is required.
+            </summary>
+            <param name="regex">
+                The <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Regex" /> the token will wrap. Should be compiled (
+                <see cref="F:System.Text.RegularExpressions.RegexOptions.Compiled" />).
+            </param>
+            <param name="score">
+                The score of this token used to determine how good programs are that use it. Tokens with higher
+                scores are preferred. Static token scores should not be below <see cref="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.MinScore" />.
+            </param>
+            <returns>A <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" /> which matches <paramref name="regex" /> and has score <paramref name="score" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Clone">
+            <summary>
+            Returns a cloned object of the token.
+            </summary>
+            <returns>The cloned token.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.op_Equality(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token)">
+            <summary>
+                Checks if <paramref name="left" /> and <paramref name="right" /> are equivalent tokens.
+            </summary>
+            <param name="left">The first token to check.</param>
+            <param name="right">The second token to check.</param>
+            <returns>True if <paramref name="left" /> and <paramref name="right" /> have the same <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Name" />.</returns>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Equals(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.op_Inequality(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token)">
+            <summary>
+                Checks if <paramref name="left" /> and <paramref name="right" /> are different tokens.
+            </summary>
+            <param name="left">The first token to check.</param>
+            <param name="right">The second token to check.</param>
+            <returns>False if <paramref name="left" /> and <paramref name="right" /> have the same <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Name" />.</returns>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Equals(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Equals(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token)">
+            <summary>
+                Indicates whether the current <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" /> is equal to another <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" />.
+            </summary>
+            <returns>
+                true if the current <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" /> has the same <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Name" /> as the <paramref name="other" />
+                parameter; otherwise, false.
+            </returns>
+            <param name="other">A <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token" /> to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.ToString">
+            <summary>
+                Returns a human-readable string describing this token.
+            </summary>
+            <returns>
+                A string that describes this token.
+            </returns>
+            <seealso cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token.Name" />
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch">
+            <summary>
+                A position match contains a matching position and a matching length (of a match of tokens or regular expressions).
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch.Position">
+            <summary>
+                The starting index of the match.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch.Length">
+            <summary>
+                The string length of the match.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch.Right">
+            <summary>
+                The ending index of the match (exclusive).
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch.#ctor(System.UInt32,System.UInt32)">
+            <summary>
+                Constructs a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.PositionMatch" />.
+            </summary>
+            <param name="p">The starting index of the match.</param>
+            <param name="l">The string length of the match.</param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch">
+            <summary>
+                A token match is a token and the string length of the match from a regular expression matching operation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Token">
+            <summary>
+                The token matched.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Length">
+            <summary>
+                The string length of the match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.#ctor(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.Token,System.UInt32)">
+            <summary>
+                Constructs a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch" />/
+            </summary>
+            <param name="t">The <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Token" /> matched.</param>
+            <param name="l">The string length of the match.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Equals(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch)">
+            <summary>
+                Indicates whether the current match is equal to another match.
+            </summary>
+            <returns>
+                true if the current token has the same <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Token" /> and <see cref="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Length" /> as the
+                <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">A <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch" /> to compare with this.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Equals(System.Object)">
+            <summary>
+                Indicates whether this instance and a specified object are equal.
+            </summary>
+            <returns>
+                true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current instance. </param>
+            <see cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Equals(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.GetHashCode">
+            <summary>
+                Returns the hash code for this instance.
+            </summary>
+            <returns>
+                A 32-bit signed integer that is the hash code for this instance.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.op_Equality(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch)">
+            <summary>
+                Checks if <paramref name="left" /> and <paramref name="right" /> are equivalent.
+            </summary>
+            <param name="left">The first <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch" /> to compare.</param>
+            <param name="right">The second <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch" /> to compare.</param>
+            <returns>
+                True if <paramref name="left" /> and <paramref name="right" /> have the same <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Token" /> and
+                <see cref="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Length" />.
+            </returns>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Equals(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.op_Inequality(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch)">
+            <summary>
+                Checks if <paramref name="left" /> and <paramref name="right" /> are different.
+            </summary>
+            <param name="left">The first <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch" /> to compare.</param>
+            <param name="right">The second <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch" /> to compare.</param>
+            <returns>
+                False if <paramref name="left" /> and <paramref name="right" /> have the same <see cref="P:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Token" /> and
+                <see cref="F:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Length" />.
+            </returns>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch.Equals(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.TokenMatch)" />
+        </member>
+    </members>
+</doc>

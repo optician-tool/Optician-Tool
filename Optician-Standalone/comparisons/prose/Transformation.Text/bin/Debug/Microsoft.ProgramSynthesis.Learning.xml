@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Learning</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Learning.LearningTask">
+            <summary>
+                A task that consolidates all the information required for the learning API call: the symbol, spec, and additional
+                request parameters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Learning.LearningTask.Language">
+            <summary>
+                The language from which a caller wants to synthesize programs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Learning.LearningTask.Symbol">
+            <summary>
+                The root symbol for the language from which a caller wants to synthesize programs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Learning.LearningTask.Spec">
+            <summary>
+            The spec that the synthesized programs have to satisfy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Learning.LearningTask.AdditionalInputs">
+            <summary>
+            Optional additional representative inputs, provided during the learning process
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Learning.LearningTask.IsOneShot">
+            <summary>
+                True if the learning is one-shot, i.e., requested on a <see cref="T:Microsoft.ProgramSynthesis.Grammar"/>;
+                false if the learning is incremental, i.e., requested on a <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Learning.LearningTask.RecursionDepths">
+            <summary>
+            The number of times grammar symbols appeared in the synthesis call stack up to and including this call.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Learning.LearningTask.K">
+            <summary>
+            An optional restriction on the number of synthesized programs. 
+            A caller may request only top-K programs according to the specified feature value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Learning.LearningTask.Feature">
+            <summary>
+            An optional ranking feature for selecting top-k synthesized programs. 
+            A caller may request only top-K programs according to the specified feature value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Learning.LearningTask.ProvidedInputs">
+            <summary>
+                Returns a union of all input states provided in the task: the ones embedded in the spec and the ones provided
+                additionally.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Learning.LearningTask.MakeSubtask(Microsoft.ProgramSynthesis.Rules.NonterminalRule,System.Int32,Microsoft.ProgramSynthesis.Specifications.Spec)">
+            <summary>
+            Creates a parameter learning subtask from a given learning task, and updates the tracked recursion info.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Learning.NamespaceDoc">
+            <summary>
+                <see cref="T:Microsoft.ProgramSynthesis.Learning.SynthesisEngine"/> uses strategies (<see cref="T:Microsoft.ProgramSynthesis.Learning.ISynthesisStrategy"/>) to perform
+                <see cref="T:Microsoft.ProgramSynthesis.Learning.LearningTask"/> tasks to learn a program.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Learning.ProgramSetExtensions.Filter(Microsoft.ProgramSynthesis.VersionSpace.ProgramSet,Microsoft.ProgramSynthesis.Specifications.Spec,Microsoft.ProgramSynthesis.Learning.SynthesisEngine,System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Filters a given <paramref name="set" /> down only to a programs that are consistent with a given
+                <paramref name="spec" />.
+            </summary>
+            <param name="set">A program set to filter.</param>
+            <param name="spec">A spec to satisfy.</param>
+            <param name="engine">
+                A synthesis engine that will be used to resolve learning calls generated during filtering. Must be
+                initialized with a <see cref="T:Microsoft.ProgramSynthesis.Learning.Strategies.DeductiveSynthesis" /> strategy and a <see cref="T:Microsoft.ProgramSynthesis.Learning.DomainLearningLogic" /> suitable for
+                the language of <paramref name="spec" />.
+            </param>
+            <param name="cancel">A cancellation token. Will be passed to the learning methods of <paramref name="engine" />.</param>
+            <returns>
+                A <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /> representing a subset of the programs contained in the current instance that
+                satisfy <paramref name="spec" />.
+            </returns>
+            <remarks>
+                When possible, this implementation should be preferred to <see cref="M:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet.Filter(Microsoft.ProgramSynthesis.Specifications.Spec)"/>. Use the latter
+                one only when this implementation fails to produce a satisfactory result.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Learning.Strategies.ComponentBasedSynthesis.LearnerState">
+            <summary>
+            In a state <see cref="P:Microsoft.ProgramSynthesis.Learning.Strategies.ComponentBasedSynthesis.LearnerState.State"/> the program <see cref="P:Microsoft.ProgramSynthesis.Learning.Strategies.ComponentBasedSynthesis.LearnerState.Program"/> produced the value <see cref="P:Microsoft.ProgramSynthesis.Learning.Strategies.ComponentBasedSynthesis.LearnerState.ValueTuple"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Learning.Strategies.Deductive.RuleLearners.RuleLearner">
+            <summary>
+            A rule learner is a learning procedure for a specific DSL rule or a class of rules.
+            <see cref="T:Microsoft.ProgramSynthesis.Learning.Strategies.Deductive.RuleLearners.RuleLearner.Static.RuleLearner"/> is a public delegate signature that clients implement in a method that is
+            tracked by <see cref="P:Microsoft.ProgramSynthesis.Learning.Strategies.Deductive.RuleLearners.RuleLearner.OriginalLearner"/>.
+            <see cref="T:Microsoft.ProgramSynthesis.Learning.Strategies.Deductive.RuleLearners.RuleLearner.Instance.RuleLearner"/> is an internal wrapper around it for non-static scenarios.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Learning.Strategies.Deductive.RuleLearners.RuleLearner.RuleSpecIndex">
+            <summary>
+            Index of a "spec" parameter in <see cref="T:Microsoft.ProgramSynthesis.Learning.Strategies.Deductive.RuleLearners.RuleLearner.Static.RuleLearner"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Learning.Strategies.Deductive.WitnessUtils.WitnessGenericProperty``2(Microsoft.ProgramSynthesis.Rules.BlackBoxRule,System.Int32,Microsoft.ProgramSynthesis.Specifications.BooleanExampleSpec,System.Func{``0,``1})">
+            <summary>
+            Witness function template for an equality predicate based on some property of the object passed into predicate.
+            For example can be used to witness 'title' in IsTitleEqual(node, title) or 'color' in IsBackgroundColorEqual(cell, color)
+            </summary>
+            <typeparam name="TObjectType">Type of the underlying object</typeparam>
+            <typeparam name="TPropertyType">Type of the property</typeparam>
+            <param name="rule"></param>
+            <param name="baseParamIndex">Index of the parameter referring to the underlying object</param>
+            <param name="outerSpec">Boolean spec</param>
+            <param name="getValFunc">Function that retrieves the value of the property</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Learning.Strategies.Deductive.WitnessUtils.WitnessGenericProperty``2(Microsoft.ProgramSynthesis.Rules.BlackBoxRule,System.Int32,Microsoft.ProgramSynthesis.Specifications.BooleanExampleSpec,System.Func{``0,System.Collections.Generic.IEnumerable{``1}})">
+            <summary>
+            Witness function template for the predicate testing if some property of the object contains given value
+            For example can be used to witness 'class' in IsClass(node, class)
+            </summary>
+            <typeparam name="TObjectType">Type of the underlying object</typeparam>
+            <typeparam name="TPropertyType">Type of the property</typeparam>
+            <param name="rule"></param>
+            <param name="baseParamIndex">Index of the parameter referring to the underlying object</param>
+            <param name="outerSpec">Boolean spec</param>
+            <param name="getValFunc">Function that retrieves the a list of values of the property</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Learning.Strategies.DomainGuidedCBSLearningLogic">
+            <summary>
+                The learning logic used for domain-guided component-based synthesis strategy. This includes the desired ranking
+                function and the strategy configuration parameters.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Learning.Strategies.LearnerState">
+            <summary>
+                In a state <see cref="P:Microsoft.ProgramSynthesis.Learning.Strategies.LearnerState.State" /> the program <see cref="P:Microsoft.ProgramSynthesis.Learning.Strategies.LearnerState.Program" /> produced the value <see cref="P:Microsoft.ProgramSynthesis.Learning.Strategies.LearnerState.ValueTuple" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Learning.Strategies.LearnerState.#ctor(Microsoft.ProgramSynthesis.State,Microsoft.ProgramSynthesis.AST.ProgramNode,System.Boolean,System.Object[])">
+            <summary>
+                Creates a new learner state
+            </summary>
+            <param name="state">The variable environment state in which the program executes</param>
+            <param name="program">The program</param>
+            <param name="usedInRanking">
+                Indicates if this state is used in ranking programs during domain guided bottom-up
+                synthesis
+            </param>
+            <param name="valueTuple">The tuple of program outputs over a sequence of inputs</param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Learning.Strategies.DomainGuidedCBS">
+            <summary>
+                The domain-guided component-based synthesis strategy. This is a bottom-up synthesis stategy which uses
+                operator-specific lifting functions provided for any DSL operators and standard component-based synthesis when
+                these are not provided.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Learning.Strategies.NamespaceDoc">
+            <summary>
+                Contains multiple implementations of <see cref="T:Microsoft.ProgramSynthesis.Learning.Strategies.SynthesisStrategy`1"/>
+                for different ways to learn a program.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Learning.Strategies.DeductiveSynthesis">
+            <summary>
+                The deductive synthesis strategy, which leverages <see cref="T:Microsoft.ProgramSynthesis.Learning.WitnessFunction" /> instances for iterative refinement
+                of the specification.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Learning.Strategies.DeductiveSynthesis.FindMostApplicablePlans(Microsoft.ProgramSynthesis.Rules.GrammarRule,Microsoft.ProgramSynthesis.Specifications.Spec)">
+            <summary>
+                Find the most applicable plans for the <paramref name="rule" /> and the given <paramref name="spec" />.
+                Prefer plans that are user-defined and accept more specific spec.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Learning.Strategies.DeductiveSynthesis.Config.PrereqProgramsThreshold">
+            <summary>
+                <para>
+                    Calculates the threshold for a program set with a future dependency during ordered program synthesis.
+                </para>
+                <para>
+                    Consider a synthesis task <code>LearnSymbolTopK(N, spec, k)</code> where <code>N := F(A, B)</code> and a
+                    witness function
+                    for B depends on the value of A. In this case we only need to learn top-K programs for B, but (in general) we
+                    have to learn
+                    all programs for A, because we don't know the cluster of As that contains the parameter that will yield the
+                    highest-ranked
+                    F(A, B). <code>PrereqProgramsThreshold</code> is a function that takes as input the value of <code>k</code> and
+                    outputs
+                    the corresponding value of <code>k'</code> — the number of top programs to be learnt for the independent
+                    parameter A.
+                    If it outputs <code>null</code>, Microsoft.ProgramSynthesis learns all programs for A.
+                </para>
+                <remarks>
+                    If the ranking function for the DSL is monotonic (higher scores for subexpressions yield higher scores for
+                    expressions
+                    that contain them), then <code>k' = 1</code> is guaranteed to produce the highest-ranked result.
+                </remarks>
+                <value>Defaults to <code>k => null</code>.</value>
+            </summary>
+        </member>
+    </members>
+</doc>

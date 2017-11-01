@@ -1,0 +1,119 @@
+module Xml_to_json = 
+
+let lowercase = [a-z]
+let uppercase = [A-Z]
+let digit = [0-9]
+let wsp = [ \t\n\r]
+let capfirst = uppercase . lowercase* 
+let capfsentence = (capfirst . " ")* . capfirst
+
+let name = capfirst . " " . uppercase . ". " . capfirst
+let date = digit{2} . "-" . digit{2} . "-" . digit{4}
+let address = (lowercase | uppercase | digit | wsp) * . ", " . uppercase* . wsp .
+                uppercase{2} . wsp . digit{5}
+
+let xmlname = "<name>" . name ."</name>"
+let xmldate = "<birthdate>" . date . "</birthdate>"
+let xmlgenre = "<genre>" . capfsentence . "</genre>"
+let xmlgenres = "<genres>" . ([] | ("\n" . (xmlgenre . "\n")* ) . (xmlgenre . "\n")) . "</genres>"
+let xmladdress = "<address>" . address . "</address>"
+
+let genrestest = 
+"<genres>
+<genre>Self Help</genre>
+<genre>Theatre</genre>
+<genre>Crime</genre>
+</genres>"
+
+let jsoncapfsentence = "\"" . capfsentence . "\""
+let caplist = "[" . ([] | (jsoncapfsentence . ", ")* . jsoncapfsentence) . "]"
+
+let sanitycheck = synth xmlgenres <=> caplist with #{string * string}[genrestest
+, "[\"Self Help\", \"Theatre\", \"Crime\"]" ]
+
+test sanitycheck.get genrestest = ?
+      
+let xmlpermauth = perm #{canonizer}[id xmlname; id xmldate; id xmlgenres; id xmladdress] with
+                (project wsp* -> "\n")
+let author = id "<author>\n" . xmlpermauth . id "\n</author>"
+
+let authortest = 
+"<author>
+<address>BobLobLaw, PHILADELPHIA PA 19104</address>
+<genres>
+<genre>Self Help</genre>
+<genre>Theatre</genre>
+<genre>Crime</genre>
+</genres>
+<name>Tobias O. Funke</name>
+<birthdate>04-04-1964</birthdate>
+</author>"
+
+let jsonname = "\"name\" : \"" . name . "\""
+let jsondate = "\"birthdate\" : " . date . "\""
+let jsongenres = "\"genres\" : " . caplist 
+let jsonaddress = "\"address\" : \"" . address . "\""
+
+let jsonpermauth = perm #{canonizer}[id jsonname; id jsondate; id jsongenres; id jsonaddress] with
+                (project (wsp* . ","* . wsp* ) -> ", ")
+let jsonauthor = id "\"author\" : {" . jsonpermauth . id "}"
+
+let synthauth = synth author <=> jsonauthor with #{string * string}[]
+test synthauth.get authortest = ?
+
+let xmltitle = "<title>" . capfsentence . "</title>"
+let xmlprice = "<price>$" . digit+ . "." . digit{2} . "</price>"
+
+let permbook = perm #{canonizer}[id xmltitle; author; id xmlgenre; id xmlprice] with
+                (project wsp -> "\n")
+let xmlbook = id "<book>\n" . permbook . id "\n</book>"
+
+let jsontitle = "\"title\" : \"" . capfsentence . "\""
+let jsongenre = "\"genre\" : \"" . capfsentence . "\""
+let jsonprice = "\"price\" : \"$" . digit+ . "." . digit{2} . "\""
+
+let jsonpermbook = perm #{canonizer}[id jsontitle; jsonauthor; id jsongenre; id jsonprice] with
+                (project (wsp* . ","* . wsp* ) -> ", ")
+let jsonbook = id "\"book\" : {" . jsonpermbook . id "}"
+
+let booktest = 
+"<book>\n". authortest . 
+"\n<price>$2.99</price>
+<title>The Man Inside Me</title>
+<genre>Self Help</genre>
+</book>"
+
+let synthbook = synth xmlbook <=> jsonbook with #{string * string}[]
+test synthbook.get booktest = ?
+
+let xmldepartment = "<department>" . capfsentence . "</department>"
+let xmllibname = "<name>" . capfsentence . "</name>"
+let xmlbooks = id "<books>" . (id [] | (id "\n" . (xmlbook . id "\n")* ) . (xmlbook . 
+id "\n")) . id "</books>"
+
+let permlibrary = perm #{canonizer}[id xmllibname; id xmldepartment; id xmladdress; xmlbooks] with
+                (project wsp -> "\n")
+let xmllibrary = id "<library>\n" . permlibrary . id "\n</library>"
+
+let jsondepartment = "\"department\" : " . capfsentence . "\""
+let jsonlibname = "\"name\" : " . capfsentence . "\""
+let jsonparenbook = id "{" . jsonpermbook . id "}"
+let booklist = id "[" . (id [] | (jsonparenbook . id ", ")* . jsonparenbook) . id "]"
+let jsonbooks = id "\"books\" : " . booklist
+
+let jsonpermlibrary = perm #{canonizer}[id jsonlibname; id jsondepartment; id jsonaddress; jsonbooks] with
+                (project (wsp* . ","* . wsp* ) -> ", ")
+let jsonlibrary = id "{\"library\" : {" . jsonpermlibrary . id "}}"
+
+let synthlibrary = synth xmllibrary <=> jsonlibrary with #{string * string}[]
+
+let librarytest = 
+"<library>
+<books>\n" . booktest . "\n" . booktest . 
+"\n</books>
+<department>Drama</department>
+<name>The Ol Bookstore</name>
+<address>BobLobLawLobsLawBomb, PHILADELPHIA PA 19104</address>
+</library>"
+
+test synthlibrary.get librarytest = ?

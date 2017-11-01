@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Conditionals.Learning</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.BisectingClustering">
+            <summary>
+                A bisecting hierarchical clustering task.
+                [http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.125.9225]
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.BisectingClustering.#ctor(Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.Cluster,System.Collections.Generic.IReadOnlyList{System.Collections.Generic.HashSet{System.String}},System.Collections.Generic.IReadOnlyList{System.Collections.Generic.HashSet{System.String}})">
+            <summary>
+                Instantiates a new clustering task.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.BisectingClustering.TopKClusters(System.Int32)">
+            <summary>
+                Returns the best <paramref name="k" /> clusters for the data.
+            </summary>
+            <param name="k"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.BisectingClustering.TopClusters">
+            <summary>
+                Returns the best clustering for the data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.Cluster">
+            <summary>
+                Represents a cluster of the input.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.Cluster.#ctor(System.Collections.Generic.IReadOnlyList{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring})">
+            <summary>
+                Creates an initial cluster for a list of input strings.
+            </summary>
+            <param name="inputs">The list of input strings.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.Cluster.AllFeatures">
+            <summary>
+                The vector of all features in the inputs
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.Cluster.DescriptiveFeatures">
+            <summary>
+                The conjunction of features that describes this cluster.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.Cluster.DataPoints">
+            <summary>
+                The list of data in this cluster, each of which corresponds to an input.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.Cluster.Bisect(System.Collections.Generic.IReadOnlyList{System.Collections.Generic.HashSet{System.String}},System.Collections.Generic.IReadOnlyList{System.Collections.Generic.HashSet{System.String}})">
+            <summary>
+                Bisects the cluster into two.
+            </summary>
+            <param name="inSameCluster">These elements should be in the same cluster.</param>
+            <param name="inDifferentClusters">These elements should be in different clusters.</param>
+            <returns>The tuple of two bisected clusters.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.DataPoint">
+            <summary>
+                Represents a data point in the feature space. Each data point corresponds to a feature vector of an input.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.Feature">
+            <summary>
+                Represents a feature in the feature vector. Each <see cref="T:Microsoft.ProgramSynthesis.Conditionals.Learning.Clustering.DataPoint" /> is represented by a vector of this
+                feature.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Learning.RankingScore">
+            <summary>
+                The ranking class.
+                Prefer True > IsNullOrWhiteSpace > Matches > StartsWith > EndsWith > Contains
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Learning.Witnesses">
+            <summary>
+                The learning witnesses class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Learning.Witnesses.#ctor(Microsoft.ProgramSynthesis.Grammar,System.Nullable{System.Int32},System.Collections.Generic.IReadOnlyList{System.Collections.Generic.HashSet{System.String}},System.Collections.Generic.IReadOnlyList{System.Collections.Generic.HashSet{System.String}})">
+            <summary>
+                Constructs the witness.
+            </summary>
+            <param name="grammar">The grammar.</param>
+            <param name="clusterCount">The number of cluster to split.</param>
+            <param name="inSameCluster">The elements that should be in the same cluster.</param>
+            <param name="inDifferentClusters">The elements that should be in different clusters.</param>
+        </member>
+    </members>
+</doc>

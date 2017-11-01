@@ -1,0 +1,6 @@
+_build/
+setup.ml
+setup.data
+setup.log
+*.native
+.DS_STORE

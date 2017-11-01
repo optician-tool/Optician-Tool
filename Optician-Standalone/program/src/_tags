@@ -1,0 +1,6 @@
+true: package(core)
+true: package(str)
+true: package(oUnit)
+true: package(ppx_deriving.std)
+true: package(ppx_hash)
+true: thread

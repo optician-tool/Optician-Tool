@@ -1,0 +1,411 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Matching.Text.Semantics</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.AdditionalSemantics.IfThenElse(System.Boolean,System.Collections.Immutable.ImmutableList{Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken},System.Collections.Immutable.ImmutableList{Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken})">
+            <summary>
+                A conditional operator.
+            </summary>
+            <param name="if">The condition (result of a token match).</param>
+            <param name="then">The label when the condition is satisfied.</param>
+            <param name="else">The label when the condition is not satisfied.</param>
+            <returns>
+                <paramref name="then" /> if <paramref name="if" /> is <c>true</c>,
+                <paramref name="else" /> otherwise.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion">
+            <summary>
+                Represents a suffix, and retains information about the <see cref="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Source" /> string
+                and lazily caches matches with <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken" />s.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.#ctor(System.String,System.UInt32)">
+            <summary>
+                Creates a suffix for <paramref name="s" /> starting at <paramref name="start" />.
+            </summary>
+            <param name="s">The source string.</param>
+            <param name="start">The start index of the suffix.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.PrefixMatchToken">
+            <summary>
+                The token due to which this SuffixRegion was generated as a suffix.
+                Only set if this SuffixRegion was returned by <see cref="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.UnmatchedSuffix(Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken)" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Start">
+            <summary>
+                The starting index of the suffix, in the <see cref="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Source" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Source">
+            <summary>
+                The original string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Value">
+            <summary>
+                The substring.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Equals(Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.UnmatchedSuffix(Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken)">
+            <summary>
+                Returns the unmatched suffix of the current <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion" />,
+                after matching a <paramref name="token" />.
+            </summary>
+            <param name="token">The token to be matched.</param>
+            <returns>
+                null if <paramref name="token" /> does not match at the beginning of the current
+                <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion" />, else a new <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion" /> representing the
+                unmatched suffix.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.ToString">
+            <summary>
+                A <see cref="T:System.String" /> representation of the current <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Equals(System.Object)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Equals(Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.op_Equality(Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion,Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion)">
+            <summary>
+                Checks if <paramref name="left" /> and <paramref name="right" /> are the same suffixes.
+            </summary>
+            <param name="left">The first <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion" /> to compare.</param>
+            <param name="right">The second <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion" /> to compare.</param>
+            <returns>
+                True if <paramref name="left" /> and <paramref name="right" /> have the same <see cref="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Source" />,
+                and <see cref="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Start" />.
+            </returns>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Equals(Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.op_Inequality(Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion,Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion)">
+            <summary>
+                Checks if <paramref name="left" /> and <paramref name="right" /> are different suffixes.
+            </summary>
+            <param name="left">The first <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion" /> to compare.</param>
+            <param name="right">The second <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion" /> to compare.</param>
+            <returns>
+                False if <paramref name="left" /> and <paramref name="right" /> have the same <see cref="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Source" />,
+                and <see cref="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Start" />.
+            </returns>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion.Equals(Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion)" />
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken">
+            <summary>
+                A <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.RegexToken" />, based on a regular expression character class.
+                These tokens have score in the range (-4, Infinity).
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken.#ctor(System.String,System.String,System.UInt32,System.Nullable{System.Double})">
+            <summary>
+                Initializes a new instance of <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken" />.
+            </summary>
+            <param name="name">Name of the token.</param>
+            <param name="charClassRegexString">The regex string describing the class.</param>
+            <param name="size">Size of the character class</param>
+            <param name="score">Override the default score computation with this value.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken.UnrestrictedToken">
+            <summary>
+                The unrestricted base character class Token.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken.RequiredLength">
+            <summary>
+                The required length of characters to be matched.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken.ClassRegex">
+            <summary>
+                The Regex string describing the character class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken.ClassSize">
+            <summary>
+                The number of characters in the character class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken.Equals(Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken.PrefixMatchLength(System.String)">
+            <summary>
+                Searches for the token at the start of the specified string and returns the length of the match.
+            </summary>
+            <param name="target">The string to search for a match.</param>
+            <returns>
+                The length of the match.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken.FromUnionOf(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken},System.Nullable{System.Double},System.String)">
+            <summary>
+                Creates a new <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken" /> by a union over the provided <paramref name="tokens" />.
+            </summary>
+            <param name="tokens">The <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken" /> objects to be combined.</param>
+            <param name="penalty">The penalty to be multiplied with the score.</param>
+            <param name="newName">A new name for the resulting <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken" />.</param>
+            <returns>
+                A new <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken" /> with the desired new name (if provided).
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken.Equals(System.Object)">
+            <summary>Determines whether the specified object is equal to the current object.</summary>
+            <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken.GetTokenForLength(System.UInt32)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.RegexToken" /> which matches exactly <paramref name="length" />
+                characters of the current <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken" />.
+            </summary>
+            <param name="length">Length of characters to be consumed by the <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.RegexToken" />.</param>
+            <returns>
+                A <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token" /> which matches exactly <paramref name="length" />
+                characters of the current <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.CharClassToken" />.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.ConstantToken">
+            <summary>
+                A <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.RegexToken" />, based on a constant string.
+                These tokens have score in the range (0, -1].
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.ConstantToken.#ctor(System.String)">
+            <summary>
+                Initializes a new <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token" /> instance,
+                based on the constant string <paramref name="str" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.ConstantToken.Constant">
+            <summary>
+                The string literal defining this token.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.ConstantToken.PrefixMatchLength(System.String)">
+            <summary>
+                Searches for the token at the start of the specified string and returns the length of the match.
+            </summary>
+            <param name="target">The string to search for a match.</param>
+            <returns>
+                The length of the match.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken">
+            <summary>
+                An interface for a token.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken.Description">
+            <summary>
+                The description for the token.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken.Name">
+            <summary>
+                The name of the token.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken.Score">
+            <summary>
+                The score for the token - an indication of how general the Token is.
+                Scores of tokens are non-positive. More general tokens usually have more negative scores.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken.PrefixMatchLength(System.String)">
+            <summary>
+                Searches for the token at the start of the specified string and returns the length of the match.
+            </summary>
+            <param name="target">The string to search for a match.</param>
+            <returns>
+                The length of the match.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.RegexToken">
+            <summary>
+                A <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token" />, based on a regular expression.
+                These tokens should usually have score in the range (-1, -4).
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.RegexToken.#ctor(System.String,System.String,System.Double)">
+            <summary>
+                Initializes a new Token instance with the specified <paramref name="name" /> and <paramref name="score" />,
+                based on the regular expression string <paramref name="regex" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.RegexToken.Regex">
+            <summary>
+                The Regex used for matching this Token.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.RegexToken.PrefixMatchLength(System.String)">
+            <summary>
+                Searches for the token at the start of the specified string and returns the length of the match.
+            </summary>
+            <param name="target">The string to search for a match.</param>
+            <returns>
+                The length of the match.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token">
+            <summary>
+                An abstract class which represents an atomic token.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token.#ctor(System.String,System.Double,System.String)">
+            <summary>
+                Initializes a new Token instance with the specified <paramref name="name" />, description and score.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token.Description">
+            <summary>
+                The description for the token.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token.Name">
+            <summary>
+                The name of the token.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token.Score">
+            <summary>
+                The score for the token - an indication of how general the Token is.
+                Scores of tokens are non-positive. More general tokens usually have more negative scores.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token.Equals(Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token.PrefixMatchLength(System.String)">
+            <summary>
+                Searches for the token at the start of the specified string and returns the length of the match.
+            </summary>
+            <param name="target">The string to search for a match.</param>
+            <returns>
+                The length of the match.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token.ToString">
+            <summary>
+                Returns the name of the token.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token.Equals(System.Object)">
+            <summary>Determines whether the specified object is equal to the current object.</summary>
+            <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Semantics.NoMatch">
+            <summary>
+                An operator which indicates an always-failing match.
+            </summary>
+            <returns><c>false</c></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Semantics.Disjunction(System.Boolean,System.Boolean)">
+            <summary>
+                A Boolean disjunction operator.
+            </summary>
+            <param name="match">Result of match.</param>
+            <param name="disjunctiveMatch">Result of the disjunctive_match.</param>
+            <returns>
+                <c>true</c> if at least one argument is <c>true</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Semantics.IsNull(Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion)">
+            <summary>
+                Checks if <paramref name="sRegion" /> originates from a <c>null</c> string.
+            </summary>
+            <param name="sRegion">The <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion" /> to be checked.</param>
+            <returns>
+                <c>true</c> if <paramref name="sRegion" /> has a <c>null</c> Source, <c>false</c> otherwise.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Semantics.EndOf(Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion)">
+            <summary>
+                Checks if <paramref name="sRegion" /> is empty (and non-<c>null</c>).
+            </summary>
+            <param name="sRegion">The <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion" /> to be checked.</param>
+            <returns>
+                <c>true</c> if <paramref name="sRegion" /> is empty, <c>false</c> otherwise.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Semantics.SuffixAfterTokenMatch(Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion,Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken)">
+            <summary>
+                Extracts a suffix of the source string, after matching the longest prefix with the specified token.
+            </summary>
+            <param name="sRegion">The source <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion" />.</param>
+            <param name="token">The <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.Token" /> to be matched.</param>
+            <returns>
+                A <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.SuffixRegion" /> representing the suffix.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.TokenUtils">
+            <summary>
+                Utilities for <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken"/> objects.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.TokenUtils.Separator">
+            <summary>
+                Separator for combining string representations of <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken"/>s.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.TokenUtils.Null">
+            <summary>
+                A description for an empty sequence of <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken"/>s - matching a <c>null</c> string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Semantics.TokenUtils.UnknownDescription">
+            <summary>
+                A description for a <c>null</c> sequence of <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken"/>s.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Semantics.TokenUtils.CombinedDescription(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken})">
+            <summary>
+                Describes a sequence of <see cref="T:Microsoft.ProgramSynthesis.Matching.Text.Semantics.IToken"/>s.
+            </summary>
+            <param name="tokens">A sequence of tokens.</param>
+            <returns>
+                A string description of the token sequence.
+            </returns>
+        </member>
+    </members>
+</doc>

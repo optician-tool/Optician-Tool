@@ -1,0 +1,422 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Compound.Split</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Split.Constraints.LineLengthLimit">
+            <summary>
+                The constraint to set the length limit of a line. The system trims any line that exceeds this value.
+                The default value is 30000 characters.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Constraints.LineLengthLimit.#ctor(System.Int32)">
+            <summary>
+                Constructs the constraint to set the length limit of a line.
+            </summary>
+            <param name="limit">The learning time limit.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Constraints.LineLengthLimit.Limit">
+            <summary>
+                The limit of a line.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Constraints.LineLengthLimit.Default">
+            <summary>
+                The default limit.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Split.Constraints.TimeLimit">
+            <summary>
+                The constraint to set learning time limit. The default value is 5 seconds.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Constraints.TimeLimit.#ctor(System.TimeSpan)">
+            <summary>
+                Constructs the constraint to set learning time limit.
+            </summary>
+            <param name="limit">The learning time limit.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Constraints.TimeLimit.Limit">
+            <summary>
+                The learning time limit.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Constraints.TimeLimit.Default">
+            <summary>
+                The default limit.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Split.Constraints.EnableTelemetry">
+            <summary>
+                The constraint to enable telemetry logging.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Constraints.EnableTelemetry.#ctor(System.Collections.Generic.HashSet{System.String},System.Int32)">
+            <summary>
+                Constructs the constraint to enable telemetry logging.
+            </summary>
+            <param name="symbols">The symbols tracked in the telemetry.</param>
+            <param name="lineCount">The number of lines from the input to log telemetry for.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Constraints.EnableTelemetry.TrackedSymbols">
+            <summary>
+                The symbols tracked in the telemetry.
+                Default are <c>{ ",", "\t", " ", ";", "|", "\"", "'" }</c>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Constraints.EnableTelemetry.TelemetryLineCount">
+            <summary>
+                The number of lines from the input to log telemetry for.
+                Default is 10;
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Split.Constraints.InputStream">
+            <summary>
+                The constraint to provide the input stream.
+                This constraint exists because stream input cannot be added directly to the inputs (which are of type
+                <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />).
+                We will convert this stream into input internally.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Constraints.InputStream.#ctor(System.IO.Stream)">
+            <summary>
+                Constructs the constraint for stream.
+            </summary>
+            <param name="stream">The input stream.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Constraints.InputStream.Stream">
+            <summary>
+                The input stream.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Constraints.InputStream.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Wrangling.Schema.TableOutput.ITable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Constraints.InputStream.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Wrangling.Schema.TableOutput.ITable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Constraints.InputStream.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Wrangling.Schema.TableOutput.ITable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Constraints.InputStream.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Split.Constraints.SimpleDelimiter">
+            <summary>
+                The constraint to only learn simple file and column delimiters.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Constraints.SimpleDelimiter.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Wrangling.Schema.TableOutput.ITable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Constraints.SimpleDelimiter.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Wrangling.Schema.TableOutput.ITable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Constraints.SimpleDelimiter.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Wrangling.Schema.TableOutput.ITable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Constraints.SimpleDelimiter.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Split.InputLineTelemetry">
+            <summary>
+                The telemetry of an input line.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.InputLineTelemetry.#ctor(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Collections.Generic.HashSet{System.String})">
+            <summary>
+                Constructs the telemetry for <paramref name="line" />.
+            </summary>
+            <param name="line">The input line.</param>
+            <param name="symbols">The symbols to track.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.InputLineTelemetry.PrefixRegexes">
+            <summary>
+                The regexes at the beginning of the line.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.InputLineTelemetry.SymbolCounts">
+            <summary>
+                The number of symbols appearing in the line.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.InputLineTelemetry.Length">
+            <summary>
+                The length of the input line.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Split.Learner">
+            <summary>
+                Learns Split compound programs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Learner.Tokens">
+            <summary>
+                The list of tokens to learn from.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Compound.Split.Learner.ColumnNameLearningTokens">
+            <summary>
+                The list of tokens to learn column name's regexes.
+                It excludes irrelevant tokens such as number, alphanumeric, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Learner.Instance">
+            <summary>
+                Singleton instance of this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Learner.ScoreFeature">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.FeatureInfo" /> used for ranking the top-k programs in
+                <see cref="M:Microsoft.ProgramSynthesis.Compound.Split.Learner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Wrangling.Schema.TableOutput.ITable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}},System.Int32,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Nullable{System.Threading.CancellationToken})" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Learner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Wrangling.Schema.TableOutput.ITable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}},System.Int32,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <paramref name="k" /> top-ranked programs from the given positive and negative examples.
+                Returns all tied results in case of a tie.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="k">The number of programs returned.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn and
+                rank programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The top-ranked programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Learner.LearnLikelyPrefixRegexes(System.String)">
+            <summary>
+                Finds the prefix regexes of length up to 2 for a column cell.
+            </summary>
+            <param name="cell">The string value of a column cell.</param>
+            <returns>The regexes.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Learner.TrimEndingNewLine(System.String)">
+            <summary>
+                Trims at most one ending new line from a string.
+            </summary>
+            <param name="s">The string to trim.</param>
+            <returns>The trimmed string.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Learner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Wrangling.Schema.TableOutput.ITable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}},System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns all programs from the given positive and negative examples.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn
+                programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The set of all programs consistent with the examples.</returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Loader.Instance">
+            <summary>
+                Singleton instance of this class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Loader.Microsoft#ProgramSynthesis#Wrangling#IProgramLoader{Microsoft#ProgramSynthesis#Compound#Split#Program,Microsoft#ProgramSynthesis#Extraction#Text#Semantics#StringRegion,Microsoft#ProgramSynthesis#Wrangling#Schema#TableOutput#ITable{Microsoft#ProgramSynthesis#Extraction#Text#Semantics#StringRegion}}#Load(System.String,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)">
+            <summary>
+                Loads a program that has been serialized to <paramref name="serializedProgram" />.
+            </summary>
+            <param name="serializedProgram">
+                The serialized program generated by
+                <see cref="M:Microsoft.ProgramSynthesis.Program`2.Serialize(Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)" />.
+            </param>
+            <param name="serializationFormat">The serialization format of <paramref name="serializedProgram" />.</param>
+            <returns>A program deserialized from <paramref name="serializedProgram" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Loader.Microsoft#ProgramSynthesis#Wrangling#IProgramLoader{Microsoft#ProgramSynthesis#Compound#Split#Program,Microsoft#ProgramSynthesis#Extraction#Text#Semantics#StringRegion,Microsoft#ProgramSynthesis#Wrangling#Schema#TableOutput#ITable{Microsoft#ProgramSynthesis#Extraction#Text#Semantics#StringRegion}}#Create(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Creates a program for a <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" />. <paramref name="program" /> must be a
+                valid program for a program.
+            </summary>
+            <param name="program">The code of the program.</param>
+            <returns>A strongly-typed program object wrapping <paramref name="program" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Split.Program">
+            <summary>
+                Represents a program to extract a table of <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> from a file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Program.#ctor(Microsoft.ProgramSynthesis.Split.File.Program,Microsoft.ProgramSynthesis.Split.Text.SplitProgram,Microsoft.ProgramSynthesis.Compound.Split.ProgramProperties)">
+            <summary>
+                Constructs a program from its constituent parts.
+            </summary>
+            <param name="splitFileProgram">The program for splitting a file into records.</param>
+            <param name="splitTextProgram">The program for splitting a record into columns.</param>
+            <param name="properties">The properties of the program</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Program.SplitFileProgram">
+            <summary>
+                The program for splitting a file into records.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Program.SplitTextProgram">
+            <summary>
+                The program for splitting a records into columns.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Program.Properties">
+            <summary>
+                The metadata of the program.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Program.Run(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Executes the program on the <paramref name="input" /> to obtain the output.
+            </summary>
+            <param name="input">The input.</param>
+            <returns>The output.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Split.ProgramProperties">
+            <summary>
+                Stores the metadata of <see cref="T:Microsoft.ProgramSynthesis.Compound.Split.Program" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.ProgramProperties.#ctor(System.Int32,System.Nullable{System.Char},System.Nullable{System.Char},System.Collections.Generic.IReadOnlyList{System.String},System.Int32,System.String,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IReadOnlyList{Microsoft.ProgramSynthesis.Compound.Split.InputLineTelemetry})">
+            <summary>
+                Constructs new object.
+            </summary>
+            <param name="skipLinesCount">The number of lines we skip from the beginning.</param>
+            <param name="quoteChar">The quote character, if exists.</param>
+            <param name="escapeChar">The escape character, if exists.</param>
+            <param name="rawColumnNames">The raw column names.</param>
+            <param name="columnCount">The number of columns.</param>
+            <param name="columnDelimiter"> The (single) delimiter the program uses to split the record into columns.</param>
+            <param name="recordDelimeter">The delimiter the program uses to split the file into records.</param>
+            <param name="newLineStrings">The array of newline strings in the input identified during training.</param>
+            <param name="telemetry">The telemetry of the input file.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.ProgramProperties.SkipLinesCount">
+            <summary>
+                The number of lines we skip from the beginning, zero if we do not skip lines.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.ProgramProperties.QuoteCharacter">
+            <summary>
+                The quote character if the file is quoted, null if the file is not quoted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.ProgramProperties.EscapeCharacter">
+            <summary>
+                The escape character for the quoted string if the file is quoted, null if the file is not quoted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.ProgramProperties.RawColumnNames">
+            <summary>
+                The raw column names of the program as they appear in the file, null if there is none.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.ProgramProperties.ColumnCount">
+            <summary>
+                The number of columns in the program.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.ProgramProperties.ColumnDelimiter">
+            <summary>
+                The (single) delimiter the program uses to split the record into columns, null if there is none.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.ProgramProperties.RecordDelimiter">
+            <summary>
+                The delimiter the program uses to split the file into records, null if there is none.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.ProgramProperties.NewLineStrings">
+            <summary>
+                The array of newline strings in the input identified during training.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.ProgramProperties.Telemetry">
+            <summary>
+                The telemetry of the first few lines of the input file.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Split.Session">
+            <summary>
+                A Split.Text learning session. See <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3" /> for the API for
+                learning sessions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Session.#ctor(Microsoft.ProgramSynthesis.Wrangling.Session.IJournalStorage,System.Globalization.CultureInfo,Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger)">
+            <summary>
+                Creates a new Split.File learning session.
+            </summary>
+            <param name="journalStorage">
+                Backing store for the journal of user actions used to adapt to user preferences. May be
+                null to not save this data.
+            </param>
+            <param name="culture">
+                The <see cref="T:System.Globalization.CultureInfo" /> to use when learning programs; accessible using
+                <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3.Culture" />. Used to select preferred date and number formats and
+                defaults for other culture-specific settings.
+            </param>
+            <param name="logger">
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger" /> implementation to use for providing telemetry information.
+            </param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Session.JsonSerializerSettings">
+            <summary>
+            Pass this property to json.net when serializing or deserializing a session object.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.Session.JsonSerializerSettingsInstance">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Split.Session.CreateStringRegion(System.String)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> for a string.
+            </summary>
+            <param name="s">The input string.</param>
+            <returns>The corresponding <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />.</returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.SessionJsonSerializerSettings.SessionTypes">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Split.SessionJsonSerializerSettings.ConstraintTypes">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,440 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Transformation.Json</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Json.Learner">
+            <summary>
+                Class for learning <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.Program" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Json.Learner.Instance">
+            <summary>
+                Singleton instance of this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Json.Learner.ScoreFeature">
+            <summary>
+                The ranking feature.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Learner.LearnImpl(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken}},System.Nullable{System.Int32},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learn top-ranked <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.Program" /> for a given set of input-output examples.
+                In the case of a tie, only one result will be returned.
+            </summary>
+            <param name="constraints">
+                The set of constraints. (Currently only input/output <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Constraints.Example`2" />s
+                are used.)
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The top-ranked <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.Program" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Learner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken}},System.Int32,System.Collections.Generic.IEnumerable{Newtonsoft.Json.Linq.JToken},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <paramref name="k" /> top-ranked programs from the given positive and negative examples.
+                Returns all tied results in case of a tie.
+            </summary>
+            <param name="constraints">The constraints.</param>
+            <param name="k">The number of programs returned.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn and
+                rank programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The top-ranked programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Learner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken}},System.Collections.Generic.IEnumerable{Newtonsoft.Json.Linq.JToken},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns all programs from the given positive and negative examples.
+            </summary>
+            <param name="constraints">The constraints.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn
+                programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The set of all programs consistent with the examples.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Json.Loader">
+            <summary>
+                Class for loading a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.Program" /> from its deserialized string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Json.Loader.Instance">
+            <summary>
+                Singleton instance of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.Loader" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Loader.Load(System.String,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)">
+            <summary>
+                Loads a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.Program" /> which was serialized using <see cref="M:Microsoft.ProgramSynthesis.Transformation.Json.Program.Serialize" />.
+            </summary>
+            <param name="serializedProgram">A string generated by <see cref="M:Microsoft.ProgramSynthesis.Transformation.Json.Program.Serialize" /> representing a program.</param>
+            <returns>A program equivalent to the one converted to the input string.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Loader.Create(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Wraps a <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" /> in a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.Program" />. <paramref name="program" /> must be a
+                valid program for a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.Program" />.
+            </summary>
+            <param name="program">The code of the program.</param>
+            <returns>A strongly-typed <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.Program" /> object wrapping <paramref name="program" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Json.Program">
+            <summary>
+            Class for learning and running JSON Transformation programs. These programs transform an input <see cref="T:Newtonsoft.Json.Linq.JToken"/> object
+            to an output <see cref="T:Newtonsoft.Json.Linq.JToken"/> object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Program.Run(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Executes the program on the <paramref name="input"/> to obtain the output.
+            </summary>
+            <param name="input">The input token.</param>
+            <returns>The result output.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Program.Run(System.String)">
+            <summary>
+            Executes the program on the <paramref name="input"/> to obtain the output.
+            </summary>
+            <param name="input">The input token.</param>
+            <returns>The result output.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Program.Serialize">
+            <summary>
+                Serializes a program to a string that can be loaded using <see cref="M:Microsoft.ProgramSynthesis.Transformation.Json.Loader.Load(System.String,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)" />.
+            </summary>
+            <returns>A machine-readable string representation of this program.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Program.Equals(Microsoft.ProgramSynthesis.Transformation.Json.Program)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+            true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Program.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+            true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Program.GetHashCode">
+            <summary>
+            Serves as the default hash function. 
+            </summary>
+            <returns>
+            A hash code for the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Program.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>
+            A string that represents the current object.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Json.Session">
+            <summary>
+                A Transformation.Json session. See <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3" /> for the API for
+                learning sessions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Session.#ctor(Microsoft.ProgramSynthesis.Wrangling.Session.IJournalStorage,System.Globalization.CultureInfo)">
+            <param name="journalStorage">
+                Backing store for the journal of user actions used to adapt to user preferences. May be
+                null to not save this data.
+            </param>
+            <param name="culture">
+                The <see cref="T:System.Globalization.CultureInfo" /> to use when learning programs; accessible using
+                <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3.Culture" />. Used to select preferred date and number formats and
+                defaults for other culture-specific settings.
+            </param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Constraint.TableToJsonExample">
+            <summary>
+                An example to transform a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table" /> into an <see cref="T:Newtonsoft.Json.Linq.JToken" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Constraint.TableToJsonExample.#ctor(Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table,Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Construct the example to perform transformation.
+            </summary>
+            <param name="input">The input table.</param>
+            <param name="output">The output array.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Constraint.TableToJsonExample.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table,Newtonsoft.Json.Linq.JToken})">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Constraint.TableToJsonExample.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table,Newtonsoft.Json.Linq.JToken})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Constraint.TableToJsonExample.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table,Newtonsoft.Json.Linq.JToken})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Constraint.TableToJsonExample.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Constraint.AutoTransform">
+            <summary>
+                Constraint to transform a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table" /> into an <see cref="T:Newtonsoft.Json.Linq.JToken" /> automatically (without using any
+                examples).
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Constraint.AutoTransform.#ctor(Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table)">
+            <summary>
+                Construct the constraint to perform transformation automatically.
+            </summary>
+            <param name="table"></param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Constraint.AutoTransform.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table,Newtonsoft.Json.Linq.JToken})">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Constraint.AutoTransform.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table,Newtonsoft.Json.Linq.JToken})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Constraint.AutoTransform.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table,Newtonsoft.Json.Linq.JToken})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Constraint.AutoTransform.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonLearner">
+            <summary>
+                Class for learning <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonLearner.Instance">
+            <summary>
+                Singleton instance of this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonLearner.ScoreFeature">
+            <summary>
+                The ranking feature.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonLearner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table,Newtonsoft.Json.Linq.JToken}},System.Int32,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <paramref name="k" /> top-ranked programs from the given positive and negative examples.
+                Returns all tied results in case of a tie.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="k">The number of programs returned.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn and
+                rank programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The top-ranked programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonLearner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table,Newtonsoft.Json.Linq.JToken}},System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns all programs from the given positive and negative examples.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn
+                programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The set of all programs consistent with the examples.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonLoader">
+            <summary>
+            Class for loading a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram"/> from its deserialized string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonLoader.Instance">
+            <summary>
+                Singleton instance of this class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonLoader.Load(System.String,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)">
+            <summary>
+                Loads a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram" /> which was serialized using <see cref="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram.Serialize" />.
+            </summary>
+            <param name="serializedProgram">A string generated by <see cref="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram.Serialize" /> representing a program.</param>
+            <param name="serializationFormat">The serialization format.</param>
+            <returns>A program equivalent to the one converted to the input string.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonLoader.Create(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Wraps a <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" /> in a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram" />. <paramref name="program" /> must be a
+                valid program for a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram" />.
+            </summary>
+            <param name="program">The code of the program.</param>
+            <returns>A strongly-typed <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram" /> object wrapping <paramref name="program" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram">
+            <summary>
+            Class for learning and running JSON Transformation programs. These programs transform an input <see cref="T:Newtonsoft.Json.Linq.JToken"/> object
+            to an output <see cref="T:Newtonsoft.Json.Linq.JToken"/> object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram.Run(Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table)">
+            <summary>
+            Executes the program on the <paramref name="input"/> to obtain the output.
+            </summary>
+            <param name="input">The input token.</param>
+            <returns>The result output.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram.Serialize">
+            <summary>
+                Serializes a program to a string that can be loaded using <see cref="M:Microsoft.ProgramSynthesis.Transformation.Json.Loader.Load(System.String,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)" />.
+            </summary>
+            <returns>A machine-readable string representation of this program.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram.Equals(Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+            true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+            true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram.GetHashCode">
+            <summary>
+            Serves as the default hash function. 
+            </summary>
+            <returns>
+            A hash code for the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonProgram.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>
+            A string that represents the current object.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonSession">
+            <summary>
+                A Transformation.Json.TableToJson session. See <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3" /> for the API for
+                learning sessions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.TableToJsonSession.#ctor(Microsoft.ProgramSynthesis.Wrangling.Session.IJournalStorage,System.Globalization.CultureInfo)">
+            <param name="journalStorage">
+                Backing store for the journal of user actions used to adapt to user preferences. May be
+                null to not save this data.
+            </param>
+            <param name="culture">
+                The <see cref="T:System.Globalization.CultureInfo" /> to use when learning programs; accessible using
+                <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3.Culture" />. Used to select preferred date and number formats and
+                defaults for other culture-specific settings.
+            </param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table">
+            <summary>
+                Represents a rectangular string table that has some columns and a list of rows containing string elements.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table.#ctor(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}})">
+            <summary>
+                Construct a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table" /> from its column names and rows.
+            </summary>
+            <param name="columnNames">The names of the columns.</param>
+            <param name="rows">The actual data making up the <see cref="T:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table"/> object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table.Equals(Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table.ToJArray">
+            <summary>
+                Converts this table to <see cref="T:Newtonsoft.Json.Linq.JArray" />.
+            </summary>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JArray" /> object.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table.Equals(System.Object)">
+            <summary>
+                Determines whether the specified <see cref="T:System.Object" /> is equal to the current
+                <see cref="T:System.Object" />.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.TableToJson.Table.GetHashCode">
+            <summary>
+                Serves as a hash function for a particular type.
+            </summary>
+            <returns>
+                A hash code for the current <see cref="T:System.Object" />.
+            </returns>
+        </member>
+    </members>
+</doc>

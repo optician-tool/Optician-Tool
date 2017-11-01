@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Extraction.Json.Learning</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Json.Learning.Witnesses.LearnAllGeneralizedPaths(Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion,Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion,System.Boolean)">
+            <summary>
+                Learn all possible paths from <paramref name="src" /> to <paramref name="dst" />.
+                This method is different from <see cref="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.GetAllPathsTo(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)"/>: it generalizes the paths
+                to the destination while the other method only finds concrete paths to the destination.
+            </summary>
+            <param name="src">The source region.</param>
+            <param name="dst">The destination region.</param>
+            <param name="learnSequence">Indicates whether we learn a sequence or a region.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

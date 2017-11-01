@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Split.Text.Semantics</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord">
+            <summary>
+                Holds all (non-overlapping) occurrences (start and end indexes) of a regular expression within a string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord.DisjointUnion(Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord,Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord,System.Int32[]@)">
+            <summary>
+                Returns the union of two disjoint match records (no overlapping or consecutive matches)
+            </summary>
+            <param name="m1">The first match record</param>
+            <param name="m2">The second match record</param>
+            <param name="matchOrdering">
+                Describes the ordering of matches: whether they are from the first or second match record in the result record (0
+                for m1, 1 for m2)
+            </param>
+            <returns>The union of the match records if they are disjoint, and null otherwise</returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.Tokens">
+            <summary>
+                The list of tokens to learn from.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.Concat(Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord,Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord)">
+            <summary>
+                Returns all matches that correspond to any consecutive occurrence of a match in <paramref name="t" /> followed by a
+                match in <paramref name="r" />.
+            </summary>
+            <param name="t">The first match record</param>
+            <param name="r">The second match record</param>
+            <returns>The match record of concatenations</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.LookBehind(Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord)">
+            <summary>
+                Returns the lookbehind matches for match record <paramref name="r" />, which are all empty matches at the end of
+                matches in <paramref name="r" />.
+            </summary>
+            <param name="r">The match record</param>
+            <returns>The lookbehind matches for <paramref name="r" /> </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.LookAhead(Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord)">
+            <summary>
+                Returns the lookahead matches for match record <paramref name="r" />, which are all empty matches at the start of
+                matches in <paramref name="r" />.
+            </summary>
+            <param name="r">The match record</param>
+            <returns>The lookahead matches for <paramref name="r" /> </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.LookAround(Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord,Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord,Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord)">
+            <summary>
+                Returns the matches in <paramref name="delimiterMatches" /> which occur in between the given lookbehind and
+                lookahead matches.
+            </summary>
+            <param name="r1">The lookbehind match record</param>
+            <param name="delimiterMatches">The delimiter match record</param>
+            <param name="r2">The lookahead match record</param>
+            <returns>The match record of the resulting matches</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.FieldLookAroundEndPoints(Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord,Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord,Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord)">
+            <summary>
+                Returns the delimiting positions of field matches given by <paramref name="fieldMatches" /> which 
+                occur in between the given lookbehind and lookahead matches.
+            </summary>
+            <param name="r1">The lookbehind match record</param>
+            <param name="fieldMatches">The match record of fields</param>
+            <param name="r2">The lookahead match record</param>
+            <returns>The match record of the resulting matches</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.FieldEndPoints(Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord)">
+            <summary>
+                Returns the delimiting positions of field matches given by <paramref name="fieldMatches" />
+            </summary>
+            <param name="fieldMatches">The match record of fields</param>
+            <returns>The match record of the resulting matches</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.GetMatchRecord(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Text.RegularExpressions.Regex)">
+            <summary>
+                Returns the match record of all occurrences of the given regex in the given string region.
+            </summary>
+            <param name="str">The string region</param>
+            <param name="regex">The regular expression</param>
+            <returns>The match record of the resulting matches</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.GetMatchRecordForStringRegex(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.String)">
+            <summary>
+                Returns the match record of all occurrences of the given regex in the given string region.
+            </summary>
+            <param name="str">The string region</param>
+            <param name="regex">The regular expression string</param>
+            <returns>The match record of the resulting matches</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.SplitMultiple(Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord,Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord)">
+            <summary>
+                Combines an existing match record of delimiter matches <paramref name="splitting" /> with a new match record of
+                delimiter matches  <paramref name="d" />.
+            </summary>
+            <param name="splitting">The match record of all delimiters in the current splitting</param>
+            <param name="d">The delimiter match record</param>
+            <returns>The match record of the resulting matches</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.DelimitersList(System.Collections.Generic.List{Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord},Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord)">
+            <summary>
+                Adds a new match record to a delimiters list
+            </summary>
+            <param name="delimitersList">The list of delimiters</param>
+            <param name="d">The delimiter to add</param>
+            <returns>The concatenation of the delimiter list with the new delimiter</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.EmptyDelimitersList">
+            <summary>
+                Returns an empty delimiters list
+            </summary>
+            <returns>An empty MatchRecord list</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.ExtPointsList(System.Tuple{System.Int32,System.Int32,System.Int32,System.Int32}[],System.Tuple{System.Int32,System.Int32,System.Int32,System.Int32})">
+            <summary>
+                Adds a new extraction point to an extraction points list
+            </summary>
+            <param name="extractionPoints">The list of extraction points</param>
+            <param name="cndExtPoint">The conditional extraction point to add</param>
+            <returns>The concatenation of the list with the new extraction point</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.EmptyExtPointsList">
+            <summary>
+                Returns an empty extraction point list
+            </summary>
+            <returns>An empty extraction point list</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.SpecialCharPattern(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.String)">
+            <summary>
+                Checks if the input string satisfies the given special character pattern
+            </summary>
+            <param name="v">The input string region</param>
+            <param name="pattern">The pattern of special characters</param>
+            <returns>True if the input string satisfies the given pattern</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.ConditionalExtract(System.Boolean,System.Tuple{System.Int32,System.Int32,System.Int32,System.Int32},System.Tuple{System.Int32,System.Int32,System.Int32,System.Int32})">
+            <summary>
+                Returns an extraction point based on whether a given predicate is satisfied
+            </summary>
+            <param name="pred">The predicate</param>
+            <param name="extPoint">The extraction point to return if pred is true</param>
+            <param name="cndExtPoint">The conditional extraction point to return if pred is false</param>
+            <returns>The extraction point conditional on the given predicate</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.ExtractionSplit(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Collections.Generic.List{Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord},System.Tuple{System.Int32,System.Int32,System.Int32,System.Int32}[])">
+            <summary>
+                Returns the list of split cells given a set of delimiters and extraction points
+            </summary>
+            <param name="v">The input string region</param>
+            <param name="delimitersList">The match record of all delimiters in the current splitting</param>
+            <param name="extractionPoints">
+                The list of extraction points representing the delimiter index and end points for each
+                extraction
+            </param>
+            <returns>The match record of the resulting matches</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.SplitRegion(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord,System.Int32[],System.Int32,System.Boolean,System.Boolean,System.Boolean,Microsoft.ProgramSynthesis.Split.Text.Semantics.FillStrategy)">
+            <summary>
+                Splits the given string region <paramref name="v" /> according to the delimiter matches in
+                <paramref name="splitMatches" />. The matches occurring in <paramref name="ignoreIndexes" /> are ignored when
+                performing the splitting. The total number of split cells produced from the matches should equal
+                <paramref name="numSplits" />, otherwise no splitting is performed and the whole string region is returned as the
+                first split cell and all remaining cells are empty.
+            </summary>
+            <param name="v">The input string region</param>
+            <param name="splitMatches">The delimiter match record</param>
+            <param name="ignoreIndexes">The match record of all delimiters in the current splitting</param>
+            <param name="numSplits">The number of split cells that are created in the result</param>
+            <param name="delimiterStart">Indicates whether the split starts with a delimiter</param>
+            <param name="delimiterEnd">Indicates whether the split ends with a delimiter</param>
+            <param name="includeDelimiters">Indicates if delimiter cells are included in the split</param>
+            <param name="fillStrategy">The fill strategy to use if greater/fewer splits than numSplits are used</param>
+            <returns>The array of split cells produced as the splitting</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.RegexMatch(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression)">
+            <summary>
+                Returns the match record of all occurrences of the given regular expression in the given string region.
+            </summary>
+            <param name="v">The string region</param>
+            <param name="regex">The regular expression</param>
+            <returns>The match record of the resulting matches</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Semantics.Semantics.FieldMatch(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression)">
+            <summary>
+                Returns the match record of all occurrences of the given field regex in the given string region.
+            </summary>
+            <param name="v">The string region</param>
+            <param name="fregex">The regular expression pattern for the field</param>
+            <returns>The match record of the resulting matches</returns>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Split.Text.Semantics.FillStrategy.Null">
+            <summary>
+                Fill all split cells with null values
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Split.Text.Semantics.FillStrategy.LeftToRight">
+            <summary>
+                Fill all split cells with values from left to right, with nulls for missing values,
+                or concatenation of all values in the last column in case of overflow.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Split.Text.Semantics.FillStrategy.RightToLeft">
+            <summary>
+                Fill all split cells with values from right to left, with nulls for missing values,
+                or concatenation of all values in the first column in case of overflow.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Split.Text.Semantics.SplitCell">
+            <summary>
+                Class representing an element of the result of a splitting operation. Each <see cref="T:Microsoft.ProgramSynthesis.Split.Text.Semantics.SplitCell" /> has a value
+                which is a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> and a flag to indicate if the cell represents a delimiter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.Text.Semantics.SplitCell.CellValue">
+            <summary>
+                The string region represented by this cell.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.Text.Semantics.SplitCell.IsDelimiter">
+            <summary>
+                Indicates if this cell represents a delimiter.
+            </summary>
+        </member>
+    </members>
+</doc>

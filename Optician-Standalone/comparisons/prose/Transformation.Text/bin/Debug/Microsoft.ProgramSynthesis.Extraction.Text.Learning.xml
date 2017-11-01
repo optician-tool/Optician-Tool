@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Extraction.Text.Learning</name>
+    </assembly>
+    <members>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Learning.Witnesses.ExampleCount">
+            <summary>
+                A number of examples in a current learning session.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Learning.Witnesses.LookBehindRegex">
+            <summary>
+                Represents the look behind regex of the field. Serves as an additional spec.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Learning.Witnesses.MatchingRegex">
+            <summary>
+                Represents the regex of the field. Serves as an additional spec.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Learning.Witnesses.LookAheadRegex">
+            <summary>
+                Represents the suffix regex of the field. Serves as an additional spec.
+            </summary>
+        </member>
+    </members>
+</doc>

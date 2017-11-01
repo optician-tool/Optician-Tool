@@ -1,0 +1,960 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Wrangling.Json</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.JPath">
+            <summary>
+                Represents a JSON path to retrieve a token from another token.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.#ctor">
+            <summary>
+                Constructs an empty path (which returns the same node).
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.#ctor(Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStep[])">
+            <summary>
+                Constructs a path from its corresponding steps.
+            </summary>
+            <param name="steps">The corresponding steps.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.#ctor(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStep})">
+            <summary>
+                Constructs a path from its corresponding steps.
+            </summary>
+            <param name="steps">The corresponding steps.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.#ctor(System.String[])">
+            <summary>
+                Constructs a path from its corresponding steps.
+            </summary>
+            <param name="steps">The corresponding steps.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+                Constructs a path from its corresponding steps.
+            </summary>
+            <param name="steps">The corresponding steps.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.Steps">
+            <summary>
+                The steps in this path.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.Score">
+            <summary>
+                The score of this path.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.Join(Microsoft.ProgramSynthesis.Wrangling.Json.JPath[])">
+            <summary>
+            Joins several paths into a path.
+            </summary>
+            <param name="paths">The list of paths that need to join together.</param>
+            <returns>The joined path.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.GetPath(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Returns a path from <paramref name="src"/> node to <paramref name="dst"/> node.
+            </summary>
+            <param name="src">The source node.</param>
+            <param name="dst">The destination node.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.ParseFromXML(System.Xml.Linq.XElement)">
+            <summary>
+                Load a <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JPath" /> that had been serialized to XML.
+            </summary>
+            <param name="pathElement">An XML-representation of a path.</param>
+            <returns>The path deserialized from <paramref name="pathElement" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.ParseFromHumanReadable(System.String)">
+            <summary>
+                Deserializes a string into a <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JPath" />.
+            </summary>
+            <param name="path">A string representation of a path.</param>
+            <returns>The deserialized <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JPath" /> of <paramref name="path" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.Serialize">
+            <summary>
+                Serializes this path into a string.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.ToString">
+            <summary>
+                Returns a JPath string representation.
+            </summary>
+            <returns>
+                A JPath string.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.Equals(Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JPath.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep">
+            <summary>
+                The step to access a value of an object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep.#ctor(System.String)">
+            <summary>
+                Constructs this step from a key.
+            </summary>
+            <param name="key">The key.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep.Key">
+            <summary>
+                The access key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep.Kind">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStepKind" /> of this step.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep.Score">
+            <summary>
+                The ranking score of this step.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep.Equals(Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep.Serialize">
+            <summary>
+                Serializes the step.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep.Apply(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Retrieves the <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep.Key" /> child of <paramref name="token" />.
+            </summary>
+            <param name="token">The token.</param>
+            <returns>The <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep.Key" /> child.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep.ToString">
+            <summary>
+                Returns a string that represents the current object.
+            </summary>
+            <returns>
+                A string that represents the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.AccessStep.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.CurrentStep">
+            <summary>
+            The step to return the same node. This is similar to "." in file system path..
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.CurrentStep.Kind">
+            <summary>
+            The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStepKind"/> of this step.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.CurrentStep.Score">
+            <summary>
+            The ranking score of this step.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.CurrentStep.Serialize">
+            <summary>
+                Serializes the step.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.CurrentStep.Apply(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Returns the same node.
+            </summary>
+            <param name="token">The token.</param>
+            <returns><paramref name="token"/>.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.CurrentStep.Equals(Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.CurrentStep)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+            true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.CurrentStep.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>
+            A string that represents the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.CurrentStep.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+            true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.CurrentStep.GetHashCode">
+            <summary>
+            Serves as the default hash function. 
+            </summary>
+            <returns>
+            A hash code for the current object.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep">
+            <summary>
+                The step to access an array element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep.#ctor(System.Int32)">
+            <summary>
+                Constructs this step from an integer.
+            </summary>
+            <param name="k">The index.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep.K">
+            <summary>
+                The index.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep.Kind">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStepKind" /> of this step.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep.Score">
+            <summary>
+                The ranking score of this step.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep.Equals(Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep.Serialize">
+            <summary>
+                Serializes the step.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep.Apply(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Retrieves the <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep.K" /> element of <paramref name="token" />.
+                Returns an empty list if <paramref name="token" /> is not a <see cref="T:Newtonsoft.Json.Linq.JArray" />.
+            </summary>
+            <param name="token">The array.</param>
+            <returns>The <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep.K" /> element.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep.ToString">
+            <summary>
+                Returns a string that represents the current object.
+            </summary>
+            <returns>
+                A string that represents the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.IndexStep.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStep">
+            <summary>
+                Class for specifying a specific step in <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JPath" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStep.Kind">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStepKind" /> of this step.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStep.Score">
+            <summary>
+                The ranking score of this step.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStep.Apply(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Applies this step to <paramref name="token" />.
+            </summary>
+            <param name="token">The starting token.</param>
+            <returns>The set of destination tokens.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStep.Serialize">
+            <summary>
+                Serializes the step.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStep.From(System.String)">
+            <summary>
+                Creates a step from its string representation.
+            </summary>
+            <param name="step">The step string representation</param>
+            <returns>The corresponding <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStep" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStepKind">
+            <summary>
+                The kind of <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStep" />.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.ParentStep">
+            <summary>
+                The step to access parent.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.ParentStep.Kind">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStepKind" /> of this step.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.ParentStep.Score">
+            <summary>
+                The ranking score of this step.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.ParentStep.Equals(Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.ParentStep)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.ParentStep.Apply(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Retrieves the parent of <paramref name="token" />.
+            </summary>
+            <param name="token">The token to retrieve parent.</param>
+            <returns>The parent of <paramref name="token" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.ParentStep.Serialize">
+            <summary>
+                Serializes the step.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.ParentStep.ToString">
+            <summary>
+                Returns a string that represents the current object.
+            </summary>
+            <returns>
+                A string that represents the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.ParentStep.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.ParentStep.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyKeyStep">
+            <summary>
+                The step to return the key of a property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyKeyStep.Kind">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStepKind" /> of this step.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyKeyStep.Score">
+            <summary>
+                The ranking score of this step.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyKeyStep.Equals(Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyKeyStep)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyKeyStep.Apply(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Retrieves the key of the property.
+            </summary>
+            <param name="token">The token.</param>
+            <returns>The key of <paramref name="token" />, null if <paramref name="token" /> is not a <see cref="T:Newtonsoft.Json.Linq.JProperty" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyKeyStep.Serialize">
+            <summary>
+                Serializes the step.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyKeyStep.ToString">
+            <summary>
+                Returns a string that represents the current object.
+            </summary>
+            <returns>
+                A string that represents the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyKeyStep.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyKeyStep.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyValueStep">
+            <summary>
+                The step to return the key of a property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyValueStep.Kind">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStepKind" /> of this step.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyValueStep.Score">
+            <summary>
+                The ranking score of this step.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyValueStep.Equals(Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyValueStep)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyValueStep.Apply(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Retrieves the value of the property.
+            </summary>
+            <param name="token">The token.</param>
+            <returns>The value of <paramref name="token" />, null if <paramref name="token" /> is not a <see cref="T:Newtonsoft.Json.Linq.JProperty" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyValueStep.Serialize">
+            <summary>
+                Serializes the step.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyValueStep.ToString">
+            <summary>
+                Returns a string that represents the current object.
+            </summary>
+            <returns>
+                A string that represents the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyValueStep.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.PropertyValueStep.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.SinglePropertyStep">
+            <summary>
+                The step to return the single value of a <see cref="T:Newtonsoft.Json.Linq.JObject" />
+                This is not applicable to objects that have more than 1 child.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.SinglePropertyStep.Kind">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStepKind" /> of this step.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.SinglePropertyStep.Score">
+            <summary>
+                The ranking score of this step.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.SinglePropertyStep.Equals(Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.SinglePropertyStep)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.SinglePropertyStep.Apply(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Retrieves the single value of <paramref name="token" />.
+                Returns an empty array if <paramref name="token" /> is not a <see cref="T:Newtonsoft.Json.Linq.JObject" /> or it does not has 1 child.
+            </summary>
+            <param name="token">The singleton object.</param>
+            <returns>The single value of <paramref name="token" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.SinglePropertyStep.Serialize">
+            <summary>
+                Serializes the step.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.SinglePropertyStep.ToString">
+            <summary>
+                Returns a string that represents the current object.
+            </summary>
+            <returns>
+                A string that represents the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.SinglePropertyStep.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.SinglePropertyStep.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.StarStep">
+            <summary>
+                The step to return the all properties of a <see cref="T:Newtonsoft.Json.Linq.JObject" />
+                or all elements in a <see cref="T:Newtonsoft.Json.Linq.JArray" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.StarStep.Kind">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.JPathStepKind" /> of this step.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.StarStep.Score">
+            <summary>
+                The ranking score of this step.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.StarStep.Equals(Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.StarStep)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.StarStep.Apply(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Retrieves the all properties or elements of <paramref name="token" /> depending on whether it is
+                <see cref="T:Newtonsoft.Json.Linq.JObject" /> or <see cref="T:Newtonsoft.Json.Linq.JArray" />.
+            </summary>
+            <param name="token">The token.</param>
+            <returns>All properties or elements of <paramref name="token" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.StarStep.Serialize">
+            <summary>
+                Serializes the step.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.StarStep.ToString">
+            <summary>
+                Returns a string that represents the current object.
+            </summary>
+            <returns>
+                A string that represents the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.StarStep.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JpathStep.StarStep.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion">
+            <summary>
+                Represents a JSON region in a document.
+                A region is defined by <see cref="T:Newtonsoft.Json.Linq.JToken" /> in the document and a pair of starting and ending positions
+                within the value of that token.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.Document">
+            <summary>
+                The document this region belongs to.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.Token">
+            <summary>
+                The <see cref="T:Newtonsoft.Json.Linq.JToken" /> of this region.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.Start">
+            <summary>
+                The starting position of this region (within the value of <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.Token" />).
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.End">
+            <summary>
+                The ending position of this region (within the value of <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.Token" />).
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.Value">
+            <summary>
+                The string value of this region.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.Create(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion" /> for <paramref name="token" />.
+            </summary>
+            <param name="token">The token associated with the <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion"/>.</param>
+            <returns>The resulting <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion"/>.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.Create(Newtonsoft.Json.Linq.JToken,System.UInt32,System.UInt32)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion" /> within <paramref name="token" />.
+                The region is defined by the pair of starting and ending positions.
+            </summary>
+            <param name="token">The token associated with the <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion"/>.</param>
+            <param name="start">The starting position of the region within <paramref name="token"/>.</param>
+            <param name="end">The ending position of the region within <paramref name="token"/>.</param>
+            <returns>The resulting <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion"/>.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.Equals(Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.Contains(Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion)">
+            <summary>
+                Checks if this region contains <paramref name="other" /> region.
+            </summary>
+            <param name="other">The region to look for in this region.</param>
+            <returns>True if <paramref name="other" /> is a region in the same document contained inside or equal to this region.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.IntersectNonEmpty(Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion)">
+            <summary>
+                Checks if this region intersects with <paramref name="other" /> region.
+            </summary>
+            <param name="other">The region needs to check for intersection.</param>
+            <returns>True if they intersect, false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.IsBefore(Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion)">
+            <summary>
+                Checks if this region appears before <paramref name="other" /> region.
+            </summary>
+            <param name="other">The region to check.</param>
+            <returns>True if this region appears first, false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.ClipBefore(Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion)">
+            <summary>
+                Clip this region to end before <paramref name="other" />.
+            </summary>
+            <param name="other">A region starting after this one.</param>
+            <returns>A region that starts at the same position but ends before <paramref name="other" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion.CompareTo(Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion)">
+            <summary>
+                Compares the current instance with another object of the same type and returns an integer that indicates whether
+                the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <returns>
+                A value that indicates the relative order of the objects being compared. The return value has these meanings: Value
+                Meaning Less than zero This instance precedes <paramref name="other" /> in the sort order.  Zero This instance
+                occurs in the same position in the sort order as <paramref name="other" />. Greater than zero This instance follows
+                <paramref name="other" /> in the sort order.
+            </returns>
+            <param name="other">An object to compare with this instance. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.SelectTokens(Newtonsoft.Json.Linq.JToken,Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+                Selects a list of tokens identified by <paramref name="path" /> starting from <paramref name="token" />.
+            </summary>
+            <param name="token">The source token.</param>
+            <param name="path">The JSON path.</param>
+            <returns>The list of destination tokens.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.SelectFirstToken(Newtonsoft.Json.Linq.JToken,Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+                Selects the first token in the list identified by <paramref name="path" /> starting from <paramref name="token" />.
+            </summary>
+            <param name="token">The source token.</param>
+            <param name="path">The JSON path.</param>
+            <returns>The first token in the destination tokens.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.SelectFirstProperty(Newtonsoft.Json.Linq.JToken,Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+                Selects the first property token in all tokens identified by a JSON path.
+                Because the path always returns the value of the property node, this method returns
+                the parent of the value, which is the property.
+            </summary>
+            <param name="token">The source token.</param>
+            <param name="path">The JSON path.</param>
+            <returns>The destination property token.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.GetAllPathsTo(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Calculates all possible <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JPath" />s from <paramref name="src" /> to <paramref name="dest" />.
+                <paramref name="dest" /> can be the descendant or ancestor of <paramref name="src" />.
+                Note that in traditional JSON path, <paramref name="dest" /> can only be the descendant.
+            </summary>
+            <param name="src">The source token.</param>
+            <param name="dest">The destination token.</param>
+            <returns>The JSON path from <paramref name="src" /> to <paramref name="dest" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.DescendantsAndSelf(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Returns the current <paramref name="token" /> and all of its descendants.
+            </summary>
+            <param name="token">The token to find descendants for.</param>
+            <returns>The <paramref name="token" /> and its descendants.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.IsNullOrNullType(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Checks if <paramref name="token" /> is null or of type <see cref="F:Newtonsoft.Json.Linq.JTokenType.Null" />.
+            </summary>
+            <param name="token">The token.</param>
+            <returns>True if <paramref name="token" /> is null or of type <see cref="F:Newtonsoft.Json.Linq.JTokenType.Null" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.PathToDescendant(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)">
+            <summary>
+                Returns all possible paths from <paramref name="src" /> to its descendant <paramref name="dest" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.Sample(Newtonsoft.Json.Linq.JToken,System.Int32,System.Int32)">
+            <summary>
+                Generates a sample for <paramref name="token" />.
+                This method assumes that the JSON is well-structured (such as no missing fields).
+                For <see cref="T:Newtonsoft.Json.Linq.JArray" />, this method selects the first <paramref name="arrayElementLimit" /> elements.
+                For <see cref="T:Newtonsoft.Json.Linq.JObject" />, this method always preserves values that are <see cref="T:Newtonsoft.Json.Linq.JArray" /> or
+                <see cref="T:Newtonsoft.Json.Linq.JObject" />.
+                It only samples "leaf" values such as number or string (i.e., <see cref="T:Newtonsoft.Json.Linq.JValue" />.
+                The maximum number of these values are specified in <paramref name="valueInObjectLimit" />.
+            </summary>
+            <param name="token">The token to be sampled.</param>
+            <param name="arrayElementLimit">The maximum number of array elements in the sample.</param>
+            <param name="valueInObjectLimit">The maximum number of "leaf" values in every object in the sample.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.Parse(System.String)">
+            <summary>
+                Parses a (possibly truncated) JSON text into a <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion" />.
+                If the last element is a truncated object property or array element, this method ignores the element.
+                However, if the element is a number, this method assumes that the number is not truncated and keeps the element.
+            </summary>
+            <param name="document">The JSON text.</param>
+            <returns>
+                A <see cref="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.ParseJson(System.String)" /> object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.Parse(System.String,System.Boolean,System.String,System.String)">
+            <summary>
+                Parses a (possibly truncated) JSON text into a <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion" /> given the type of the JSON.
+                If the last element is a truncated object property or array element, this method ignores the element.
+                However, if the element is a number, this method assumes that the number is not truncated and keeps the element.
+            </summary>
+            <param name="document">The JSON text.</param>
+            <param name="isNdJson">A flag indicating whether the document is delimited JSON text.</param>
+            <param name="startDelimiter">The extra delimiter at the start (if exists) for new-line delimited JSON.</param>
+            <param name="endDelimiter">The extra delimiter at the end (if exists) for new-line delimited JSON.</param>
+            <returns>The parsed <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.RepairTruncatedJson(System.String)">
+            <summary>
+                Repairs the truncated JSON text.
+                If the last element is a truncated object property or array element, this method ignores the element.
+                However, if the element is a number, this method assumes that the number is not truncated and keeps the element.
+            </summary>
+            <param name="document">The truncated JSON text.</param>
+            <returns>The fixed and parsed <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.ParseJson(System.String)">
+            <summary>
+                Parses a JSON text into a <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion" />.
+            </summary>
+            <param name="document">The input JSON text.</param>
+            <returns>The output <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.ParseDelimitedJson(System.String)">
+            <summary>
+                Parses a newline-delimited JSON text and detects its delimiter.
+                Also tries to fix the last record if the file was truncated in the middle of the last line.
+            </summary>
+            <param name="document">The input JSON text.</param>
+            <returns>The output <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.Utils.ParseDelimitedJson(System.String,System.String,System.String)">
+            <summary>
+                Parses a newline-delimited JSON text using the given delimiter;
+            </summary>
+            <param name="document">The input JSON text.</param>
+            <param name="startDelimiter">The extra delimiter at the start (if exists) for new-line delimited JSON.</param>
+            <param name="endDelimiter">The extra delimiter at the end (if exists) for new-line delimited JSON.</param>
+            <returns>The output <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Wrangling.Json.ParsedJson">
+            <summary>
+                The result of parsing a Json document.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Wrangling.Json.ParsedJson.#ctor(Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion,System.Boolean,System.String,System.String)">
+            <summary>
+                Construct a parse result.
+            </summary>
+            <param name="region">The parsed <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion" />.</param>
+            <param name="isDelimitedJson">Indicates if the JSON is (new line) delimited.</param>
+            <param name="startDelimiter">The extra delimiter at the start (if exists) for new-line delimited JSON.</param>
+            <param name="endDelimiter">The extra delimiter at the end (if exists) for new-line delimited JSON.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.ParsedJson.Region">
+            <summary>
+                The parsed <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Json.JsonRegion" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.ParsedJson.IsDelimitedJson">
+            <summary>
+                Indicates if the JSON is (new line) delimited.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.ParsedJson.EndDelimiter">
+            <summary>
+                The extra delimiter at the end (if exists) for new-line delimited JSON.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Wrangling.Json.ParsedJson.StartDelimiter">
+            <summary>
+                The extra delimiter at the start (if exists) for new-line delimited JSON.
+            </summary>
+        </member>
+    </members>
+</doc>

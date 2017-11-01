@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Matching.Text.Learning</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Learning.Cluster">
+            <summary>
+                A cluster, storing the learned ProgramSet, the best ProgramNode and the source inputs.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Learning.Cluster.#ctor(Microsoft.ProgramSynthesis.VersionSpace.ProgramSet,Microsoft.ProgramSynthesis.AST.ProgramNode,System.Double,System.Collections.Generic.IReadOnlyList{Microsoft.ProgramSynthesis.State})">
+            <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Learning.Cluster.Equals(Microsoft.ProgramSynthesis.Matching.Text.Learning.Cluster)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Learning.Cluster.Equals(System.Object)">
+            <summary>Indicates whether this instance and a specified object are equal.</summary>
+            <returns>
+                true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise,
+                false.
+            </returns>
+            <param name="obj">The object to compare with the current instance. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Learning.Cluster.GetHashCode">
+            <summary>Returns the hash code for this instance.</summary>
+            <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Learning.Cluster.BestProgramScore">
+            <summary>
+                The feature score of the <see cref="P:Microsoft.ProgramSynthesis.Matching.Text.Learning.Cluster.BestProgramNode" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Learning.Cluster.BestProgramNode">
+            <summary>
+                The best program for the cluster.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Learning.Cluster.ProgramSet">
+            <summary>
+                The ProgramSet of all learned programs for the cluster.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Learning.Cluster.Data">
+            <summary>
+                The input States in the cluster.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Learning.LabelFeature">
+            <summary>
+                A feature which generates a labelled version of a ProgramNode:
+                one that identifies the matching branch with a description, rather than a simple boolean result.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Learning.SortedProgramSetIntersections.Best">
+            <summary>
+                Return the best intersection. Since scores are negative, we want the least negative score (Last element).
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Matching.Text.Learning.TokensCollector">
+            <summary>
+                Walks a ProgramNode's AST and collects the Tokens.
+                For disjunctive or multi-column programs it would return a single list of all Tokens in the program.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Matching.Text.Learning.Witnesses.CreateStateProblemSpace(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{Microsoft.ProgramSynthesis.State,System.UInt32}},Microsoft.ProgramSynthesis.Learning.SynthesisEngine,Microsoft.ProgramSynthesis.Rules.OperatorRule,Microsoft.ProgramSynthesis.Learning.LearningTask,System.Threading.CancellationToken)">
+            <summary>
+                Creates a new ProblemSpace on State, using a small sample of additional inputs.
+                The distance computation between two States uses learning, so we need the same parameters as a RuleLearner.
+            </summary>
+            <param name="sampleInputs">The inputs to include in the ProblemSpace.</param>
+            <param name="engine">The synthesis engine.</param>
+            <param name="disjunctionRule">The disjunction rule in the grammar.</param>
+            <param name="top1Task">The learning task.</param>
+            <param name="cancel">A cancellation token.</param>
+            <returns>
+                A ProblemSpace defined on State, with distance between two States defined to be the score of the best
+                program which describes both these States.
+            </returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Matching.Text.Learning.Witnesses.Options.ThetaFactor">
+            <summary>
+                Used to set <see cref="P:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1.ThetaFactor"/>
+            </summary>
+        </member>
+    </members>
+</doc>

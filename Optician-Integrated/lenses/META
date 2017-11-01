@@ -1,0 +1,12 @@
+# OASIS_START
+# DO NOT EDIT (digest: 51ff496c440554506ca0e08e28016f8c)
+version = "1.0.0"
+description = "The Boomerang Language"
+requires = "hbase boomerang"
+archive(byte) = "lenses.cma"
+archive(byte, plugin) = "lenses.cma"
+archive(native) = "lenses.cmxa"
+archive(native, plugin) = "lenses.cmxs"
+exists_if = "lenses.cma"
+# OASIS_STOP
+

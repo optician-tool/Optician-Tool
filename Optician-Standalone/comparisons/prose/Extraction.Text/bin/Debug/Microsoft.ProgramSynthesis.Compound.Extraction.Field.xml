@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Compound.Extraction.Field</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Learner">
+            <summary>
+                Learner for learning <see cref="T:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Program" />s by example.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Learner.Instance">
+            <summary>
+                Singleton instance of this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Learner.Tokens">
+            <summary>
+                The list of tokens to learn from.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Learner.ScoreFeature">
+            <summary>
+                The "Score" feature of the language which is used to rank programs.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Learner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}},System.Int32,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learn <paramref name="k" /> top-ranked <see cref="T:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Program" />s for a given set of constraints.
+            </summary>
+            <param name="constraints">The set of constraints.</param>
+            <param name="additionalInputs">
+                The set of additional inputs that do not have constraints, which helps rank learned
+                programs.
+            </param>
+            <param name="k">The number of top program scores (may be more than <paramref name="k" /> programs in case of ties).</param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The top-k ranked <see cref="T:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Program" />s</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Learner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}},System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learn a <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /> of all programs satisfying the training examples.
+            </summary>
+            <param name="constraints">The set of constraints, including input/output examples.</param>
+            <param name="additionalInputs">
+                The set of additional inputs that do not have output examples, which helps rank learned
+                programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>All programs satisfying the training examples as a <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /></returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Loader">
+            <summary>
+                Factory class for loading serialized <see cref="T:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Program" />s.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Loader.Instance">
+            <summary>
+                Singleton instance of <see cref="T:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Loader" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Loader.Load(System.String,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)">
+            <summary>
+                Loads the serialized program.
+            </summary>
+            <param name="serializedProgram">The serialized program text.</param>
+            <param name="serializationFormat">The serialization format.</param>
+            <returns>The program.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Loader.Create(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Creates a program from the program node. Only applies to Extraction.Text program node.
+            </summary>
+            <param name="program">The program node.</param>
+            <returns>The program.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Program">
+            <summary>
+                The extraction program that extracts a field from a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Program.Type">
+            <summary>
+                The type of the extraction (e.g, Json, Xml, Text, etc.).
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Program.Run(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Executes the program on the <paramref name="input" /> to obtain the output.
+            </summary>
+            <param name="input">The input.</param>
+            <returns>The output.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Program.Serialize(Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)">
+            <summary>
+                Serializes the program to a string.
+            </summary>
+            <param name="serializationFormat">The desired serialization format (XML or human-readable).</param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Session">
+            <summary>
+                A Extraction.Field learning session. See <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3" /> for the API for
+                learning sessions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Session.#ctor(Microsoft.ProgramSynthesis.Wrangling.Session.IJournalStorage,System.Globalization.CultureInfo,Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger)">
+            <summary>
+                Creates a new Transformation.Text learning session.
+            </summary>
+            <param name="journalStorage">
+                Backing store for the journal of user actions used to adapt to user preferences. May be
+                null to not save this data.
+            </param>
+            <param name="culture">
+                The <see cref="T:System.Globalization.CultureInfo" /> to use when learning programs; accessible using
+                <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3.Culture" />. Used to select preferred date and number formats and
+                defaults for other culture-specific settings.
+            </param>
+            <param name="logger">
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger" /> implementation to use for providing telemetry information.
+            </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compound.Extraction.Field.Session.CreateStringRegion(System.String)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> for a string.
+            </summary>
+            <param name="s">The input string.</param>
+            <returns>The corresponding <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,109 @@
+module Addr_probs = 
+
+let LOWERCASE
+  : regexp =
+  "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" 
+
+let UPPERCASE
+  : regexp =
+  "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" 
+
+let DIGIT
+  : regexp =
+  "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" 
+
+let WSP : regexp = (" " | "\n" | "\t") . (" " | "\n" | "\t")*  
+
+let NAME : regexp = UPPERCASE . LOWERCASE*  
+
+let NUMBER : regexp = DIGIT . DIGIT*  
+
+let STREETTYPE : regexp = "Road" | "Avenue" | "Street" | "Boulevard" . "" 
+
+let CARDINALDIRECTION : regexp = "North" | "South" | "East" | "West" 
+
+let STREETNAME
+  : regexp =
+  NAME
+    . (" " . NAME)* 
+    . (" " . STREETTYPE | "") . ("" | " " . CARDINALDIRECTION) 
+
+let ZIP : regexp = DIGIT . DIGIT . DIGIT . DIGIT . DIGIT 
+
+let STATE : regexp = UPPERCASE . UPPERCASE 
+
+let CSV_ADDRESS
+  : regexp =
+  NAME
+    . ","
+    . NAME
+    . ","
+    . STATE . "," . ZIP . "," . NAME . "," . NUMBER . "," . STREETNAME . "\n" 
+
+let LETTER_ADDRESS
+  : regexp =
+  NAME
+    . " "
+    . NAME
+    . "\n"
+    . NUMBER
+    . " "
+    . STREETNAME
+    . "\n" . UPPERCASE . LOWERCASE*  . ", " . STATE . " " . " " . ZIP 
+
+let CSV_ADDRESS_DATABASE : regexp = CSV_ADDRESS*  
+
+let LETTER_ADDRESS_LIST
+  : regexp =
+  "" | LETTER_ADDRESS . ("\n\n" . LETTER_ADDRESS)* 
+
+let csv_to_letter = synth CSV_ADDRESS_DATABASE <=> LETTER_ADDRESS_LIST with
+#{string * string}[
+"Miltner,Anders,NJ,08544,Princeton,88,College Road West
+Miltner,Susan,CA,94904,Greenbrae,610,Via Casitas
+",
+"Anders Miltner
+88 College Road West
+Princeton, NJ  08544
+
+Susan Miltner
+610 Via Casitas
+Greenbrae, CA  94904"]
+
+test csv_to_letter.get
+  "Miltner,Anders,NJ,08544,Princeton,88,College Road West\nMiltner,Susan,CA,94904,Greenbrae,610,Via Casitas\n"
+  = "Anders Miltner\n88 College Road West\nPrinceton, NJ  08544\n\nSusan Miltner\n610 Via Casitas\nGreenbrae, CA  94904"
+
+test csv_to_letter.get "" = ""
+
+test csv_to_letter.get
+  "Miltner,Anders,WA,98122,Seattle,1620,Melrose Avenue\n"
+  = "Anders Miltner\n1620 Melrose Avenue\nSeattle, WA  98122"

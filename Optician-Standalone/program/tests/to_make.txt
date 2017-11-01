@@ -1,0 +1,11 @@
+Lenses between date formats:
+https://github.com/boomerang-lang/boomerang/blob/master/examples/ISO8601.boom
+
+Lenses between iCal and XML:
+https://github.com/boomerang-lang/boomerang/blob/master/examples/ical.boom
+
+Lenses between iTunes and XML:
+https://github.com/boomerang-lang/boomerang/blob/master/examples/itunes.boom
+
+VERY DIFFICULT BIG ONE, Lens between uniprot and xml
+https://github.com/boomerang-lang/boomerang/blob/master/examples/uniProtV2.boom

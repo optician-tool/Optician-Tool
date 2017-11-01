@@ -1,0 +1,82 @@
+module Afs_cellalias = 
+
+let LOWERCASE = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" 
+| "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" 
+| "w" | "x" | "y" | "z"
+
+let UPPERCASE = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" 
+| "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" 
+| "W" | "X" | "Y" | "Z" 
+
+let DIGIT = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" 
+
+let NUMBER = DIGIT+
+
+let WSP = (" " | "\n" | "\t")+
+
+let QUOTELESS_STRING = (UPPERCASE | LOWERCASE | DIGIT | " " | "'" | "_" | ":" 
+| "/" | "-" | "." |  "=" | "+")*
+
+let STRING_COMPONENT = UPPERCASE | LOWERCASE | DIGIT | "\"" | " " | "'" | "_" 
+| ":" | "/" | "-" | "." | "=" | "+"
+
+let STRING = STRING_COMPONENT*
+
+let NONEMPTY_STRING = STRING_COMPONENT+
+
+let DELIMITED_STRING = (UPPERCASE | LOWERCASE | DIGIT | "\\\"" | " " | "'" 
+| "_" | ":" | "/" | "-" | "." | "=" | "+")*
+
+let string_to_delimited : lens 
+= synth STRING <=> DELIMITED_STRING with 
+ #{string * string}[("+","+");("=","=");(".",".");(" "," ");("'","'");
+ (":",":");("/","/");("_","_");("-","-")]
+ 
+let COMMENT = "# " . STRING
+
+(*test COMMENT matches "# comment";;*)
+
+let COMMENT_DICT = "{\"#comment\"=\"" . DELIMITED_STRING  . "\"}"
+
+(*test COMMENT_DICT matches "{\"#comment\"=\"comment\"}";;*)
+
+let comment_map : lens = synth COMMENT <=> COMMENT_DICT with #{string * string}[]
+
+let EMPTYDICT = "{}"
+
+let ENV_VAR = (UPPERCASE | "_")+
+
+let WORD = (LOWERCASE | UPPERCASE | "_" | "." | "-" | ":" | "/" | "+" | DIGIT)+
+
+(*test WORD matches "my_username";;*)
+
+let SIMPLE_WORD = (LOWERCASE | UPPERCASE | DIGIT)+
+
+let FOLDER = ( (WORD  . "/")* . WORD . ([] | "/") ) | ("${" . ENV_VAR . "}")
+
+(*test FOLDER matches "my_username";;*)
+(*test FOLDER matches "${MY_HOME}";;*)
+
+let MULTILINE_COMMENT = "/*" . STRING . ("\n" . STRING)* . "*/"
+
+(*test MULTILINE_COMMENT matches "/*test\nmultiline*/";;*)
+(*test MULTILINE_COMMENT matches "/*testmultiline*/";;*)
+
+let MULTILINE_COMMENT_DICT = "{\"#mcomment\"" . (("{\"string\"=\"" . STRING . "\"}")+) . "}"
+
+(*test MULTILINE_COMMENT_DICT matches "{\"#mcomment\"{\"string\"=\"test\"}{\"string\"=\"multiline\"}}";;*)
+(*test MULTILINE_COMMENT_DICT matches "{\"#mcomment\"{\"string\"=\"testmultiline\"}}";;*)
+
+let multiline_comment_map : lens
+  = synth MULTILINE_COMMENT <=> MULTILINE_COMMENT_DICT with #{string * string}[]
+
+let LINKAGE = FOLDER . " " . WORD
+
+let CELLALIASCONF = ((LINKAGE | COMMENT | "") . "\n")*
+
+let LINKAGEDICT = "{\"target\"=\"" . FOLDER . "\"{\"linkname=\"" . WORD . "\"}}"
+
+let CELLALIASDICT = (COMMENT_DICT|LINKAGEDICT|EMPTYDICT)*
+
+let afs_cellalias = synth CELLALIASDICT <=> CELLALIASCONF with #{string * string}[]
+

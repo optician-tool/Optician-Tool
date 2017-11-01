@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Transformation.Json.Learning</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Learning.RankingScore.ArrayIndices(Microsoft.ProgramSynthesis.AST.ProgramNode,System.Collections.Generic.HashSet{System.Int32})">
+            <summary>
+            Returns all array indices in a program node.
+            </summary>
+            <param name="node">The program node.</param>
+            <param name="indices">All indices in program node.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

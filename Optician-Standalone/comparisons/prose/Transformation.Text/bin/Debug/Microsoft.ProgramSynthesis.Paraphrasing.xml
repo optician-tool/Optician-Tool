@@ -1,0 +1,584 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Paraphrasing</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.ProgramNodeMatcher">
+            <summary>
+            A class testing if a ProgramNode follows a given pattern.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.ProgramNodeMatcher.Accepts(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+            Returns true if the node is accepted by this model as a program node.
+            </summary>
+            <param name="model">The model as a program node containing holes</param>
+            <param name="node">The node to check</param>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Paraphrasing.DictionaryParser._letPrefix">
+            <summary>
+            Variables for paraphrasing built-in program nodes such as let, lambda and conversion nodes.
+            They can be updated with the corresponding section "builtin" in the json file.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.DictionaryParser.DescribeDictionary">
+            <summary>
+            Used to retrieved in a structured format the JSON file
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.DictionaryParser.ParseDescribeDict(System.String)">
+            <summary>
+            Takes in a string containing the JSON text and updates the <see cref="P:Microsoft.ProgramSynthesis.Paraphrasing.DictionaryParser.PhraseDict"/>
+            Assumes content of the file to look like:
+            <code>
+            {
+                "phrases": [
+                    {"phrase":"something", "symbol": "some symbol", "ast": "some AST that is to be produced when phrase is encountered"},
+                ]
+            }
+            </code>
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.DictionaryParser.BinaryConditions">
+            <summary>
+            Class representing a Binary condition as used in the treetemplate section of the paraphrasing JSON file.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.DictionaryParser.ParaphraseDictionary">
+            <summary>
+            Paraphrasing engine description as set up in the JSON file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.DictionaryParser.ParseParaphraseDict(System.String)">
+            <summary>
+            Takes in a string containing the JSON text and updates the <see cref="P:Microsoft.ProgramSynthesis.Paraphrasing.DictionaryParser.PredicateDict"/>.
+            Assumes content of the file to look like the schema described in the Microsoft.ProgramSynthesis.NaturalLanguage project schema-paraphrase.json.
+            <code>
+            {
+              "rules": {
+                "NonTerminalruleName": "{:0} for the first child, {:1:custom.bar} for the second child with format format custom and bar",
+                "OtherNonTerminalruleName": "It can also use:{N} for newlines, {I} for indenting and {D} for dedenting.",
+              },
+              "builtin": {
+               "letprefix": "",
+               "letdefinition": "Here {:0} is the variable name and {:1} is the variable content",
+               "letseparator": " ",
+               "letbody": "LETBODY", //LETBODY will be replaced by the body (which is the last child)
+               "lambda": "VARIABLE {:0}", //VARIABLE will be replaced by the lambda expression.
+               "conversion": "{:0}"
+              },
+              "formatting": {
+                "formatcustom": [ { "regex": "^\\$(.*)$", "result": "{:1}" } ], // Removes the dollar from the matched expression.
+              },
+              "treeformating": {
+                "some symbol name": [
+                  {"ast": "some AST to be matched, with holes possibly",
+                   "phrase": "What to display instead. We can mention children {:0} or {:1}, and even descendants like {:0:0:1:2}"},
+                  {"ast": "This AST can also be a literal, e.g. new RegularExpression()",
+                   "phrase": "What to display instead while mentioning the descendant of the second child having symbol BB with formatting formatcustom {:1:BB.formatcustom}",
+                              tree formatting can also have conditions.
+                    "conditions": [{"type":"=", "a":"The:colon:separated path to an descendant", "b":"The path to another descendant"}, ...]}, 
+                },
+              }
+            </code>
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.Extensions.FindChildNodePath(Microsoft.ProgramSynthesis.AST.ProgramNode,System.String)">
+            <summary>
+            Looks for the first descendant of node whose Symbol or DslMethodName match the given name. Returns a tuple with:
+              - The child node path found. A child node path is a succession of colon-separated indexes a:b...:c such that
+                node.Children[a].Children[b]...Children[c] is the found node.
+              - The found node.
+            This is useful for specifying paths dependent on the DslMethodName, not absolute positions.
+            </summary>
+            <param name="node">The node in which looking for the rule name</param>
+            <param name="name">The DSL rule name or the symbol name (without '?')</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.Extensions.FindChildByPath(Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplate[],System.String)">
+            <summary>
+            Returns the TreeTemplate descendant of children following the path.
+            </summary>
+            <param name="children">The children of the TreeTemplate we are looking the descendant of</param>
+            <param name="path">A colon-separated list of numbers.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.Extensions.SurfaceClone(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+            Surface cloning function to be used in preMap functions only.
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.Extensions.ProgramFinished">
+            <summary>
+            Class recording if the program transformation has been finished.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.Extensions.PreMapWithSetLight``1(Microsoft.ProgramSynthesis.AST.ProgramNode,System.Func{Microsoft.ProgramSynthesis.AST.ProgramNode,System.Int32,``0,Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.Paraphrasing.Extensions.Extensions.ProgramFinished},``0,System.Func{``0,Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.AST.ProgramNode,System.Int32,``0},System.Action{Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.AST.ProgramNode,``0},Microsoft.ProgramSynthesis.AST.ProgramNode,System.Int32)">
+            <summary>
+             Transforms a programNode to another using the given function.
+             Stops if the transformation returns something. Else continue and clones the programNode.
+             Clones the programNode if the transformation returned null.
+            </summary>
+            <param name="thisNode">The original node</param>
+            <param name="transformation">The function which applied to (parent, indexInParent, COMPANION, this) returns a programNode, and a boolean indicating false iff the surface has been mapped and needs deeper mapping</param>
+            <param name="onTransform">An optional function which will be called after the transformation is done, for example for caching results.</param>
+            <param name="parent">The parent of thisNode, null at the beginning</param>
+            <param name="indexInParent">The index where it appears in his parent</param>
+            <param name="nodeT">A COMPANION such as a ProgramSet from which the node is taken.</param>
+            <param name="findChildNodeT">A function to find the child COMPANION, given the COMPANION, the original node, the transformed node and the index of the child in the transformed node.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.Extensions.FindChildSetOfConceptNodeGivenDisplayIndex(Microsoft.ProgramSynthesis.VersionSpace.ProgramSet,Microsoft.ProgramSynthesis.AST.ProgramNode,System.Int32)">
+            <summary>
+            Returns a child set of a program set, given the concept node and the display index.
+            </summary>
+            <param name="pset">The original program set</param>
+            <param name="conceptNode">The associated concept node</param>
+            <param name="indexDisplayChild">The given display index</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.Extensions.FindChildSetOfDisplayNodeGivenDisplayIndex(Microsoft.ProgramSynthesis.VersionSpace.ProgramSet,Microsoft.ProgramSynthesis.AST.ProgramNode,System.Int32)">
+            <summary>
+            Finds the child set of the display node given the child index.
+            Careful, this function builds concept nodes to be able to explore it at the same time it explores the program set.
+            </summary>
+            <param name="pset"></param>
+            <param name="displayNode"></param>
+            <param name="indexDisplayChild"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.Extensions.ToDslNode(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+            Converts a concept node to a DSL node without storing any kind of information about its program set.
+            </summary>
+            <param name="mainConceptNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.Extensions.ToDslNodeWithCallback(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.VersionSpace.ProgramSet,Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions)">
+            <summary>
+            Converts a concept node to a DSL node
+            Stores mapping from concept nodes to dsl nodes
+            Stores mapping from dsl node to program sets.
+            </summary>
+            <param name="mainConceptNode"></param>
+            <param name="mainSet"></param>
+            <param name="paraphrasingOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.Extensions.ToConceptNode(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+            Converts a program node in DSL format to the corresponding concept node, usually to run it.
+            </summary>
+            <param name="mainDslNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.Extensions.ToConceptNodeWithCallback(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.VersionSpace.ProgramSet,Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions)">
+            <summary>
+            Converts a program node in DSL format to the corresponding concept node, usually to run it.
+            </summary>
+            <param name="mainDslNode"></param>
+            <param name="mainSet"></param>
+            <param name="paraphrasingOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.NamespaceDoc">
+            <summary>
+                Helper methods for paraphrasing.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Extensions.ProgramNodeExtensions.PrintCodeTemplate(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)">
+            <summary>
+            Returns the templates used to display a browsable version of this code.
+            {:i} for displaying child number i
+            {N} for a new line
+            {I} for increasing indenting
+            {D} for decreasing indenting
+            These parameters can be combined under the following regexp:
+            \{N?(I|D)?(:\d+)?\}
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Paraphrasing.GenericParaphrasingFiles.ParaphraseEngine">
+            <summary>
+            The paraphrase engine obtained after parsing the paraphrasing files.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Paraphrasing.GenericParaphrasingFiles.ParaphraseDict">
+            <summary>
+            The paraphrase dictionary. See Microsoft.ProgramSynthesis\Paraphrasing for more information.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Paraphrasing.GenericParaphrasingFiles.DescribeDict">
+            <summary>
+            The description dictionary. Not used for the moment. See Microsoft.ProgramSynthesis\Paraphrasing for more information.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.GenericParaphrasingFiles.#ctor(System.String,System.Reflection.Assembly,Microsoft.ProgramSynthesis.Grammar,System.String)">
+            <summary>
+            Constructor for paraphrasing files. Caution: This must be called from a file located in the DSL project itself.
+            </summary>
+            <param name="projectName">The name of the calling project</param>
+            <param name="assembly">The assembly with the calling project, with embedded "describe"/"paraphrase" dictionaries as resources.</param>
+            <param name="grammar">Grammar of the DSL associated with <paramref name="projectName"/></param>
+            <param name="language">
+            An <see href="https://en.wikipedia.org/wiki/IETF_language_tag">IETF language tag</see> of the localized 
+            "paraphrase" JSON dictionary for <paramref name="projectName"/>
+            </param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.Models.NamespaceDoc">
+            <summary>
+                Models used for paraphrasing.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Paraphrasing.Models.RenderingType.Inline">
+            <summary>
+            Renders TreeTemplate as a string without {N}, {I}, {D}
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Paraphrasing.Models.RenderingType.Template">
+            <summary>
+            Renders TreeTemplate as a string with {N}, {I}, {D}
+            </summary>  
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplateData">
+            <summary>
+            Data to attach to any <see cref="T:Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplate"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplateSingle.Id">
+            <summary>
+            Used to disambiguate similar trees or to regroup them to a unique <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplateSingle.RenderInline(Microsoft.ProgramSynthesis.Paraphrasing.Models.RenderingMode)">
+            <summary>
+            Renders this TreeTemplate, removing all {N}, {I} and {D} markers for Newline, Indentation and Dedentation.
+            </summary>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplateSingle.RenderTemplate(Microsoft.ProgramSynthesis.Paraphrasing.Models.RenderingMode)">
+            <summary>
+            Renders this TreeTemplate, but keeping all {N}, {I} and {D} markers for Newline, Indentation and Dedentation.
+            </summary>
+            <param name="mode">The rendering mode</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplateSingle.Render(Microsoft.ProgramSynthesis.Paraphrasing.Models.RenderingMode,Microsoft.ProgramSynthesis.Paraphrasing.Models.RenderingType)">
+            <summary>
+            Renders this tree template with the mode and the type specified.
+            </summary>
+            <param name="mode"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplateSingle.RenderDescendantMatch(System.Text.RegularExpressions.Match,Microsoft.ProgramSynthesis.Paraphrasing.Models.RenderingMode,Microsoft.ProgramSynthesis.Paraphrasing.Models.RenderingType)">
+            <summary>
+            Parses the child reference dealing with any kind of nesting (e.g. {:0:1}, {:1}, {1:0:1}, ....) and returns the corresponding rendered string.
+            </summary>
+            <param name="descendantReference"></param>
+            <param name="mode"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplate">
+            <summary>
+            A tree templates stores a dual representation language/code of a given ProgramNode.
+            Each TreeTemplate can reference its i-th children by having the string
+            {:i} inside its template (code or lang).
+            To format the child based on some regular expression, just add colon and the name of the formatting.
+            {:i:formatting}
+            For example, if the child is the number 3 and the paraphraseEngine.FormattingDict contains a formatting for numerals like
+            <code>
+                  FormattingDict["numeral"] = new { Tuple.Create(new Regex("^1$"), "first"),
+                                                    Tuple.Create(new Regex("^2$"), "second"),
+                                                    Tuple.Create(new Regex("^-(\\d*)$"), "{:1:numeral} from the end"), };
+            </code>
+            the following:
+            <code>
+                  langTemplate = "Takes the {:0:numeral} element", children = [{langTemplate = "2" ...}, ...] ...};
+            </code>
+            will be rendered as
+            <code>
+                  "Takes the second element"
+            </code>
+            and the following:
+            <code>
+                  langTemplate = "Takes the {:0:numeral} element", children = [{langTemplate = "-1" ...}, ...] ...};
+            </code>
+            will be rendered as
+            <code>
+                  "Takes the first from the end element"
+            </code>
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplate.RenderInline(Microsoft.ProgramSynthesis.Paraphrasing.Models.RenderingMode)">
+            <summary>
+            Renders a one-liner with the requested format format
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplate.RenderTemplate(Microsoft.ProgramSynthesis.Paraphrasing.Models.RenderingMode)">
+            <summary>
+            Renders a format string with the presentation signs {N} (newline), {I} (indent) and {D} (dedent)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplate.GetDescendant(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="reference">A colon-separated list of numbers, indicating which children to choose when descending the tree</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.NamespaceDoc">
+            <summary>
+                Support for converting programs into natural language to help a user
+                understand the program they generated using examples. To get paraphrasing
+                support for a DSL, extend <see cref="T:Microsoft.ProgramSynthesis.Paraphrasing.GenericParaphrasingFiles"/>, which
+                will give access to a <see cref="T:Microsoft.ProgramSynthesis.Paraphrasing.ParaphraseEngine"/> which can be used
+                for paraphrasing a program as natural language.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Utils.GrammarRuleHelper.GetDslMethodName(Microsoft.ProgramSynthesis.Rules.GrammarRule)">
+            <summary>
+            Returns the DSL method name of the grammar rule.
+            </summary>
+            <param name="rule"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.Utils.NamespaceDoc">
+            <summary>
+                Utility methods for paraphrasing.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions.CallbackConceptNodeTreeTemplate">
+            <summary>
+            Callback called after a program node has been converted to a TreeTemplate.
+            The program node might be different than the tree template.
+            Not all program nodes will have a tree template, e.g. lambda expression encapsulated in concept rules will not have one.
+            The program node is always a conceptual node.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions.LastNodeForWhichNoParaphrasing">
+            <summary>
+            If set, contains the last not for which no paraphrasing rule was found.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions.UseTreeLangFormatting">
+            <summary>
+            Tell if the paraphrasing activates the tree formatting or not.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions.ProgramNodeRuleSymbolKeyMaker">
+            <summary>
+             Function converting a mutable node a key which will always stays the same even if the node change.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions.HasherFunc(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.VersionSpace.ProgramSet)">
+            <summary>
+             Stores the couple and returns the hash as a string used to retrieve this node and program set.
+             </summary><param name="dslNode"></param><param name="set"></param><returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions.StoreMapping(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.VersionSpace.ProgramSet)">
+            <summary>
+            Stores the mapping from the dslNode to the program set and compute a hash function to retrieve both.
+            </summary>
+            <param name="dslNode"></param>
+            <param name="set"></param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions.GetMapping(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+            Retrieves the mapping from the dslNode to the program set as the string representing the hash.
+            </summary>
+            <param name="dslNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions.LiteralTypeFunc(Microsoft.ProgramSynthesis.AST.LiteralNode)">
+            <summary>
+             Returns the user type assigned to this literal, which will be put in the TreeTemplateSingle
+             </summary><param name="node"></param><returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions.ConvertLiteral(Microsoft.ProgramSynthesis.AST.LiteralNode,System.String)">
+            <summary>
+             Returns the user representation of this literal, which will be put in the langTemplate of TreeTemplateSingle
+             </summary><param name="node">The node to render</param>
+            <param name="codeTemplate">The already computed version of this node as a parseable format.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions.CallbackAfterConversion(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplate)">
+            <summary>
+             Callback called after each conversion from ProgramNode to a TreeTemplate
+             Used for example to store the mapping between the two.
+             </summary><param name="dslNode">The node on which the conversion was performed</param><param name="tree">The resulting tree</param><returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions.GetOrUpdateConceptNodeToDslNode(Microsoft.ProgramSynthesis.AST.ProgramNode,System.Func{Microsoft.ProgramSynthesis.AST.ProgramNode})">
+            <summary>
+            Creates a correspondence between the concept node and the dsl. Returns immediately the dsl node if it exists already.
+            </summary>
+            <param name="conceptNode"></param>
+            <param name="lazyDisplayNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions.GetOrUpdateDslNodeToConceptNode(Microsoft.ProgramSynthesis.AST.ProgramNode,System.Func{Microsoft.ProgramSynthesis.AST.ProgramNode})">
+            <summary>
+            Creates a correspondence between the dsl node and the concept. Returns immediately the dsl node if it exists already.
+            </summary>
+            <param name="displayNode"></param>
+            <param name="lazyConceptNode"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.Utils.UniqueDictionaryByReference`3">
+            <summary>
+            Dictionary class where the keys can be mutable and are checked by reference.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TU"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.ParaphraseEngine">
+            <summary>
+            Paraphrase engine. It uses dictionaries of paraphrasing options to paraphrase.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.ParaphraseEngine.ParaphraseConceptTree(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.VersionSpace.ProgramSet,Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions)">
+            <summary>
+            Paraphrases the <paramref name="mainConceptNode"/> as a browsable object, after transforming it to the dsl node.
+            </summary>
+            <param name="mainConceptNode">The node to paraphrase</param>
+            <param name="mainSet">The program set to which the node belongs to</param>
+            <param name="paraphrasingOptions">Paraphrasing options</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.ParaphraseEngine.ParaphraseDslTree(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.VersionSpace.ProgramSet,Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions)">
+            <summary>
+            Paraphrases the <paramref name="mainDslNode"/> as a browseable object.
+            This requires the sub nodes of <paramref name="mainDslNode"/> to be already bound to a program set, if required.
+            </summary>
+            <param name="mainDslNode">The node to paraphrase</param>
+            <param name="mainSet">The program set to which the corresponding conceptual node belongs to</param>
+            <param name="paraphrasingOptions">Paraphrasing options</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.ParaphraseEngine.FormattingDictApply(System.String,System.String,System.Int32)">
+            <summary>
+            Applies the given formatting to the text.
+            Replaces regular expressions with their values, maximum 10 times.
+            Provides also the PLUS1 and MINUS1 formatting by default, see below:.
+            
+            For example, if <see cref="P:Microsoft.ProgramSynthesis.Paraphrasing.ParaphraseEngine.FormattingDict"/> contains:
+            <code>
+            "formatting": {
+              "numeral": [
+                  { "regex": "^1$", "result": "first" },
+                  { "regex": "^2$", "result": "second" },
+                  { "regex": "^(\\d+)$", "result": "{:1}th"} ],
+              "correctnum": [
+                  { "regex": "^(\\d*[02-9]2)th$", "result": "{:1}nd"}
+              ],
+              "abschar": [
+                  { "regex": "^(\\d+)$", "result": "{:1.numeral.correctnum} char" },
+                  { "regex": "^-1$", "result": "the end" },
+                  { "regex": "^-(\\d+)$", "result": "{:1.MINUS1.numeral} char from the end" }]}
+            </code>
+            Then 
+            <code>
+              FormattingDictApply("abschar", "1") == first char.
+              FormattingDictApply("numeral", "22") == 22th.
+              FormattingDictApply("numeral.correctnum", "22") == 22nd.
+              FormattingDictApply("abschar", "22") == 22nd char.
+              FormattingDictApply("abschar", "-1") == the end.
+              FormattingDictApply("abschar", "-2") == first char from the end. 
+            </code>
+            </summary>
+            <param name="formatList">A dot-separated array of modifiers, such as "numeral.position" or "linenumber"</param>
+            <param name="langTemplate">The text to format</param>
+            <param name="maxRecLevel">The maximum recursion level</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.ParaphraseEngine.ApplyGlobalFilter(System.Int32,Microsoft.ProgramSynthesis.Paraphrasing.Filter,System.String@)">
+            <summary>
+            Applies a global filter. This means that if the regular expression matches the input, 
+            the entire input is replaced by the filter.result.
+            </summary>
+            <param name="maxRecLevel">The maximum recursion level allowed</param>
+            <param name="filter">The filter with the regex and the result</param>
+            <param name="result">The result to update</param>
+            <returns>true if something has been replaced at least once.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.ParaphraseEngine.ApplyLocalFilter(System.Int32,Microsoft.ProgramSynthesis.Paraphrasing.Filter,System.String@)">
+            <summary>
+            Applies a local filter. This means that if the current result is matched by filter.regex, 
+            then only the portion matching it is replaced.
+            If filter.multiple is true along with filter.local, all the matches are replaced, not just the first one.
+            </summary>
+            <param name="maxRecLevel">The maximum recursion level</param>
+            <param name="filter">The current filter</param>
+            <param name="result">The string to modify</param>
+            <returns>true if a filter was applied, hence we can stop looking for sibling filters</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.ParaphraseEngine.ApplyBuiltinModifier(System.String,System.String)">
+            <summary>
+            Applies built-in modifiers
+            </summary>
+            <param name="result">The current lang template</param>
+            <param name="formatting">The formatting to apply</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.ParaphraseEngine.TranslateTree(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.Paraphrasing.Utils.ParaphrasingOptions)">
+            <summary>
+            Translates a program node to a browsable tree.
+            </summary>
+            <param name="dslNode">The node to translate</param>
+            <param name="paraphrasingOptions">User-defined paraphrasing options, such as the hash function.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.ParaphraseEngine.Recomputed(Microsoft.ProgramSynthesis.AST.ProgramNode,System.String,Microsoft.ProgramSynthesis.AST.ProgramNode@)">
+            <summary>
+            Returns the absolute path corresponding to the relative inputPath
+            The format is a colon-separated list of numbers (absolute) or letters (looks into symbols or DSL names).
+            </summary>
+            <param name="node">The node where to start</param>
+            <param name="inputPath">The input path like 0:BB:StartsWith:1 </param>
+            <param name="resultProgram">The resulting program node</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Paraphrasing.ProgramNodeToTreeTemplateConverter">
+            <summary>
+            Abstract class to create converters from program nodes to <see cref="T:Microsoft.ProgramSynthesis.Paraphrasing.Models.TreeTemplate"/> given a <see cref="P:Microsoft.ProgramSynthesis.Paraphrasing.ProgramNodeToTreeTemplateConverter.ParaphraseEngine"/>
+            It provides the following:
+            - Embeds the paraphrasing options in the constructor.
+            - Extensible class for other conversion mode (e.g. schema conversion)
+            - Provides a function for converting labels.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Paraphrasing.ProgramNodeToTreeTemplateConverter.ParaphrasingOptions">
+            <summary>
+            The paraphrasing options used by this converter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.ProgramNodeToTreeTemplateConverter.ConvertConceptualProgramNode(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.VersionSpace.ProgramSet)">
+            <summary>
+            Converts a programNode to a browsable and dual representation.
+            </summary>
+            <param name="program"></param>
+            <param name="pset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.ProgramNodeToTreeTemplateConverter.ConvertDslProgramNode(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.VersionSpace.ProgramSet)">
+            <summary>
+            Converts a programNode to a browsable and dual representation.
+            </summary>
+            <param name="program"></param>
+            <param name="pset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Paraphrasing.ProgramNodeToTreeTemplateConverter.ConvertLabelName(System.String)">
+            <summary>
+            Converts a label name to a tree template.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Split.File.Semantics</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Split.File.Semantics.Semantics">
+            <summary>
+                The implementations of the split sequence operators.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.Semantics.Semantics.Tokens">
+            <summary>
+                The list of tokens to learn from.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Semantics.Semantics.SplitSequence(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})">
+            <summary>
+                Splits a sequence of lines into records (each of which is a sequence of consecutive lines) such that a record
+                starts with <paramref name="r" /> and ends before the next record. The last record ends at the last element in
+                <paramref name="lines" />.
+            </summary>
+            <param name="r">The <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" /> to split the records.</param>
+            <param name="lines">The list of input lines.</param>
+            <returns>The list of records.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Semantics.Semantics.Sequence(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})">
+            <summary>
+                Splits a sequence of lines into a list of single-line records.
+            </summary>
+            <param name="lines">The list of input lines.</param>
+            <returns>The list of single-line records.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Semantics.Semantics.Skip(System.Int32,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})">
+            <summary>
+                Skips the first <paramref name="k" /> lines in <paramref name="allLines" />.
+            </summary>
+            <param name="k">The number of lines to skip.</param>
+            <param name="allLines">All lines in the input.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Semantics.Semantics.StartsWith(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression)">
+            <summary>
+                Checks if <paramref name="line" /> starts with regular expression <paramref name="r" />.
+            </summary>
+            <param name="line">The string to test.</param>
+            <param name="r">The regular expression.</param>
+            <returns>True if <paramref name="r" /> matches the beginning of <paramref name="line" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Semantics.Semantics.QuoteRecords(System.Char,System.Char,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})">
+            <summary>
+            Merges lines that start within a quote into a prior line that contains the starting quote.
+            </summary>
+            <param name="quote">The quote character, if exists.</param>
+            <param name="escape">The escape character, if exists.</param>
+            <param name="lines">The original list of lines.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Semantics.Semantics.GetQuoteStatusAfter(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Char,System.Char,System.Boolean,System.Boolean@)">
+            <summary>
+                Returns the quote status after <paramref name="region" /> (whether the ending position is within a quote), given
+                the quote and escape characters and the starting quote status.
+            </summary>
+            <param name="region">The region to find the quote status at its ending position.</param>
+            <param name="quote">The quote character.</param>
+            <param name="escape">The escape character.</param>
+            <param name="withinQuote">The initial quote status.</param>
+            <param name="hasClosingQuote">Indicates whether <paramref name="region"/> has a closing quote string .</param>
+            <returns>Returns the new quote status after <paramref name="region" />.</returns>
+        </member>
+    </members>
+</doc>

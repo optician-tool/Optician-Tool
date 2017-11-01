@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Split.File</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Split.File.Session">
+            <summary>
+                A Split.File learning session.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Session.#ctor(Microsoft.ProgramSynthesis.Wrangling.Session.IJournalStorage,System.Globalization.CultureInfo,Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger)">
+            <summary>
+                Creates a new Split.File learning session.
+            </summary>
+            <param name="journalStorage">
+                Backing store for the journal of user actions used to adapt to user preferences. May be
+                null to not save this data.
+            </param>
+            <param name="culture">
+                The <see cref="T:System.Globalization.CultureInfo" /> to use when learning programs; accessible using
+                <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3.Culture" />. Used to select preferred date and number formats and
+                defaults for other culture-specific settings.
+            </param>
+            <param name="logger">
+                An implementation of <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger"/> which should receive telemetry information.
+            </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Session.CreateStringRegion(System.String)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> for a string.
+            </summary>
+            <param name="s">The input string.</param>
+            <returns>The corresponding <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Split.File.ProgramProperties">
+            <summary>
+                Stores the metadata of <see cref="T:Microsoft.ProgramSynthesis.Split.File.Program" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.ProgramProperties.#ctor">
+            <summary>
+                Creates a default properties.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.ProgramProperties.#ctor(System.Int32,System.Nullable{System.Char},System.Nullable{System.Char},Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression)">
+            <summary>
+                Creates a new properties.
+            </summary>
+            <param name="skipLinesCount">The number of lines we skip from the beginning.</param>
+            <param name="quoteChar">The quote character, if exists.</param>
+            <param name="escapeChar">The escape character, if exists.</param>
+            <param name="headerRegex">The prefix regex used to filter headers, if exists.</param>
+            <param name="dataRegex">The prefix regex used to select the data, if exists.</param>
+            <param name="recordRegex">The delimiter regex the program uses to split the file into records.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.ProgramProperties.SkipLinesCount">
+            <summary>
+                The number of lines we skip from the beginning, zero if we do not skip lines.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.ProgramProperties.QuoteCharacter">
+            <summary>
+                The quote character if the file is quoted, null if the file is not quoted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.ProgramProperties.EscapeCharacter">
+            <summary>
+                The escape character for the quoted string if the file is quoted, null if the file is not quoted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.ProgramProperties.HeaderRegex">
+            <summary>
+                The prefix regex used to filter headers, null if there is none.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.ProgramProperties.DataRegex">
+            <summary>
+                The prefix regex used to select the data, null if there is none.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.ProgramProperties.RecordDelimiterRegex">
+            <summary>
+                The delimiter regex the program uses to split the file into records, null if there is none.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Split.File.Learner">
+            <summary>
+                Learns <see cref="T:Microsoft.ProgramSynthesis.Split.File.Program" /> from the constraints.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.Learner.Instance">
+            <summary>
+                The singleton instance of this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.Learner.ScoreFeature">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.FeatureInfo" /> used for ranking the top-k programs.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}}},System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <paramref name="k" /> top-ranked programs from the given positive and negative examples.
+                Returns all tied results in case of a tie.
+            </summary>
+            C:\Users\levu\Documents\PROSE\Extraction.Text\Sequence\Extraction.Text.Sequence.grammar
+            <param name="constraints">The examples.</param>
+            <param name="k">The number of programs returned.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn and
+                rank programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The top-ranked programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}}},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns all programs from the given positive and negative examples.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn
+                programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The set of all programs consistent with the examples.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Split.File.Loader">
+            <summary>
+                Loads a deserialized <see cref="T:Microsoft.ProgramSynthesis.Split.File.Program" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.Loader.Instance">
+            <summary>
+                Singleton instance of this class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Loader.Load(System.String,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)">
+            <summary>
+                Loads a <see cref="T:Microsoft.ProgramSynthesis.Split.File.Program" /> that has been serialized to
+                <paramref name="serializedProgram" />.
+            </summary>
+            <param name="serializedProgram">
+                The serialized program generated by
+                <see cref="M:Microsoft.ProgramSynthesis.Program`2.Serialize(Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)" />.
+            </param>
+            <param name="serializationFormat">The serialization format of <paramref name="serializedProgram" />.</param>
+            <returns>A <see cref="T:Microsoft.ProgramSynthesis.Split.File.Program" /> deserialized from <paramref name="serializedProgram" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Loader.Create(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Split.File.Program" /> for a <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" />. <paramref name="program" /> must be a
+                valid program for a <see cref="T:Microsoft.ProgramSynthesis.Split.File.Program" />.
+            </summary>
+            <param name="program">The code of the program.</param>
+            <returns>A strongly-typed <see cref="T:Microsoft.ProgramSynthesis.Split.File.Program" /> object wrapping <paramref name="program" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Split.File.Program">
+            <summary>
+                Splits a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> into a sequence of <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />s.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Program.#ctor(Microsoft.ProgramSynthesis.AST.ProgramNode,System.Double)">
+            <summary>
+                Constructs a program wrapping <paramref name="programNode" /> with the score <paramref name="score" />.
+            </summary>
+            <param name="programNode">The program to wrap.</param>
+            <param name="score">The ranking score of <paramref name="programNode" />.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.Program.Properties">
+            <summary>
+                The metadata of the <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Program.Run(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})">
+            <summary>
+                Executes the program on <paramref name="input" /> to obtain the output.
+            </summary>
+            <param name="input">The input.</param>
+            <returns>The output sequence.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Program.RunMerge(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})">
+            <summary>
+                Executes the program on <paramref name="input" /> to obtain the merged string records.
+                Unlike <see cref="M:Microsoft.ProgramSynthesis.Split.File.Program.Run(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})" /> which groups lines belonging to a record together, this method
+                merges these lines into a record and trims the last trailing carriage return ('\r') and new line ('\n').
+            </summary>
+            <param name="input">The input.</param>
+            <returns>The output string records.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Utils.SplitLines(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Nullable{System.Int32})">
+            <summary>
+                Splits <paramref name="input" /> string into a list of lines while preserving the new line character at the end of
+                the line.
+                This method mimics the logic in System.IO.StringReader.ReadLine except it keeps the new line at the end of each line.
+            </summary>
+            <param name="input">The input string.</param>
+            <param name="readLineCount">The number of line read from the input. If null, read the entire input.</param>
+            <returns>The list of lines that include the new line characters.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Utils.SplitLines(System.IO.Stream,System.Nullable{System.Int32})">
+            <summary>
+                Splits <paramref name="input" /> stream into a list of lines while preserving the new line character at the end of
+                the line.
+                This method mimics the logic in System.IO.StreamReader.ReadLine except it keeps the new line at the end of each line.
+            </summary>
+            <param name="input">The input stream.</param>
+            <param name="readLineCount">The number of line read from the stream. If null, read the entire input.</param>
+            <returns>The list of lines that include the new line characters.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Utils.SetSkipInProgram(Microsoft.ProgramSynthesis.Split.File.Program,System.Int32)">
+            <summary>
+                Creates a new <see cref="T:Microsoft.ProgramSynthesis.Split.File.Program" /> in which the skipped line is <paramref name="newSkip" />,
+                when applicable.
+            </summary>
+            <param name="program">The original program.</param>
+            <param name="newSkip">The new skipped line.</param>
+            <returns>The new program having an new skipped line, null if not applicable.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Split.File.Learning</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreFilterHeader">
+            <summary>
+                The constraint to skip generating FilterHeader operator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreFilterHeader.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreFilterHeader.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreFilterHeader.Valid(Microsoft.ProgramSynthesis.Program{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreFilterHeader.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSelectData">
+            <summary>
+                The constraint to skip generating Select operator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSelectData.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSelectData.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSelectData.Valid(Microsoft.ProgramSynthesis.Program{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSelectData.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreQuote">
+            <summary>
+                The constraint to skip generating QuoteRecords.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreQuote.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreQuote.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreQuote.Valid(Microsoft.ProgramSynthesis.Program{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreQuote.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSkip">
+            <summary>
+                The constraint to skip generating Skip operator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSkip.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSkip.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSkip.Valid(Microsoft.ProgramSynthesis.Program{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSkip.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSplitSequence">
+            <summary>
+                The constraint to skip generating SplitSequence operator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSplitSequence.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSplitSequence.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSplitSequence.Valid(Microsoft.ProgramSynthesis.Program{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.IgnoreSplitSequence.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.SequenceExample">
+            <summary>
+                The constraint to learn how to split a sequence of input lines into a sequence of records from a prefix of such
+                records.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Constraints.SequenceExample.#ctor(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}})">
+            <summary>
+                Creates a constraint from the input lines <paramref name="inputLines" /> and the prefix of the expected output
+                <paramref name="outputPrefix" />.
+            </summary>
+            <param name="inputLines">The input lines.</param>
+            <param name="outputPrefix">The prefix of the ouput.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Witnesses.LearnSplitSequence(Microsoft.ProgramSynthesis.Split.File.Learning.RowCache[],System.Collections.Generic.IReadOnlyList{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}}})">
+            <summary>
+                Implement strategy (2)
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Witnesses.LearnSplitAtEveryLine(Microsoft.ProgramSynthesis.Split.File.Learning.RowCache[],System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}}})">
+            <summary>
+                Implement strategy (2a).
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.Cache.#ctor(System.Nullable{System.Char},System.Nullable{System.Char},Microsoft.ProgramSynthesis.Split.File.Learning.RowCache[])">
+            <summary>
+                Constructs a cache from its elements.
+            </summary>
+            <param name="quote">The quote character used to quote strings, null if the rows do not contain any quoted string.</param>
+            <param name="escape">
+                The escape character used to escape characters within quoted strings, null if the rows do not contain quoted
+                strings.
+            </param>
+            <param name="rows">The cache of the rows.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.Learning.Cache.QuoteCharacter">
+            <summary>
+                The quote character used to quote strings, null if the rows do not contain any quoted string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.Learning.Cache.EscapeCharacter">
+            <summary>
+                The escape character used to escape characters within quoted strings, null if the rows do not contain quoted
+                strings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.Learning.Cache.Rows">
+            <summary>
+                The cache of the rows.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.File.Learning.RowCache.#ctor(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression[],System.Collections.Generic.HashSet{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression})">
+            <summary>
+                Initializes a new instance of the class.
+            </summary>
+            <param name="region">The row region.</param>
+            <param name="prefixRegexes">The prefix regexes.</param>
+            <param name="symbolRegexes">The symbol prefix regexes.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.Learning.RowCache.Region">
+            <summary>
+                The row region.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.Learning.RowCache.PrefixRegexes">
+            <summary>
+                The prefix <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression" />s of <seealso cref="P:Microsoft.ProgramSynthesis.Split.File.Learning.RowCache.Region" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Split.File.Learning.RowCache.SymbolRegexes">
+            <summary>
+                The symbol regexes in <see cref="P:Microsoft.ProgramSynthesis.Split.File.Learning.RowCache.PrefixRegexes" />.
+            </summary>
+        </member>
+    </members>
+</doc>

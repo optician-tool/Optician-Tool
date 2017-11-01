@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Split.Text.Learning</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.ConstructSplitMultiple(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.AST.ProgramNode})">
+            <summary>
+                Constructs a multiple delimiter expression from a list of delimiter expressions
+            </summary>
+            <param name="delimiterPrograms">The delimiter program nodes</param>
+            <returns>The multiple delimiter program node</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.ConstructDelimitersList(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.AST.ProgramNode})">
+            <summary>
+                Constructs a delimiter list expression from a list of delimiter expressions
+            </summary>
+            <param name="delimiterPrograms">The delimiter program nodes</param>
+            <returns>The delimiter list program node</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.ConstructExtPointsList(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.AST.ProgramNode})">
+            <summary>
+                Constructs an extraction point list expression from a list of extraction point expressions
+            </summary>
+            <param name="extPointPrograms">The extraction point program nodes</param>
+            <returns>The extraction points list program node</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.GetPositionExamples(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.Dictionary{System.String,System.String}})">
+            <summary>
+                Translates the given string examples into position examples. That is, for each input string,
+                instead of having the substring as an example (which may have multiple occurrences), this function computes
+                start and end positions of the substring in the input string.
+                TODO: theoretically this is a disjunction of possibilities, but currently we are favouring left to right in case of
+                multiple occurrences, and should generalize in future, and also handle position examples from user as first class
+                constraints
+            </summary>
+            <param name="stringExamples">Map from each split cell index to (input, substring of input) examples for that cell</param>
+            <returns>
+                Map from each split cell index to (input, (start position in input, end position in input)) examples for that
+                cell
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.GetNegativePositionExamples(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.Dictionary{System.String,System.Tuple{System.Int32,System.Int32}}})">
+            <summary>
+                Obtains negative position examples based on positive examples given for other split cells. For instance,
+                if an example is given for cell i on input s, and no example is given for cell j on input s, then the example for
+                cell i
+                is a negative example for cell j on input s, because a valid splitting requires that i and j cannot overlap.
+            </summary>
+            <param name="positionExamples">Map from each split cell index to position examples for that cell on various inputs</param>
+            <returns>Map from each split cell index to (input, ranges of indexes where the output cannot overlap) </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.LearnExtractionSplitRule(Microsoft.ProgramSynthesis.Learning.SynthesisEngine,Microsoft.ProgramSynthesis.Rules.GrammarRule,Microsoft.ProgramSynthesis.Learning.LearningTask{Microsoft.ProgramSynthesis.Specifications.WithInputTopSpec},System.Threading.CancellationToken)">
+            <summary>
+                The learner for extraction-based split programs
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.LearnExtractions(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.Dictionary{System.String,System.Tuple{System.Int32,System.Int32}}},System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.Dictionary{System.String,System.Tuple{System.Int32,System.Int32}[]}},System.Threading.CancellationToken)">
+            <summary>
+                Given positive and negative examples for split cells (columns) on some inputs, determine for each split cell
+                a start delimiter position and an end delimiter position that satisfies the given examples.
+            </summary>
+            <param name="positionExamples">Map from each split cell index to position examples for that cell on various inputs</param>
+            <param name="negativePositionExamples">
+                Map from each split cell index to ranges where the output cannot overlap on
+                various inputs
+            </param>
+            <param name="cancel">The cancellation token</param>
+            <returns>
+                A map from each split cell index to a pair of start and end delimiter occurrence positions defining that cell
+                output
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.GetDisjointColumnExtractions(System.Collections.Generic.List{System.Tuple{System.Int32,System.Int32}}[],System.Collections.Generic.KeyValuePair{System.Int32,System.Tuple{System.Collections.Generic.List{Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.DelimiterPos},System.Collections.Generic.List{Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.DelimiterPos}}}[],System.Threading.CancellationToken)">
+            <summary>
+                Given ranked lists of delimiter positions for each column in the splitting, find the best combination of delimiter
+                positions that do not
+                overlap with the given ranges (disjointPositions) or with each other on any input string (produce a disjoint
+                extraction across all inputs).
+            </summary>
+            <param name="disjointPositions">The ranges with which the resulting extractions should not overlap</param>
+            <param name="columnLists">The ranked list of start and end positions for each cell (column) in the splitting</param>
+            <param name="cancel">Cancellation token</param>
+            <returns>
+                Map from each split cell (column) index to a pair of start and end delimiter occurrence positions defining
+                that cell output
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.GetColumnExtraction(System.Collections.Generic.List{System.Tuple{System.Int32,System.Int32}}[],System.Collections.Generic.List{Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.DelimiterPos},System.Collections.Generic.List{Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.DelimiterPos},System.Threading.CancellationToken)">
+            <summary>
+                Given ranked lists of delimiter positions for the start and end positions of a cell (column) in the splitting,
+                find the best combination of delimiter positions that do not overlap with the given ranges (disjointPositions)
+                or with each other on any input string (produce a disjoint extraction across all inputs).
+            </summary>
+            <param name="disjointPositions">The ranges with which the resulting extractions should not overlap</param>
+            <param name="startList">The ranked list of start positions for this cell (column) in the splitting</param>
+            <param name="endList">The ranked list of end positions for this cell (column) in the splitting</param>
+            <param name="cancel">The cancellation token</param>
+            <returns>Lazily evaluated ranked list of pairs of start and end delimiter occurrence positions defining the cell output</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.GetSatisfyingDelimiterPositions(System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Tuple{System.Int32,System.Int32}},System.Collections.Generic.Dictionary{System.String,System.Tuple{System.Int32,System.Int32}[]})">
+            <summary>
+                Get the ranked list of delimiter occurrence positions that satisfy the start or end point of the
+                given positive and negative postion examples for a split cell. The ranking prefers positions that use top ranked
+                delimiters (as previously learnt)
+                and those delimiters that have a higher frequency of consistent matches and a higher number of matches across all
+                inputs.
+            </summary>
+            <param name="isStart">
+                Indicates whether the delimiter position should satisfy the start or end point of the example
+                splits
+            </param>
+            <param name="positionExamples">
+                Map from each input string to the start and end position of the output for this split
+                cell on this input
+            </param>
+            <param name="negativePositionExamples">
+                Map from each input to ranges in the input where the output for this split cell
+                cannot overlap
+            </param>
+            <returns>A ranked list of delimiter positions satisfying the examples</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.GetSatisfyingConditionalDelimiterPositions(System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Tuple{System.Int32,System.Int32}})">
+            <summary>
+                Get the ranked list of conditional delimiter occurrence positions that satisfy the start or end point of the
+                given postion examples for a split cell. This is determined by first finding ranked satisfying delimiter positions
+                for each of the position examples, and using this to find sets of delimiter positions that together
+                satisfy all of the position examples.
+            </summary>
+            <param name="isStart">
+                Indicates whether the delimiter position should satisfy the start or end point of the example
+                splits
+            </param>
+            <param name="positionExamples">
+                Map from each input string to the start and end position of the output for this split
+                cell on this input
+            </param>
+            <returns>A ranked list of delimiter positions satisfying the examples</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.GetSatisfyingDelimiterPos(Microsoft.ProgramSynthesis.Split.Text.Semantics.MatchRecord[],System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Tuple{System.Int32,System.Int32}},System.Collections.Generic.Dictionary{System.String,System.Tuple{System.Int32,System.Int32}[]})">
+            <summary>
+                Checks if some occurrence of the delimiter satisfies the given positive and negative examples as either the start
+                or end point, and if so,
+                returns the satisfying delimiter position.
+            </summary>
+            <param name="delimiter">The delimiter occurrences across all input strings in this learning session</param>
+            <param name="isStartPosition">
+                Indicates whether the delimiter position should satisfy the start or end point of the
+                example splits
+            </param>
+            <param name="positionExamples">
+                Map from each input string to the start and end position of the output for this split
+                cell on this input
+            </param>
+            <param name="negativePositionExamples">
+                Map from each input to ranges in the input where the output for this split cell
+                cannot overlap
+            </param>
+            <returns>The satisfying delmiter position if one exists, or null otherwise</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.GetFirstDisjointOccurrence(System.String,System.String,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32}})">
+            <summary>
+                Gets the first occurrence of an example substring in a given input string that does not overlap with the given
+                disallowed ranges.
+                Preference is given to the first occurrence after all the disjoint ranges, otherwise the first disjoint occurrence
+                from the beginning of the string.
+            </summary>
+            <param name="input">The input string</param>
+            <param name="example">The substring example</param>
+            <param name="disallowedRanges">The ranges in the input where the substring occurrence should not overlap</param>
+            <returns>The satisfying delmiter position if one exists, or null otherwise</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Split.Text.Learning.Witnesses.DelimiterPos">
+            <summary>
+                Class to hold the positions determined by a delimiter occurrence over all inputs in this learning session.
+                Each position is determined by (Delimiter, Index, IsStart), where Delimiter is the list of MatchRecords of a
+                delimiter over all
+                inputs, Index is the occurrence of the delimiter in the match record (left to right if positive, otherwise right to
+                left), and IsStart
+                indicates whether the position is the start of the delimiter occurrence or the end.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1336 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Utils</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.AssemblyTypeUtils">
+            <summary>
+                A helper class to retrieve <see cref="T:System.Type" />s defined in an <see cref="T:System.Reflection.Assembly" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.AssemblyTypeUtils.AllTypesInAssembly(System.Type)">
+            <summary>
+                Retrieves all the types in the <see cref="T:System.Reflection.Assembly" /> where <paramref name="type" /> is defined.
+            </summary>
+            <param name="type">
+                A <see cref="T:System.Type" /> defined in the <see cref="T:System.Reflection.Assembly" />from which all types are to be
+                retrieved.
+            </param>
+            <returns>
+                A sequence of <see cref="T:System.Reflection.TypeInfo" />s for <see cref="T:System.Type" />s that are defined in the
+                <see cref="T:System.Reflection.Assembly" /> where <paramref name="type" /> is defined.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.AssemblyTypeUtils.AllNonAbstractTypesInAssembly(System.Type)">
+            <summary>
+                Retrieves all non abstract types in the <see cref="T:System.Reflection.Assembly" /> where <paramref name="type" /> is defined.
+            </summary>
+            <param name="type">
+                A <see cref="T:System.Type" /> defined in the <see cref="T:System.Reflection.Assembly" />from which all non-abstract types are to
+                be retrieved.
+            </param>
+            <returns>
+                A sequence of <see cref="T:System.Reflection.TypeInfo" />s for non-abstract <see cref="T:System.Type" />s that are defined in the
+                <see cref="T:System.Reflection.Assembly" /> where <paramref name="type" /> is defined.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.AssemblyTypeUtils.AllSubTypesInAssembly(System.Type)">
+            <summary>
+                Retrieves all types deriving from <paramref name="type" /> in the <see cref="T:System.Reflection.Assembly" /> where
+                <paramref name="type" /> is defined.
+            </summary>
+            <param name="type">
+                A <see cref="T:System.Type" /> defined in the <see cref="T:System.Reflection.Assembly" />from which all derived types of
+                <paramref name="type" /> are to be retrieved.
+            </param>
+            <returns>
+                A sequence of <see cref="T:System.Reflection.TypeInfo" />s for <see cref="T:System.Type" />s deriving from <paramref name="type" /> that
+                are defined in the <see cref="T:System.Reflection.Assembly" /> where <paramref name="type" /> is defined.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.AssemblyTypeUtils.AllNonAbstractSubTypesInAssembly(System.Type)">
+            <summary>
+                Retrieves all types deriving from <paramref name="type" />, which are not abstract, in the <see cref="T:System.Reflection.Assembly" />
+                where <paramref name="type" /> is defined.
+            </summary>
+            <param name="type">
+                A <see cref="T:System.Type" /> defined in the <see cref="T:System.Reflection.Assembly" />from which all non-abstract derived
+                types of <paramref name="type" /> are to be retrieved.
+            </param>
+            <returns>
+                A sequence of <see cref="T:System.Reflection.TypeInfo" />s for non-abstract <see cref="T:System.Type" />s deriving from
+                <paramref name="type" /> that are defined in the <see cref="T:System.Reflection.Assembly" /> where <paramref name="type" /> is defined.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.AssemblyTypeUtils.AsType(System.Collections.Generic.IEnumerable{System.Reflection.TypeInfo})">
+            <summary>
+                Calls <see cref="M:System.Reflection.TypeInfo.AsType"/> on a sequence of <see cref="T:System.Reflection.TypeInfo"/>s, yielding a sequence of <see cref="T:System.Type"/>s.
+            </summary>
+            <param name="typeInfos">The sequence of <see cref="T:System.Reflection.TypeInfo"/>s.</param>
+            <returns>A sequence of <see cref="T:System.Type"/>s.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1">
+            <summary>
+                An agglomerative hierarchical clustering task.
+                [https://en.wikipedia.org/wiki/Hierarchical_clustering]
+            </summary>
+            <typeparam name="TData">The type of data points to be clustered.</typeparam>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1.#ctor(Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace{`0},Microsoft.ProgramSynthesis.Utils.Clustering.LinkageCriterion{`0}.Type,System.Nullable{System.UInt32},System.Nullable{System.Double})">
+            <summary>
+                Instantiates a new AHC task.
+            </summary>
+            <param name="problemSpace">The description of space for the clustering task.</param>
+            <param name="linkageCriterion">The linkage criterion to be used for constructing the hierarchy.</param>
+            <param name="estimatedMaxClusterCount">
+                The estimated number of clusters, defaults to the number of unique points.
+            </param>
+            <param name="thetaFactor">
+                Higher theta means more distances are computed exactly. Defaults to <c>1.5</c>. See
+                <see cref="P:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1.ThetaFactor" />.
+            </param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1.ThetaFactor">
+            <summary>
+                Multiplied by <see cref="P:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1.EstimatedMaxClusterCount" /> to determine how many of the distances should be computed
+                exactly. (Larger theta means more computed exactly.)
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1.EstimatedMaxClusterCount">
+            <summary>
+                The estimated number of clusters in the problem space.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1.LinkageCriterion">
+            <summary>
+                The linkage criterion to be used for constructing the hierarchy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1.ProblemSpace">
+            <summary>
+                The problem space for the current clustering task.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1.Hierarchy">
+            <summary>
+                Returns a dendrogram for the given data points,
+                using the specified distance function and linkage criterion.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1.MostLikelyClusters(System.UInt32,System.UInt32)">
+            <summary>
+                Splits a dendrogram into a likely set of smaller clusters (dendrograms).
+                This function assumes that the number of data points is much larger than the expected
+                number of clusters. It overrides the maxClusters if required and sets an appropriate
+                threshold on the quality of clusters.
+            </summary>
+            <param name="maxClusters">Maximum number of expected clusters.</param>
+            <param name="minClusters">Minimum number of expected clusters.</param>
+            <returns>
+                A collection of clusters, sorted by (decreasing order of) their Id,
+                indicating the order in which they were created (latest to earliest).
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1.CostOf(Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram{`0},Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram{`0})">
+            <summary>
+                Computes the cost of linking two clusters together.
+                Requires _linkageCosts to be populated with linkage-costs of singleton clusters.
+            </summary>
+            <param name="clusterA">The first cluster.</param>
+            <param name="clusterB">The second cluster.</param>
+            <returns>
+                A real value representing the linkage cost.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.AgglomerativeHierarchicalClustering`1.SplitIntoKClusters(System.UInt32)">
+            <summary>
+                Splits a dendrogram into the 'best' K smaller clusters (dendrograms).
+            </summary>
+            <param name="k">The desired number of clusters.</param>
+            <returns>
+                An enumerable collection of clusters.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.Clustering.DendrogramPairUtils">
+            <summary>
+                Utility functions for Pairs of Dendrograms.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.DendrogramPairUtils.CreateSorted``1(Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram{``0},Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram{``0})">
+            <summary>
+                Create a <see cref="T:Microsoft.ProgramSynthesis.Utils.EquatablePair" /> with two <see cref="T:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1" />,
+                ordered by their default comparison ordering.
+            </summary>
+            <param name="d1">The first dendrogram.</param>
+            <param name="d2">The second dendrogram.</param>
+            <returns>
+                A new pair of dendrograms.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.DendrogramPairUtils.ContainsId``1(Microsoft.ProgramSynthesis.Utils.EquatablePair{Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram{``0},Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram{``0}},System.UInt64)">
+            <summary>
+                Checks if a dendrogram with the specified Id is present in the pair.
+            </summary>
+            <param name="pair">The pair of dendrograms.</param>
+            <param name="id">The id to be matched.</param>
+            <returns>
+                <c>true</c> if the id matches the id of any dendrogram in the pair,
+                <c>false</c> otherwise.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace`1">
+            <summary>
+                A description of the space for clustering - contains information about the points,
+                and a distance function over them.
+                This class also caches the computed exact distances and upper bounds on unknown distances.
+            </summary>
+            <typeparam name="TData">The type of data points in the space.</typeparam>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace`1.DistanceBoundFunction">
+            <summary>
+                A function which returns an estimate of the max distance to a given point point from the end-points
+                if the generator of this function.
+            </summary>
+            <param name="d">
+                A data point for estimating distance to, from either end-points of the generator of this function.
+            </param>
+            <returns>
+                Upper bounds on the distance to <paramref name="d" /> from both end-points of the generator.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace`1.#ctor(System.Collections.Generic.IReadOnlyDictionary{`0,System.UInt32},System.Func{`0,`0,System.Collections.Generic.KeyValuePair{System.Double,Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace{`0}.DistanceBoundFunction}},System.Double)">
+            <summary>
+                Initializes a new instance of ProblemSpace from groups of equivalent points.
+            </summary>
+            <param name="pointsWithCounts">Groups of equivalent data points mapped to their counts.</param>
+            <param name="distanceFunction">
+                A function that computes the distance between two point clusters and returns it with an
+                enumerable of cheap tests to update distance bounds on other points.
+            </param>
+            <param name="singletonCost">The cost of singleton clusters.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEqualityComparer{`0},System.Func{`0,`0,System.Collections.Generic.KeyValuePair{System.Double,Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace{`0}.DistanceBoundFunction}},System.Double)">
+            <summary>
+                Initializes a new instance of ProblemSpace from data points and an EqualityComparer.
+            </summary>
+            <param name="points">The data points.</param>
+            <param name="equalityComparer">An EqualityComparer over the data points.</param>
+            <param name="distanceFunction">A function that computes the distance between two point clusters.</param>
+            <param name="singletonCost">The cost of singleton clusters.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace`1.Count">
+            <summary>
+                Total number of points in the space.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace`1.SingletonCost">
+            <summary>
+                The cost of singleton clusters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace`1.PointsWithCounts">
+            <summary>
+                The data points, with their repetition counts.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace`1.PointClusters">
+            <summary>
+                The dendrograms containing equivalent data points.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace`1.ExactDistanceBetween(`0,`0,System.Boolean)">
+            <summary>
+                Computes the distance between two points.
+            </summary>
+            <param name="d1">The first point.</param>
+            <param name="d2">The second point.</param>
+            <param name="updateMaxDistances">Whether or not to update upper bound on unknown distances from the end-points.</param>
+            <returns>
+                The distance between the points.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.ProblemSpace`1.MaxDistanceBetween(`0,`0)">
+            <summary>
+                Gets the known maximum distance (or exact distance if unknown) between two points.
+            </summary>
+            <param name="d1">The first point.</param>
+            <param name="d2">The second point.</param>
+            <returns>
+                The known maximum distance (or exact distance if unknown) between the points.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1">
+            <summary>
+                A cluster tree / dendrogram.
+            </summary>
+            <typeparam name="TData">The type of data points to be clustered.</typeparam>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1.Id">
+            <summary>
+                An id for the cluster (must be unique within a hierarchy).
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1.Cost">
+            <summary>
+                The cost of the cluster.
+                This is usually manipulated by the hierarchical clustering algorithm.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1.PointsCount">
+            <summary>
+                The total number of data points in the cluster.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1.LeftChild">
+            <summary>
+                The left child cluster of the current cluster.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1.RightChild">
+            <summary>
+                The right child cluster of the current cluster.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1.Data">
+            <summary>
+                Returns a list of distinct data points in the cluster.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1.CompareTo(System.Object)">
+            <summary>
+                Compares the current instance with another object of the same type and returns an integer that indicates
+                whether the current instance precedes, follows, or occurs in the same position in the sort order as the other
+                object.
+            </summary>
+            <returns>
+                A value that indicates the relative order of the objects being compared. The return value has these meanings:
+                Value Meaning Less than zero This instance precedes <paramref name="obj" /> in the sort order. Zero This instance
+                occurs in the same position in the sort order as <paramref name="obj" />. Greater than zero This instance follows
+                <paramref name="obj" /> in the sort order.
+            </returns>
+            <param name="obj">An object to compare with this instance. </param>
+            <exception cref="T:System.ArgumentException">
+                <paramref name="obj" /> is not the same type as this instance.
+            </exception>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1.CompareTo(Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram{`0})">
+            <summary>
+                Compares the current instance with another object of the same type and returns an integer that indicates
+                whether the current instance precedes, follows, or occurs in the same position in the sort order as the other
+                object.
+                Note that this compares if the current instance has a "smaller" Id than the other instance.
+            </summary>
+            <returns>
+                -1 if <paramref name="other" /> is null or has smaller Id than current instance.
+                0 if <paramref name="other" /> has the same Id as current instance.
+                1 if <paramref name="other" /> has greater Id than current instance.
+            </returns>
+            <param name="other">An object to compare with this instance. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1.Equals(Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram{`0})">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1.Equals(System.Object)">
+            <summary>Determines whether the specified object is equal to the current object.</summary>
+            <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Clustering.Dendrogram`1.ToString">
+            <summary>
+                Returns a string that represents the cluster.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.Clustering.LinkageCriterion`1">
+            <summary>
+                Defines the delegate <see cref="T:Microsoft.ProgramSynthesis.Utils.Clustering.LinkageCriterion`1.Type" /> for a linkage-criterion function over data points of type
+                <typeparamref name="TData" />, and provides some default implementations.
+            </summary>
+            <typeparam name="TData">The type of data points to be clustered.</typeparam>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.Clustering.LinkageCriterion`1.Type">
+            <summary>
+                The delegate type for a function which computes the cost of linking <paramref name="bigCluster" /> and
+                <paramref name="smallCluster" />.
+            </summary>
+            <param name="bigCluster">The cluster with greater id - must be a non-singleton cluster.</param>
+            <param name="smallCluster">The cluster with smaller id - may or may not be a singleton cluster.</param>
+            <param name="linkageCostLookupFunc">A function which can be queried for linkage-cost subcomputations.</param>
+            <returns>
+                The cost of linking <paramref name="bigCluster" /> and <paramref name="smallCluster" />.
+            </returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.LinkageCriterion`1.Complete">
+            <summary>
+                The complete linkage criterion for hierarchical clustering.
+                [https://en.wikipedia.org/wiki/Complete-linkage_clustering]
+                The optimized algorithm computes maximum linkage cost for child clusters,
+                not all points within the cluster.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Clustering.LinkageCriterion`1.GroupAverage">
+            <summary>
+                The unweighted pair-group linkage criterion for hierarchical clustering.
+                [https://en.wikipedia.org/wiki/UPGMA]
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.AssemblyResourceUtils.LoadResourceFromAssembly(System.Reflection.Assembly,System.String)">
+            <summary>
+                Helper function to load implementations of semantics from assemblies.
+            </summary>
+            <param name="assembly">The assembly to load from.</param>
+            <param name="resourceName">The fully qualified name of the resource to load.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.AssemblyResourceUtils.EnumerateResources(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+                Helper function to enumerate resources that start with <paramref name="prefix" /> and end with
+                <paramref name="suffix" />.
+            </summary>
+            <param name="assembly">The assembly to load from.</param>
+            <param name="prefix">The resource prefix.</param>
+            <param name="suffix">The resource suffix.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.AssemblyResourceUtils.ResourceExists(System.Reflection.Assembly,System.String)">
+            <summary>
+                Returns true if <paramref name="assembly"/> contains a resource named <paramref name="resourceName"/>.
+            </summary>
+            <param name="assembly">Assembly to look in.</param>
+            <param name="resourceName">Resource to look for.</param>
+            <returns>True if <paramref name="resourceName"/> is available in <paramref name="assembly"/>.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.Bucket">
+            <summary>
+                A class implementing a <see cref="T:Microsoft.ProgramSynthesis.Utils.Bucket" />. A <see cref="T:Microsoft.ProgramSynthesis.Utils.Bucket" /> is used to partition a universe into
+                equivalence classes according to a lazily constructed equivalence relation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Bucket.Id">
+            <summary>
+                The identity of this bucket.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.Bucket.HashCode">
+            <summary>
+                The hashcode corresponding to objects associated with this bucket.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Bucket.#ctor(System.Int64,System.Int32)">
+            <summary>
+                Constructs a <see cref="T:Microsoft.ProgramSynthesis.Utils.Bucket" /> object.
+            </summary>
+            <param name="id">The identity of this bucket.</param>
+            <param name="hashCode">The hash code corresponding to objects associated with this bucket.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Bucket.Equals(Microsoft.ProgramSynthesis.Utils.Bucket)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Bucket.Equals(System.Object)">
+            <summary>Determines whether the specified object is equal to the current object.</summary>
+            <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+            <param name="other">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Bucket.Merge(Microsoft.ProgramSynthesis.Utils.Bucket)">
+            <summary>
+                Merge <paramref name="other" /> and <code>this</code>, so that <code>this.Equals(other) is true.</code>.
+            </summary>
+            <param name="other">The <see cref="T:Microsoft.ProgramSynthesis.Utils.Bucket" /> to merge with this.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Bucket.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.ICachedEquatable`1">
+            <summary>
+                An interface that declares that a type supports cached equality comparisons.
+            </summary>
+            <typeparam name="T">An <see cref="T:System.IEquatable`1" /> for which cached equality comparisons are desired.</typeparam>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.CachedObjectEquality`1">
+            <summary>
+                A cached object equality comparer.
+            </summary>
+            <typeparam name="T">The type of the objects that are required to be checked for equality.</typeparam>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.CachedObjectEquality`1.Instance">
+            <summary>
+                The singleton instance of <see cref="T:Microsoft.ProgramSynthesis.Utils.CachedObjectEquality`1" />
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CachedObjectEquality`1.#ctor">
+            <summary>
+                Constructs an instance of <see cref="T:Microsoft.ProgramSynthesis.Utils.CachedObjectEquality`1" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CachedObjectEquality`1.IsEqual(`0,`0)">
+            <summary>
+                Checks if two objects <paramref name="obj0" /> and <paramref name="obj1" /> are equal.
+            </summary>
+            <param name="obj0">The first object.</param>
+            <param name="obj1">The second object.</param>
+            <returns><code>true</code> iff <paramref name="obj0" /> is equal to <paramref name="obj1" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CachedObjectEquality`1.Equals(`0,`0)">
+            <summary>Determines whether the specified objects are equal.</summary>
+            <returns>true if the specified objects are equal; otherwise, false.</returns>
+            <param name="x">
+                The first object to compare.
+            </param>
+            <param name="y">
+                The second object to compare.
+            </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CachedObjectEquality`1.GetHashCode(`0)">
+            <summary>Returns a hash code for the specified object.</summary>
+            <returns>A hash code for the specified object.</returns>
+            <param name="obj">The <see cref="T:System.Object" /> for which a hash code is to be returned.</param>
+            <exception cref="T:System.ArgumentNullException">
+                The type of <paramref name="obj" /> is a reference type and
+                <paramref name="obj" /> is null.
+            </exception>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.CodeTypeReference.ArrayElementType">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.CodeTypeReference.ArrayRank">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.CodeTypeReference.BaseType">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.CodeTypeReferenceCollection.Item(System.Int32)">
+            <devdoc>
+            <para>Represents the entry at the specified index of the <see cref='T:System.CodeDom.CodeTypeReference'/>.</para>
+            </devdoc>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CodeTypeReferenceCollection.Add(Microsoft.ProgramSynthesis.Utils.CodeTypeReference)">
+            <devdoc>
+               <para>Adds a <see cref='T:System.CodeDom.CodeTypeReference'/> with the specified value to the 
+               <see cref='T:System.CodeDom.CodeTypeReferenceCollection'/> .</para>
+            </devdoc>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.Transpose``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+                Transposes a collection of collections.
+            </summary>
+            <typeparam name="T">The type of elements.</typeparam>
+            <param name="source">The source collection (of collections).</param>
+            <returns>
+                The transposed collection of <paramref name="source"/>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.ArgMax``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},``1@)">
+            <summary>
+                Find the input that maximizes a given function.
+            </summary>
+            <typeparam name="TElement">The type of the inputs.</typeparam>
+            <typeparam name="TComparable">The type of the function outputs.</typeparam>
+            <param name="xs">The inputs to consider.</param>
+            <param name="func">The function we are trying to maximize.</param>
+            <param name="maxValue">The value the function attained at its maximum.</param>
+            <returns>The input that maximizes the function.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.ArgMin``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},``1@)">
+            <summary>
+                Find the input that minimizes a given function.
+            </summary>
+            <typeparam name="TElement">The type of the inputs.</typeparam>
+            <typeparam name="TComparable">The type of the function outputs.</typeparam>
+            <param name="xs">The inputs to consider.</param>
+            <param name="func">The function we are trying to minimize.</param>
+            <param name="minValue">The value the function attained at its minimum.</param>
+            <returns>The input that minimizes the function.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.HasAtLeast``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+               Determine if an enumerable has at least N elements
+            </summary>
+            <typeparam name="T">The type of elements.</typeparam>
+            <param name="source">The enumerable.</param>
+            <param name="n">The size to compare against the enumerable</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.TakeExceptEvery``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+                Splices a subsequence where the zero-based indices of the elements from <paramref name="source" />
+                are not perfectly divisible by <paramref name="step" />
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source" /></typeparam>
+            <param name="source">The original sequence of elements to be filtered.</param>
+            <param name="step">The step size.</param>
+            <returns>
+                A subsequence of <paramref name="source" /> such that the zero-based index (relative to
+                <paramref name="source" />) of every element in the returned sequence is not divisible by <paramref name="step" />.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.DropLast``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+                Drop the last element from an enumerable.
+            </summary>
+            <typeparam name="T">The type of elements.</typeparam>
+            <param name="source">The enumerable.</param>
+            <returns>
+                A new enumerable without the last element.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.AggregateSeedFunc``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``1,``0,``1})">
+            <summary>
+              Applies an accumulator function over a sequence. The specified seed function is applied to the first
+              element to calculate the initial accumulator value.
+            </summary>
+            <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
+            <typeparam name="TAccumulate">The type of the accumulator value.</typeparam>
+            <param name="source">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> to aggregate over.</param>
+            <param name="seedFunc">
+                A function to apply to the first element in order to calculate the initial accumulator value.
+            </param>
+            <param name="func">An accumulator function to be invoked on each element after the first.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.Yield``1(``0)">
+            <summary>
+            Wraps this object instance into an IEnumerable&lt;T&gt;
+            consisting of a single item.
+            </summary>
+            <typeparam name="T"> Type of the wrapped object.</typeparam>
+            <param name="item"> The object to wrap.</param>
+            <returns>
+            An IEnumerable&lt;T&gt; consisting of a single item.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.IsSubsequenceOf``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Check if <paramref name="xs"/> is a subsequence of <paramref name="ys"/>. That is, whether every element
+            of <paramref name="xs"/> appears in <paramref name="ys"/> in the same order (although <paramref name="ys"/>
+            may also contain other elements).
+            </summary>
+            <typeparam name="T">type of the elements</typeparam>
+            <param name="xs"></param>
+            <param name="ys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.OnlyOrDefault``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+                Returns the only item in <paramref name="xs" /> or <c>default(T)</c> if <paramref name="xs" /> is empty or contains
+                multiple items. This differs from
+                <see cref="M:System.Linq.Enumerable.SingleOrDefault``1(System.Collections.Generic.IEnumerable{``0})" /> by not throwing
+                an exception if there are multiple items in the collection.
+            </summary>
+            <typeparam name="T">Type of elements of <paramref name="xs" />.</typeparam>
+            <param name="xs">Collection which is expected to contain exactly one item.</param>
+            <returns>The only item in <paramref name="xs" /> or <c>default(T)</c>.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.OnlyOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+                Returns the only item in <paramref name="xs" /> that satisfies <paramref name="predicate" /> or <c>default(T)</c>
+                if <paramref name="xs" /> is empty or contains multiple items. This differs from
+                <see cref="M:System.Linq.Enumerable.SingleOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" />
+                by not throwing an exception if there are multiple items in the collection.
+            </summary>
+            <typeparam name="T">Type of elements of <paramref name="xs" />.</typeparam>
+            <param name="xs">Collection which is expected to contain exactly one item.</param>
+            <param name="predicate">Predicate that items must satisfy to be considered.</param>
+            <returns>The only item in <paramref name="xs" /> satisfying <paramref name="predicate" /> or <c>default(T)</c>.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.Interleave``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+                Enumerates two <see cref="T:System.Collections.Generic.IEnumerable`1" />s together, alternating between them. Unlike
+                <see cref="M:System.Linq.Enumerable.Zip``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,``2})" />, if one enumerable is longer than the other, its elements
+                will show up at the end instead of being truncated. The first element of <paramref name="xs" /> comes first, then
+                the first element of <paramref name="ys" />, followed by the second element of <paramref name="xs" />, etc.
+            </summary>
+            <typeparam name="T">The type of elements.</typeparam>
+            <param name="xs">The first collection; its elements come before the corresponding elements of <paramref name="ys" />.</param>
+            <param name="ys">The second collection.</param>
+            <returns>
+                An enumerable containing all of the elements of both <paramref name="xs" /> and <paramref name="ys" />,
+                alternating which enumerable the elements come from.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.MutateLast``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0})">
+            <summary>
+                Mutates only the last element of an enumerable, selecting the rest unmodified.
+            </summary>
+            <typeparam name="T">Type of elements.</typeparam>
+            <param name="xs">Enumerable to modify the last element of.</param>
+            <param name="mutate">Function to apply to last element.</param>
+            <returns>
+                An enumerable with same elements as <paramref name="xs" /> except the last element has
+                <paramref name="mutate" /> applied to it.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CollectionUtils.MutateFirst``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0})">
+            <summary>
+                Mutates only the first element of an enumerable, selecting the rest unmodified.
+            </summary>
+            <typeparam name="T">Type of elements.</typeparam>
+            <param name="xs">Enumerable to modify the first element of.</param>
+            <param name="mutate">Function to apply to first element.</param>
+            <returns>
+                An enumerable with same elements as <paramref name="xs" /> except the first element has
+                <paramref name="mutate" /> applied to it.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CSharpUtils.GetPropertyValue(System.Object,System.String)">
+            <summary>
+                Uses reflection to get the value of a public property by name.
+            </summary>
+            <param name="obj">Object to get property of.</param>
+            <param name="propertyName">Name of public property to access.</param>
+            <returns>The value of the property named <paramref name="propertyName" /> of <paramref name="obj" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CSharpUtils.GetDictionaryType(System.Type)">
+            <summary>
+                Checks if <paramref name="type" /> is a dictionary type and if so returns the
+                <see cref="T:System.Collections.Generic.IDictionary`2" /> or <see cref="T:System.Collections.Generic.IReadOnlyDictionary`2" /> type it implements.
+            </summary>
+            <param name="type">Type to check.</param>
+            <returns>
+                <c>null</c> if <paramref name="type" /> is not a dictionary type or the generic dictionary interface it
+                implements.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.CSharpUtils.GetUninitializedObject(System.Type)">
+            <summary>
+            Creates a new instance of the specified type, bypassing the constructor.
+            </summary>
+            <param name="type">The type to create</param>
+            <returns>The new instance</returns>
+            <exception cref="T:System.NotSupportedException">If the platform does not support constructor-skipping</exception>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.IntervalSet">
+            <summary>
+                A data structure for representing a collection of <see cref="T:Microsoft.ProgramSynthesis.Utils.Interval"/>s,
+                allowing fast computation of the <see cref="T:Microsoft.ProgramSynthesis.Utils.Interval"/>s in a region 
+                that are not covered by other <see cref="T:Microsoft.ProgramSynthesis.Utils.Interval"/>s.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.IntervalSet.#ctor(System.Int32,System.Int32)">
+            <summary>
+                Constructor.
+            </summary>
+            <param name="universeStart">The start index of the <see cref="T:Microsoft.ProgramSynthesis.Utils.Interval"/> universe.</param>
+            <param name="universeEnd">The end index of the <see cref="T:Microsoft.ProgramSynthesis.Utils.Interval"/> universe.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.IntervalSet.#ctor(Microsoft.ProgramSynthesis.Utils.Interval)">
+            <summary>
+                Constructor.
+            </summary>
+            <param name="universe">The <see cref="T:Microsoft.ProgramSynthesis.Utils.Interval"/> universe.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.IntervalSet.Universe">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.Utils.Interval"/> universe.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.IntervalSet.UniverseStart">
+            <summary>
+                The first index in the <see cref="T:Microsoft.ProgramSynthesis.Utils.Interval"/> universe.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.IntervalSet.UniverseEnd">
+            <summary>
+                The last index (exclusive) in the <see cref="T:Microsoft.ProgramSynthesis.Utils.Interval"/> universe.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.IntervalSet.UniverseLength">
+            <summary>
+                The length of the <see cref="T:Microsoft.ProgramSynthesis.Utils.Interval"/> universe.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.IntervalSet.UncoveredIntervals">
+            <summary>
+                The set of <see cref="T:Microsoft.ProgramSynthesis.Utils.Interval"/>s in <see cref="P:Microsoft.ProgramSynthesis.Utils.IntervalSet.Universe"/> that are not covered by any other <see cref="T:Microsoft.ProgramSynthesis.Utils.Interval"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.IntervalSet.CoverInterval(Microsoft.ProgramSynthesis.Utils.Interval)">
+            <summary>
+                Mark an interval as being covered.
+            </summary>
+            <param name="interval">The interval to mark as being covered.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.IntervalSet.CoverInterval(System.Int32,System.Int32)">
+            <summary>
+                Mark an interval as being covered.
+            </summary>
+            <param name="intervalStart">The start of the interval.</param>
+            <param name="intervalEnd">The end of the interval.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.ImmutableCollectionBuilderJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>Writes the JSON representation of the object.</summary>
+            <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>
+            <param name="value">The value.</param>
+            <param name="serializer">The calling serializer.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.ImmutableCollectionBuilderJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>Reads the JSON representation of the object.</summary>
+            <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader" /> to read from.</param>
+            <param name="objectType">Type of the object.</param>
+            <param name="existingValue">The existing value of object being read.</param>
+            <param name="serializer">The calling serializer.</param>
+            <returns>The object value.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.ImmutableCollectionBuilderJsonConverter.CanConvert(System.Type)">
+            <summary>
+                Determines whether this instance can convert the specified object type.
+            </summary>
+            <param name="objectType">Type of the object.</param>
+            <returns>
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.KnownTypesJsonConverter">
+            <summary>
+                This is used for serializing and deserializing objects while preserving polymorphic types from a known list.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.KnownTypesJsonConverter.CanConvert(System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.KnownTypesJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.KnownTypesJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.LruCache`2">
+            <summary>
+                An LRU cache that maps values of type <typeparamref name="TKey" /> to values of type <typeparamref name="TValue" />.
+            </summary>
+            <typeparam name="TKey">The type of the key used to <see cref="M:Microsoft.ProgramSynthesis.Utils.LruCache`2.Lookup(`0,`1@)" /> values in the cache.</typeparam>
+            <typeparam name="TValue">The type of the values stored in the cache.</typeparam>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Utils.LruCache`2.DefaultCacheSize">
+            <summary>
+                The default LRU cache size.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.LruCache`2.#ctor(System.Int32,System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+                Constructs an <see cref="T:Microsoft.ProgramSynthesis.Utils.LruCache`2" /> object.
+            </summary>
+            <param name="cacheSize">
+                The maximum number of <typeparamref name="TKey" /> to <typeparamref name="TValue" /> mappings
+                that can be cached. This defaults to <see cref="F:Microsoft.ProgramSynthesis.Utils.LruCache`2.DefaultCacheSize" />, which is set to
+                <value>4096</value>.
+            </param>
+            <param name="comparer">An optional <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that compares objects of type <typeparamref name="TKey"/>. If null, then the elements will be compared according to <see cref="!:IdentityEquality&lt;T&gt;"/>.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.LruCache`2.Lookup(`0,`1@)">
+            <summary>
+                Retrives the value associated with the specified <paramref name="key" /> object.
+            </summary>
+            <param name="key">The object to be used as a key.</param>
+            <param name="value">
+                An <code>out</code> parameter that is set to the value of the <see cref="!:key" /> if
+                <paramref name="key" /> contains a mapping in the cache.
+            </param>
+            <returns>
+                <code>true</code> if the cache contains a mapping for <paramref name="key" />, <code>false</code> otherwise.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.LruCache`2.Add(`0,`1)">
+            <summary>
+                Adds or replaces a mapping in the cache.
+            </summary>
+            <param name="key">The key whose mapped <paramref name="value" /> is to be created or replaced.</param>
+            <param name="value">The new value to be mapped to the <paramref name="key" />.</param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.NotifyCollectionChangedEventArgs`1">
+            <summary>
+                Information for the change of a generic collection. Generic version of
+                <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />.
+            </summary>
+            <typeparam name="T">Type of the elements of the collection this works on.</typeparam>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.NotifyCollectionChangedEventArgs`1.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.Generic.IReadOnlyList{`0})">
+            <summary>
+                Constructor for a <see cref="T:Microsoft.ProgramSynthesis.Utils.NotifyCollectionChangedEventArgs`1" />.
+            </summary>
+            <param name="action">What kind of change was made to the collection.</param>
+            <param name="changedItems">Which items were changed.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.NotifyCollectionChangedEventArgs`1.Action">
+            <summary>
+                What kind of change was made.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.NotifyCollectionChangedEventArgs`1.ChangedItems">
+            <summary>
+                Which items in the collection were changed, or <c>null</c> if not applicable to this <see cref="P:Microsoft.ProgramSynthesis.Utils.NotifyCollectionChangedEventArgs`1.Action" />.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.Optimization">
+            <summary>
+                Local search procedures for finding a (possibly local) maximizer of a function.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Optimization.HillClimb(System.Func{System.Double[],System.Double},System.Double[],System.Int32,System.Double)">
+            <summary>
+                Maximizes a function using hill climbing (https://en.wikipedia.org/wiki/Hill_climbing).
+            </summary>
+            <param name="f">The function to maximize.</param>
+            <param name="x0">Initial point to start hill climbing.</param>
+            <param name="steps">An upper bound on the number of steps to hill climb.</param>
+            <param name="stepSize">The amount to try moving along each axis during an iteration of hill climbing.</param>
+            <returns>Argmax discovered by the search.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Optimization.GradientAscent(System.Func{System.Double[],System.Tuple{System.Double,System.Double[]}},System.Double[],System.Int32,System.Double,System.Double,System.Boolean)">
+            <summary>
+                Maximizes a function using gradient ascent (https://en.wikipedia.org/wiki/Gradient_descent).
+            </summary>
+            <param name="objectiveAndGradient">
+                A map from a point in the parameter space to a tuple of the objective function and
+                the gradient.
+            </param>
+            <param name="steps">The number of steps to run the optimizer.</param>
+            <param name="x0">The initial input to start the search.</param>
+            <param name="learningRate">The learning rate, or stepsize, for the optimizer.</param>
+            <param name="decayRate">Rate of decay for the learning rate. If this is 1 then the learning rate will not decay. Should be in the range (0,1].</param>
+            <param name="verbose">If this is true then we print out the parameters and objective function found at each iteration.</param>
+            <returns>Argmax discovered by the search.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Optimization.Adagrad(System.Func{System.Double[],System.Tuple{System.Double,System.Double[]}},System.Double[],System.Int32,System.Double,System.Double,System.Boolean,System.Double)">
+            <summary>
+                Maximizes a function using adagrad (https://en.wikipedia.org/wiki/Stochastic_gradient_descent#AdaGrad).
+            </summary>
+            <param name="objectiveAndGradient">
+                A map from a point in the parameter space to a tuple of the objective function and
+                the gradient.
+            </param>
+            <param name="steps">The number of steps to run the optimizer.</param>
+            <param name="x0">The initial input to start the search.</param>
+            <param name="learningRate">
+                The initial learning rate, or stepsize, for the optimizer, prior to gradient
+                adaptation.
+            </param>
+            <param name="decayRate">Rate of decay for the learning rate. If this is 1 then the learning rate will not decay.  Should be in the range (0,1].</param>
+            <param name="verbose">If this is true then we print out the parameters and objective function found at each iteration.</param>
+            <param name="epsilon">
+                Very small value added to accumulated gradients to prevent division by zero; the square of
+                epsilon should be smaller than typical values of the gradient.
+            </param>
+            <returns>Argmax discovered by the search.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Optimization.Adam(System.Func{System.Double[],System.Tuple{System.Double,System.Double[]}},System.Double[],System.Int32,System.Double,System.Boolean,System.Double)">
+            <summary>
+                Maximizes a function using Adam (http://arxiv.org/pdf/1412.6980v8.pdf)
+            </summary>
+            <param name="objectiveAndGradient">
+                A map from a point in the parameter space to a tuple of the objective function and
+                the gradient.
+            </param>
+            <param name="steps">The number of steps to run the optimizer.</param>
+            <param name="x0">The initial input to start the search.</param>
+            <param name="learningRate">
+                The learning rate, or stepsize, for the optimizer, prior to gradient
+                adaptation.
+            </param>
+            <param name="verbose">If this is true then we print out the parameters and objective function found at each iteration.</param>
+            <param name="epsilon">
+                Very small value added to accumulated gradients to prevent division by zero; the square of
+                epsilon should be smaller than typical values of the gradient.
+            </param>
+            <returns>Argmax discovered by the search.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Optimization.RMSProp(System.Func{System.Double[],System.Tuple{System.Double,System.Double[]}},System.Double[],System.Int32,System.Double,System.Double,System.Boolean,System.Double)">
+            <summary>
+                Maximizes a function using RMSProp (http://sebastianruder.com/optimizing-gradient-descent/index.html#rmsprop).
+            </summary>
+            <param name="objectiveAndGradient">
+                A map from a point in the parameter space to a tuple of the objective function and
+                the gradient.
+            </param>
+            <param name="steps">The number of steps to run the optimizer.</param>
+            <param name="x0">The initial input to start the search.</param>
+            <param name="learningRate">
+                The learning rate, or stepsize, for the optimizer, prior to gradient
+                adaptation.
+            </param>
+            <param name="decayRate">Rate of decay for the learning rate. If this is 1 then the learning rate will not decay. Should be in the range (0,1].</param>
+            <param name="verbose">If this is true then we print out the parameters and objective function found at each iteration.</param>
+            <param name="epsilon">
+                Very small value added to accumulated gradients to prevent division by zero; the square of
+                epsilon should be smaller than typical values of the gradient.
+            </param>
+            <returns>Argmax discovered by the search.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.EquatablePair`2">
+            <summary>
+                A Pair struct similar to KeyValuePair, for Equatable types.
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.EquatablePair`2.GetHashCode">
+            <summary>Returns the hash code for this instance.</summary>
+            <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.EquatablePair`2.Item1">
+            <summary>
+                The first item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.EquatablePair`2.Item2">
+            <summary>
+                The second item.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.EquatablePair`2.Equals(Microsoft.ProgramSynthesis.Utils.EquatablePair{`0,`1})">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.EquatablePair`2.Equals(System.Object)">
+            <summary>Indicates whether this instance and a specified object are equal.</summary>
+            <returns>
+                true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise,
+                false.
+            </returns>
+            <param name="obj">The object to compare with the current instance. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.EquatablePair`2.#ctor(`0,`1)">
+            <summary>
+                Initializes a new Pair from two given items.
+            </summary>
+            <param name="item1">The first item.</param>
+            <param name="item2">The second item.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.EquatablePair`2.Reverse">
+            <summary>
+                Reverse a pair.
+            </summary>
+            <returns>
+                A new pair with the elements in the reverse order.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.EquatablePair`2.ToString">
+            <summary>Returns the fully qualified type name of this instance.</summary>
+            <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.EquatablePair.Create``2(``0,``1)">
+            <summary>
+                A helper function that uses type inference to produce the pair of the right-type.
+            </summary>
+            <typeparam name="T1">Type of the first item.</typeparam>
+            <typeparam name="T2">Type of the second item.</typeparam>
+            <param name="item1">The first item.</param>
+            <param name="item2">The second item.</param>
+            <returns>
+                A new pair with the provided items.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.EquatablePair.AsEnumerable``1(Microsoft.ProgramSynthesis.Utils.EquatablePair{``0,``0})">
+            <summary>
+                Constructs an enumerable over a pair.
+            </summary>
+            <typeparam name="T">The type of elements in the pair.</typeparam>
+            <param name="pair">The pair.</param>
+            <returns>
+                An enumerable over the elements in the pair.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.IRenderableLiteral">
+            <summary><para>
+            A type that can be used as a literal value in Microsoft.ProgramSynthesis ASTs.
+            It needs to support rendering itself in two standard ways: XML representation (using <see cref="M:Microsoft.ProgramSynthesis.Utils.IRenderableLiteral.RenderXML"/>) and human-readable
+            string representation (using <see cref="M:Microsoft.ProgramSynthesis.Utils.IRenderableLiteral.RenderHumanReadable"/>).
+            </para>
+            <para>
+            This type has to be also marked with <see cref="T:Microsoft.ProgramSynthesis.Utils.ParseableAttribute"/>, which specifies the corresponding methods for parsing the
+            instances out of their rendered representations.
+            Parsing an XML representation is a required capability (using the method specified in <see cref="P:Microsoft.ProgramSynthesis.Utils.ParseableAttribute.ParseXML"/>).
+            Parsing a human-readable string is optional (using the method specified in <see cref="P:Microsoft.ProgramSynthesis.Utils.ParseableAttribute.ParseHumanReadableString"/>).
+            </para>
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.IRenderableLiteral.RenderHumanReadable">
+            <summary>
+                Render this as a human-readable string representation. This should be parseable by the corresponding
+                <see cref="P:Microsoft.ProgramSynthesis.Utils.ParseableAttribute.ParseHumanReadableString" /> method.
+            </summary>
+            <returns>A compact string representation of this object that is easy for a human to understand.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.IRenderableLiteral.RenderXML">
+            <summary>
+                Render this as XML. This should be parseable by the corresponding <see cref="P:Microsoft.ProgramSynthesis.Utils.ParseableAttribute.ParseXML" />
+                method.
+            </summary>
+            <returns>An XML representation of this object.</returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.ParseableAttribute.ParseHumanReadableString">
+            <summary>
+            An optional method for parsing a human-readable <see cref="T:System.String"/> instance into an instance of a target class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Utils.ParseableAttribute.ParseXML">
+            <summary>
+            A required method for parsing an <see cref="T:System.Xml.Linq.XElement"/> instance into an instance of a target class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.MathUtils.LogGamma(System.Double)">
+            <summary>
+                Logarithm of the Gamma function, approximated using Stirling's formula
+                https://en.wikipedia.org/wiki/Gamma_function
+                https://en.wikipedia.org/wiki/Stirling%27s_approximation
+            </summary>
+            <param name="x"></param>
+            <returns>approximation to log (Gamma (x))</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.MathUtils.LogSumExp(System.Double,System.Double)">
+            <summary>
+                Log-Sum-Exp: LogSumExp(x,y) = log(e^x + e^y)
+                Correctly handles numeric underflow/overflow
+                https://en.wikipedia.org/wiki/LogSumExp
+            </summary>
+            <param name="x">a number</param>
+            <param name="y">a number</param>
+            <returns>A soft maximum of the two numbers</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.MathUtils.NormalizeDictionary``1(System.Collections.Generic.IReadOnlyDictionary{``0,System.Double})">
+            <summary>
+                Takes a dictionary representing an unnormalized probability distrubution,
+                and gives you a new dictionary that has the same distrubution but normalized.
+            </summary>
+            <param name="dict">The map from objects to log probabilities</param>
+            <typeparam name="T">The type of each object</typeparam>
+            <returns>A now normalized dictionary</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.MathUtils.Normalize(System.Decimal)">
+            <summary>
+                Removes trailing zeros from decimal numbers.
+            </summary>
+            <param name="d">Number to normalize.</param>
+            <returns><paramref name="d"/> normalized so it has no trailing zeros.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.MathUtils.StandardDeviation(System.Collections.Generic.IEnumerable{System.Double},System.Nullable{System.Double})">
+            <summary>
+                Returns the standard deviation of a collection of values.
+            </summary>
+            <param name="values">The values whose standard deviation is to be calculated.</param>
+            <param name="mean">The average of the values. Optional, if provided, avoids an additional pass over the collection.</param>
+            <returns>The standard deviation of the collection of values given by <paramref name="values" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.MathUtils.GetBits(System.UInt16,System.Int32)">
+            <summary>
+                Returns <paramref name="mask"/> represented as an array of bits (lowest first).
+            </summary>
+            <param name="mask">The bitmask to convert.</param>
+            <param name="length">Length of the returned array. Defaults to the maximum number of possible bits in <paramref name="mask"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.MethodUtils.ToDelegateWithParams``1(System.Reflection.MethodInfo,System.Boolean)">
+            <summary>
+            Creates a fast typed delegate from a runtime method information. The delegate is assumed to be of a kind
+            Func&lt;T1, T2, ..., Tk, object[], object&gt;. In other words, the delegate takes several first parameters
+            directly, and the rest via the residual object[] array (usually specified as a variable-length parameter on
+            the calling side). The technique is explained at 
+            <see cref="!:https://msmvps.com/blogs/jon_skeet/archive/2008/08/09/making-reflection-fly-and-exploring-delegates.aspx#1644203"/>.
+            </summary>
+            <typeparam name="TDelegate">A delegate of a kind Func&lt;T1, T2, ..., Tk, object[], object&gt;</typeparam>
+            <param name="method">MethodInfo of an external method to convert. Must be static and consistent with TDelegate.</param>
+            <param name="instance">True if <typeparamref name="TDelegate"/> wraps an instance method, taking a target object as an explicit first parameter; false otherwise.</param> 
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.NamespaceDoc">
+            <summary>
+                A collection of utility classes and functions used across all of Microsoft.ProgramSynthesis.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Utils.IRegion`1">
+            <summary>
+            Represents a region in a document such as a string in a text file.
+            </summary>
+            <typeparam name="T">The region type.</typeparam>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.IRegion`1.Contains(`0)">
+            <summary>
+                Checks if this region contains <paramref name="other" /> region.
+            </summary>
+            <param name="other">The region to look for in this region.</param>
+            <returns>True if <paramref name="other" /> is a region in the same document contained inside or equal to this region.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.IRegion`1.IntersectNonEmpty(`0)">
+            <summary>
+            Checks if this region intersects with <paramref name="other" /> region.
+            </summary>
+            <param name="other">The region needs to check for intersection.</param>
+            <returns>True if they intersect, false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.IRegion`1.IsBefore(`0)">
+            <summary>
+            Checks if this region appears before <paramref name="other" /> region.
+            </summary>
+            <param name="other">The region to check.</param>
+            <returns>True if this region appears first, false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.IRegion`1.ClipBefore(`0)">
+            <summary>
+                Clip this region to end before <paramref name="other" />.
+            </summary>
+            <param name="other">A region starting after this one.</param>
+            <returns>A region that starts at the same position but ends before <paramref name="other" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Interval.Equals(Microsoft.ProgramSynthesis.Utils.Interval)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Interval.Equals(System.Object)">
+            <summary>Indicates whether this instance and a specified object are equal.</summary>
+            <returns>
+                true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise,
+                false.
+            </returns>
+            <param name="obj">The object to compare with the current instance. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Interval.GetHashCode">
+            <summary>Returns the hash code for this instance.</summary>
+            <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.Interval.ToString">
+            <summary>Returns the fully qualified type name of this instance.</summary>
+            <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.StringUtils.Slice(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32)">
+            <summary>
+            Creates a "pythonic" slice of a string. See <see cref="!:http://stackoverflow.com/questions/509211/pythons-slice-notation"/>
+            </summary>
+            <param name="str">String to slice</param>
+            <param name="start">Slice start, inclusive. Negative to count from the end of the string.</param>
+            <param name="end">Slice end, exclusive. Negative to count from the end of the string.</param>
+            <param name="step">Slice step. Positive for forward slicing direction, negative for backward.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.StringUtils.LongestCommonSubstrings(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Boolean,System.Int32)">
+            <summary>
+            Finds a set of longest common substrings in a set of strings
+            </summary>
+            <param name="strings">Input set of strings</param>
+            <param name="minLength">Minimum length of the substring</param>
+            <param name="splitLines">Split string beforehand on line boundaries?</param>
+            <param name="maxLength">Maximum length of the substring</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.StringUtils.ReverseUnicodeString(System.String)">
+            <summary>
+                Reverses the string while being sensitive to Unicode characters.
+                Example: "Les Misérables".Reverse() == "selbarésiM seL"
+            </summary>
+            <returns>The reversed string, which might contain Unicode characters.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.RegexUtils.NonCachingMatches(System.Text.RegularExpressions.Regex,System.String)">
+            <summary>
+                Returns the list of all <see cref="T:System.Text.RegularExpressions.Match" />(es) of <paramref name="regex" /> in <paramref name="s" />.
+                Unlike Regex.Matches(Content) that creates many cache objects, this method does all the bookkeeping to
+                avoid creating these cache objects.
+            </summary>
+            <param name="regex">The matching <see cref="T:System.Text.RegularExpressions.Regex" />.</param>
+            <param name="s">The string to match against.</param>
+            <returns>The list of all matches.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.ValueEquality`1.Equals(`0,`0)">
+            <summary>
+                Determines whether the specified objects are equal.
+            </summary>
+            <returns>
+                true if the specified objects are equal; otherwise, false.
+            </returns>
+            <param name="x">The first object of type <typeparamref name="T" /> to compare.</param>
+            <param name="y">The second object of type <typeparamref name="T" /> to compare.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.ValueEquality`1.GetHashCode(`0)">
+            <summary>
+                Returns a hash code for the specified object.
+            </summary>
+            <returns>
+                A hash code for the specified object.
+            </returns>
+            <param name="obj">The <see cref="T:System.Object" /> for which a hash code is to be returned.</param>
+            <exception cref="T:System.ArgumentNullException">
+                The type of <paramref name="obj" /> is a reference type and
+                <paramref name="obj" /> is null.
+            </exception>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Utils.RandomUtils.Next(System.Random,System.Numerics.BigInteger)">
+            <summary>
+            Returns a non-negative random BigInteger that is less than the specified maximum.
+            </summary>
+            <param name="random">underlying random value generator</param>
+            <param name="maxValue">a positive BigInteger value</param>
+            <returns></returns>
+        </member>
+        <member name="T:System.FormattableString">
+            <summary>
+            A composite format string along with the arguments to be formatted. An instance of this
+            type may result from the use of the C# or VB language primitive "interpolated string".
+            </summary>
+        </member>
+        <member name="P:System.FormattableString.Format">
+            <summary>
+            The composite format string.
+            </summary>
+        </member>
+        <member name="M:System.FormattableString.GetArguments">
+            <summary>
+            Returns an object array that contains zero or more objects to format. Clients should not
+            mutate the contents of the array.
+            </summary>
+        </member>
+        <member name="P:System.FormattableString.ArgumentCount">
+            <summary>
+            The number of arguments to be formatted.
+            </summary>
+        </member>
+        <member name="M:System.FormattableString.GetArgument(System.Int32)">
+            <summary>
+            Returns one argument to be formatted from argument position <paramref name="index"/>.
+            </summary>
+        </member>
+        <member name="M:System.FormattableString.ToString(System.IFormatProvider)">
+            <summary>
+            Format to a string using the given culture.
+            </summary>
+        </member>
+        <member name="M:System.FormattableString.Invariant(System.FormattableString)">
+            <summary>
+            Format the given object in the invariant culture. This static method may be
+            imported in C# by
+            <code>
+            using static System.FormattableString;
+            </code>.
+            Within the scope
+            of that import directive an interpolated string may be formatted in the
+            invariant culture by writing, for example,
+            <code>
+            Invariant($"{{ lat = {latitude}; lon = {longitude} }}")
+            </code>
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.FormattableStringFactory">
+            <summary>
+            A factory type used by compilers to create instances of the type <see cref="T:System.FormattableString"/>.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.FormattableStringFactory.Create(System.String,System.Object[])">
+            <summary>
+            Create a <see cref="T:System.FormattableString"/> from a composite format string and object
+            array containing zero or more objects to format.
+            </summary>
+        </member>
+    </members>
+</doc>

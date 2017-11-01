@@ -1,0 +1,14 @@
+module Trying = 
+
+let r : regexp = [a-z] .  [a-z]* . " " . [a-z] . [,]  . " " . [a-z]* 
+
+let l : lens = synth r <=> r with #{string * string}[]
+
+test get l "solomon a, maina"  = "solomon a, maina"
+
+let r : regexp = [A-Z] .  [A-Z]* . " " . [A-Z] . [,]  . " " . [A-Z]* 
+
+let l : lens = synth r <=> r with #{string * string}[]
+
+test get l "SOLOMON A, MAINA"  = "SOLOMON A, MAINA"
+

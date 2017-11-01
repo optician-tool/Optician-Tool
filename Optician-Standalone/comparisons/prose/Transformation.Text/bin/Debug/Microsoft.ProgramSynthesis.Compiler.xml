@@ -1,0 +1,1930 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Compiler</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Compiler.Parser.NamespaceDoc">
+            <summary>
+                Generated parser for DSL .grammar files.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener">
+            <summary>
+            This interface defines a complete listener for a parse tree produced by
+            <see cref="T:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterLimitArgAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LimitArgAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by the <c>LimitArgAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.argAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitLimitArgAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LimitArgAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by the <c>LimitArgAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.argAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterFeatureCompleteAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.FeatureCompleteAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by the <c>FeatureCompleteAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.featureDefAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitFeatureCompleteAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.FeatureCompleteAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by the <c>FeatureCompleteAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.featureDefAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterConversionRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ConversionRuleContext)">
+            <summary>
+            Enter a parse tree produced by the <c>ConversionRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitConversionRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ConversionRuleContext)">
+            <summary>
+            Exit a parse tree produced by the <c>ConversionRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterConceptRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ConceptRuleContext)">
+            <summary>
+            Enter a parse tree produced by the <c>ConceptRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitConceptRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ConceptRuleContext)">
+            <summary>
+            Exit a parse tree produced by the <c>ConceptRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterLetRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LetRuleContext)">
+            <summary>
+            Enter a parse tree produced by the <c>LetRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitLetRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LetRuleContext)">
+            <summary>
+            Exit a parse tree produced by the <c>LetRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterExternSymbolRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ExternSymbolRuleContext)">
+            <summary>
+            Enter a parse tree produced by the <c>ExternSymbolRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitExternSymbolRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ExternSymbolRuleContext)">
+            <summary>
+            Exit a parse tree produced by the <c>ExternSymbolRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterBlackBoxRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.BlackBoxRuleContext)">
+            <summary>
+            Enter a parse tree produced by the <c>BlackBoxRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitBlackBoxRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.BlackBoxRuleContext)">
+            <summary>
+            Exit a parse tree produced by the <c>BlackBoxRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterStartAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.StartAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by the <c>StartAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitStartAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.StartAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by the <c>StartAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterValuesAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ValuesAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by the <c>ValuesAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitValuesAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ValuesAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by the <c>ValuesAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterInputAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.InputAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by the <c>InputAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitInputAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.InputAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by the <c>InputAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterLambdaParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LambdaParameterContext)">
+            <summary>
+            Enter a parse tree produced by the <c>LambdaParameter</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitLambdaParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LambdaParameterContext)">
+            <summary>
+            Exit a parse tree produced by the <c>LambdaParameter</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterSymbolParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolParameterContext)">
+            <summary>
+            Enter a parse tree produced by the <c>SymbolParameter</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitSymbolParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolParameterContext)">
+            <summary>
+            Exit a parse tree produced by the <c>SymbolParameter</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterRuleIdAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleIdAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by the <c>RuleIdAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitRuleIdAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleIdAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by the <c>RuleIdAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterDslFile(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslFileContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslFile"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitDslFile(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslFileContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslFile"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterAssemblyReference(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.AssemblyReferenceContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.assemblyReference"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitAssemblyReference(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.AssemblyReferenceContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.assemblyReference"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterUsingStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.UsingStatementContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.usingStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitUsingStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.UsingStatementContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.usingStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterDslNamespaceStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslNamespaceStatementContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslNamespaceStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitDslNamespaceStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslNamespaceStatementContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslNamespaceStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterDslSemanticsStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslSemanticsStatementContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslSemanticsStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitDslSemanticsStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslSemanticsStatementContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslSemanticsStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterDslLearnerStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslLearnerStatementContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslLearnerStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitDslLearnerStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslLearnerStatementContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslLearnerStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterDslGrammarStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslGrammarStatementContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslGrammarStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitDslGrammarStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslGrammarStatementContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslGrammarStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterDslLanguage(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslLanguageContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslLanguage"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitDslLanguage(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslLanguageContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslLanguage"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterDslFeature(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslFeatureContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslFeature"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitDslFeature(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslFeatureContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslFeature"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterFeatureDefAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.FeatureDefAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.featureDefAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitFeatureDefAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.FeatureDefAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.featureDefAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterDslSymbol(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslSymbolContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslSymbol"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitDslSymbol(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslSymbolContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslSymbol"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterSymbolAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitSymbolAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterSymbolBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolBodyContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolBody"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitSymbolBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolBodyContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolBody"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterTerminalBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.TerminalBodyContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.terminalBody"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitTerminalBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.TerminalBodyContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.terminalBody"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterNonterminalBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.NonterminalBodyContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.nonterminalBody"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitNonterminalBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.NonterminalBodyContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.nonterminalBody"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterRuleBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleBodyContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBody"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitRuleBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleBodyContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBody"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterRuleBodyInt(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleBodyIntContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitRuleBodyInt(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleBodyIntContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterOpArgument(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.OpArgumentContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.opArgument"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitOpArgument(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.OpArgumentContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.opArgument"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterArgAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ArgAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.argAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitArgAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ArgAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.argAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ParameterContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ParameterContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterVarDecl(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.VarDeclContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.varDecl"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitVarDecl(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.VarDeclContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.varDecl"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterRuleAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitRuleAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterSubstAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SubstAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.substAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitSubstAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SubstAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.substAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterSubst(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SubstContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.subst"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitSubst(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SubstContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.subst"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterDotID(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DotIDContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dotID"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitDotID(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DotIDContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dotID"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.EnterClassId(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ClassIdContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.classId"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener.ExitClassId(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ClassIdContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.classId"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener">
+            <summary>
+            This class provides an empty implementation of <see cref="T:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcListener"/>,
+            which can be extended to create a listener which only needs to handle a subset
+            of the available methods.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterLimitArgAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LimitArgAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by the <c>LimitArgAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.argAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitLimitArgAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LimitArgAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by the <c>LimitArgAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.argAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterFeatureCompleteAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.FeatureCompleteAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by the <c>FeatureCompleteAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.featureDefAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitFeatureCompleteAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.FeatureCompleteAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by the <c>FeatureCompleteAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.featureDefAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterConversionRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ConversionRuleContext)">
+            <summary>
+            Enter a parse tree produced by the <c>ConversionRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitConversionRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ConversionRuleContext)">
+            <summary>
+            Exit a parse tree produced by the <c>ConversionRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterConceptRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ConceptRuleContext)">
+            <summary>
+            Enter a parse tree produced by the <c>ConceptRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitConceptRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ConceptRuleContext)">
+            <summary>
+            Exit a parse tree produced by the <c>ConceptRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterLetRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LetRuleContext)">
+            <summary>
+            Enter a parse tree produced by the <c>LetRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitLetRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LetRuleContext)">
+            <summary>
+            Exit a parse tree produced by the <c>LetRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterExternSymbolRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ExternSymbolRuleContext)">
+            <summary>
+            Enter a parse tree produced by the <c>ExternSymbolRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitExternSymbolRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ExternSymbolRuleContext)">
+            <summary>
+            Exit a parse tree produced by the <c>ExternSymbolRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterBlackBoxRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.BlackBoxRuleContext)">
+            <summary>
+            Enter a parse tree produced by the <c>BlackBoxRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitBlackBoxRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.BlackBoxRuleContext)">
+            <summary>
+            Exit a parse tree produced by the <c>BlackBoxRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterStartAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.StartAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by the <c>StartAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitStartAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.StartAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by the <c>StartAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterValuesAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ValuesAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by the <c>ValuesAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitValuesAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ValuesAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by the <c>ValuesAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterInputAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.InputAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by the <c>InputAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitInputAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.InputAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by the <c>InputAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterLambdaParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LambdaParameterContext)">
+            <summary>
+            Enter a parse tree produced by the <c>LambdaParameter</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitLambdaParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LambdaParameterContext)">
+            <summary>
+            Exit a parse tree produced by the <c>LambdaParameter</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterSymbolParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolParameterContext)">
+            <summary>
+            Enter a parse tree produced by the <c>SymbolParameter</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitSymbolParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolParameterContext)">
+            <summary>
+            Exit a parse tree produced by the <c>SymbolParameter</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterRuleIdAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleIdAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by the <c>RuleIdAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitRuleIdAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleIdAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by the <c>RuleIdAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterDslFile(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslFileContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslFile"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitDslFile(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslFileContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslFile"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterAssemblyReference(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.AssemblyReferenceContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.assemblyReference"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitAssemblyReference(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.AssemblyReferenceContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.assemblyReference"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterUsingStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.UsingStatementContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.usingStatement"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitUsingStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.UsingStatementContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.usingStatement"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterDslNamespaceStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslNamespaceStatementContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslNamespaceStatement"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitDslNamespaceStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslNamespaceStatementContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslNamespaceStatement"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterDslSemanticsStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslSemanticsStatementContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslSemanticsStatement"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitDslSemanticsStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslSemanticsStatementContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslSemanticsStatement"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterDslLearnerStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslLearnerStatementContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslLearnerStatement"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitDslLearnerStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslLearnerStatementContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslLearnerStatement"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterDslGrammarStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslGrammarStatementContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslGrammarStatement"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitDslGrammarStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslGrammarStatementContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslGrammarStatement"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterDslLanguage(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslLanguageContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslLanguage"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitDslLanguage(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslLanguageContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslLanguage"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterDslFeature(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslFeatureContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslFeature"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitDslFeature(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslFeatureContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslFeature"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterFeatureDefAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.FeatureDefAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.featureDefAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitFeatureDefAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.FeatureDefAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.featureDefAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterDslSymbol(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslSymbolContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslSymbol"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitDslSymbol(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslSymbolContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslSymbol"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterSymbolAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitSymbolAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterSymbolBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolBodyContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolBody"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitSymbolBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolBodyContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolBody"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterTerminalBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.TerminalBodyContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.terminalBody"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitTerminalBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.TerminalBodyContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.terminalBody"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterNonterminalBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.NonterminalBodyContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.nonterminalBody"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitNonterminalBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.NonterminalBodyContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.nonterminalBody"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterRuleBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleBodyContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBody"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitRuleBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleBodyContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBody"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterRuleBodyInt(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleBodyIntContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitRuleBodyInt(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleBodyIntContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterOpArgument(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.OpArgumentContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.opArgument"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitOpArgument(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.OpArgumentContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.opArgument"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterArgAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ArgAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.argAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitArgAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ArgAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.argAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ParameterContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ParameterContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterVarDecl(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.VarDeclContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.varDecl"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitVarDecl(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.VarDeclContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.varDecl"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterRuleAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitRuleAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterSubstAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SubstAnnotationContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.substAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitSubstAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SubstAnnotationContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.substAnnotation"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterSubst(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SubstContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.subst"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitSubst(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SubstContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.subst"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterDotID(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DotIDContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dotID"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitDotID(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DotIDContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dotID"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterClassId(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ClassIdContext)">
+            <summary>
+            Enter a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.classId"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitClassId(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ClassIdContext)">
+            <summary>
+            Exit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.classId"/>.
+            <para>The default implementation does nothing.</para>
+            </summary>
+            <param name="context">The parse tree.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.EnterEveryRule(Antlr4.Runtime.ParserRuleContext)">
+            <inheritdoc/>
+            <remarks>The default implementation does nothing.</remarks>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.ExitEveryRule(Antlr4.Runtime.ParserRuleContext)">
+            <inheritdoc/>
+            <remarks>The default implementation does nothing.</remarks>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.VisitTerminal(Antlr4.Runtime.Tree.ITerminalNode)">
+            <inheritdoc/>
+            <remarks>The default implementation does nothing.</remarks>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseListener.VisitErrorNode(Antlr4.Runtime.Tree.IErrorNode)">
+            <inheritdoc/>
+            <remarks>The default implementation does nothing.</remarks>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1">
+            <summary>
+            This interface defines a complete generic visitor for a parse tree produced
+            by <see cref="T:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser"/>.
+            </summary>
+            <typeparam name="Result">The return type of the visit operation.</typeparam>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitLimitArgAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LimitArgAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by the <c>LimitArgAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.argAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitFeatureCompleteAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.FeatureCompleteAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by the <c>FeatureCompleteAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.featureDefAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitConversionRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ConversionRuleContext)">
+            <summary>
+            Visit a parse tree produced by the <c>ConversionRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitConceptRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ConceptRuleContext)">
+            <summary>
+            Visit a parse tree produced by the <c>ConceptRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitLetRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LetRuleContext)">
+            <summary>
+            Visit a parse tree produced by the <c>LetRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitExternSymbolRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ExternSymbolRuleContext)">
+            <summary>
+            Visit a parse tree produced by the <c>ExternSymbolRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitBlackBoxRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.BlackBoxRuleContext)">
+            <summary>
+            Visit a parse tree produced by the <c>BlackBoxRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitStartAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.StartAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by the <c>StartAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitValuesAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ValuesAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by the <c>ValuesAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitInputAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.InputAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by the <c>InputAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitLambdaParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LambdaParameterContext)">
+            <summary>
+            Visit a parse tree produced by the <c>LambdaParameter</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitSymbolParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolParameterContext)">
+            <summary>
+            Visit a parse tree produced by the <c>SymbolParameter</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitRuleIdAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleIdAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by the <c>RuleIdAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitDslFile(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslFileContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslFile"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitAssemblyReference(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.AssemblyReferenceContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.assemblyReference"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitUsingStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.UsingStatementContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.usingStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitDslNamespaceStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslNamespaceStatementContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslNamespaceStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitDslSemanticsStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslSemanticsStatementContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslSemanticsStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitDslLearnerStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslLearnerStatementContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslLearnerStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitDslGrammarStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslGrammarStatementContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslGrammarStatement"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitDslLanguage(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslLanguageContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslLanguage"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitDslFeature(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslFeatureContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslFeature"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitFeatureDefAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.FeatureDefAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.featureDefAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitDslSymbol(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslSymbolContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslSymbol"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitSymbolAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitSymbolBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolBodyContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolBody"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitTerminalBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.TerminalBodyContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.terminalBody"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitNonterminalBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.NonterminalBodyContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.nonterminalBody"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitRuleBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleBodyContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBody"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitRuleBodyInt(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleBodyIntContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitOpArgument(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.OpArgumentContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.opArgument"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitArgAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ArgAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.argAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ParameterContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitVarDecl(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.VarDeclContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.varDecl"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitRuleAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitSubstAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SubstAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.substAnnotation"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitSubst(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SubstContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.subst"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitDotID(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DotIDContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dotID"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1.VisitClassId(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ClassIdContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.classId"/>.
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1">
+            <summary>
+            This class provides an empty implementation of <see cref="T:Microsoft.ProgramSynthesis.Compiler.Parser.IDslcVisitor`1"/>,
+            which can be extended to create a visitor which only needs to handle a subset
+            of the available methods.
+            </summary>
+            <typeparam name="Result">The return type of the visit operation.</typeparam>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitLimitArgAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LimitArgAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by the <c>LimitArgAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.argAnnotation"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitFeatureCompleteAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.FeatureCompleteAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by the <c>FeatureCompleteAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.featureDefAnnotation"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitConversionRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ConversionRuleContext)">
+            <summary>
+            Visit a parse tree produced by the <c>ConversionRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitConceptRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ConceptRuleContext)">
+            <summary>
+            Visit a parse tree produced by the <c>ConceptRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitLetRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LetRuleContext)">
+            <summary>
+            Visit a parse tree produced by the <c>LetRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitExternSymbolRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ExternSymbolRuleContext)">
+            <summary>
+            Visit a parse tree produced by the <c>ExternSymbolRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitBlackBoxRule(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.BlackBoxRuleContext)">
+            <summary>
+            Visit a parse tree produced by the <c>BlackBoxRule</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitStartAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.StartAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by the <c>StartAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitValuesAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ValuesAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by the <c>ValuesAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitInputAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.InputAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by the <c>InputAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitLambdaParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.LambdaParameterContext)">
+            <summary>
+            Visit a parse tree produced by the <c>LambdaParameter</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitSymbolParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolParameterContext)">
+            <summary>
+            Visit a parse tree produced by the <c>SymbolParameter</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitRuleIdAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleIdAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by the <c>RuleIdAnnotation</c>
+            labeled alternative in <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleAnnotation"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitDslFile(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslFileContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslFile"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitAssemblyReference(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.AssemblyReferenceContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.assemblyReference"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitUsingStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.UsingStatementContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.usingStatement"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitDslNamespaceStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslNamespaceStatementContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslNamespaceStatement"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitDslSemanticsStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslSemanticsStatementContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslSemanticsStatement"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitDslLearnerStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslLearnerStatementContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslLearnerStatement"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitDslGrammarStatement(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslGrammarStatementContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslGrammarStatement"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitDslLanguage(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslLanguageContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslLanguage"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitDslFeature(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslFeatureContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslFeature"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitFeatureDefAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.FeatureDefAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.featureDefAnnotation"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitDslSymbol(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DslSymbolContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dslSymbol"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitSymbolAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolAnnotation"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitSymbolBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SymbolBodyContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.symbolBody"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitTerminalBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.TerminalBodyContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.terminalBody"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitNonterminalBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.NonterminalBodyContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.nonterminalBody"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitRuleBody(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleBodyContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBody"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitRuleBodyInt(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleBodyIntContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleBodyInt"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitOpArgument(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.OpArgumentContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.opArgument"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitArgAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ArgAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.argAnnotation"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitParameter(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ParameterContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.parameter"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitVarDecl(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.VarDeclContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.varDecl"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitRuleAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.RuleAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ruleAnnotation"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitSubstAnnotation(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SubstAnnotationContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.substAnnotation"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitSubst(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.SubstContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.subst"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitDotID(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.DotIDContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.dotID"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcBaseVisitor`1.VisitClassId(Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.ClassIdContext)">
+            <summary>
+            Visit a parse tree produced by <see cref="M:Microsoft.ProgramSynthesis.Compiler.Parser.DslcParser.classId"/>.
+            <para>
+            The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)"/>
+            on <paramref name="context"/>.
+            </para>
+            </summary>
+            <param name="context">The parse tree.</param>
+            <return>The visitor result.</return>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.DSLCompiler.EmitSource(Microsoft.ProgramSynthesis.Grammar,System.IO.Stream,System.String,System.String,System.String,System.String)">
+            <summary>
+                Emit C# source code that will store the compiled <paramref name="grammar"/> into a static property.
+            </summary>
+            <param name="grammar">Grammar to compile into C# source.</param>
+            <param name="outputStream">Stream to which the produced source code will be written.</param>
+            <param name="namespacePrefix">See <see cref="F:Microsoft.ProgramSynthesis.Compiler.CompilerOptions.NamespacePrefix"/>.</param>
+            <param name="className">See <see cref="F:Microsoft.ProgramSynthesis.Compiler.CompilerOptions.ClassName"/>.</param>
+            <param name="propertyName">See <see cref="F:Microsoft.ProgramSynthesis.Compiler.CompilerOptions.PropertyName"/>.</param>
+            <param name="sourceFileName">
+                The source filename.  If not null, it will be included in the file header about autogeneration.
+            </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.DSLCompiler.Compile(Microsoft.ProgramSynthesis.Compiler.CompilerOptions,System.IO.TextWriter)">
+            <summary>
+            Parse a .grammar file with a DSL grammar definition, compile it into an MSIL assembly,
+            and return the parsed <see cref="T:Microsoft.ProgramSynthesis.Grammar"/>.
+            </summary>
+            <param name="options">Compilation options. See <see cref="T:Microsoft.ProgramSynthesis.Compiler.CompilerOptions"/> for detailed documentation on each option.</param>
+            <param name="diagnosticWriter">Text stream to which compiler diagnostics (errors &amp; warnings) will be written.</param>
+            <returns></returns>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Compiler.CompilerOptions.LibraryPaths">
+            <summary>
+            Additional directories to locate assembly &amp; grammar references.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Compiler.CompilerOptions.Output">
+            <summary>
+            Output file for the compiled grammar assembly.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Compiler.CompilerOptions.NamespacePrefix">
+            <summary>
+            Optional namespace prefix for the compiled grammar assembly. Will be prepended to the DSL name.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Compiler.CompilerOptions.ClassName">
+            <summary>
+            Name of the static class that will hold the compiled grammar in the produced assembly.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Compiler.CompilerOptions.PropertyName">
+            <summary>
+            Name of the static property that will hold the compiled grammar in the produced assembly.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Compiler.CompilerOptions.Verbosity">
+            <summary>
+            Verbosity level of diagnostics produced by the compiler.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Compiler.CompilerOptions.ValidationFlags">
+            <summary>
+            Categories of warnings/errors that should be validated.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Compiler.CompilerOptions.InputGrammar">
+            <summary>
+            Grammar file to compile.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Compiler.NamespaceDoc">
+            <summary>
+                <see cref="T:Microsoft.ProgramSynthesis.Compiler.DSLCompiler"/> for DSL .grammar files.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.TypeResolution.ResolveTypeInGrammar(Microsoft.ProgramSynthesis.Grammar,System.String)">
+            <summary>
+            Resolves a type name string <paramref name="typename"/>, expressed in C# surface syntax, 
+            into a <see cref="T:System.Type"/> instance using the references and namespaces from a DSL <paramref name="grammar"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Compiler.TypeResolution.ResolveCSharpTypeName(System.String,System.Collections.Generic.IEnumerable{System.String},System.Tuple{System.String,System.Type}[],System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
+            <summary>
+            Converts a C# type alias or a type name into the corresponding .NET type, using standard C# resolution rules.
+            </summary>
+        </member>
+    </members>
+</doc>

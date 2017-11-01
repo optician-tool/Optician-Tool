@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Conditionals.Semantics</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Conditionals.Semantics.Semantics">
+            <summary>
+                The implementations of the operators in the Conditionals language.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Conditionals.Semantics.Semantics.Tokens">
+            <summary>
+                The list of tokens to learn from.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Semantics.Semantics.Disjunction(System.Boolean,System.Boolean)">
+            <summary>
+                A Boolean disjunction operator.
+            </summary>
+            <param name="pred">Result of the first branch.</param>
+            <param name="result">Result of the other branches.</param>
+            <returns>
+                <c>true</c> if at least one argument is <c>true</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Semantics.Semantics.Conjunction(System.Boolean,System.Boolean)">
+            <summary>
+                A Boolean conjunction operator.
+            </summary>
+            <param name="pred">Result of the first branch.</param>
+            <param name="result">Result of the other branches.</param>
+            <returns>
+                <c>true</c> if all arguments are <c>true</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Semantics.Semantics.Not(System.Boolean)">
+            <summary>
+                A Boolean negation operator.
+            </summary>
+            <param name="match">Result of the first branch.</param>
+            <returns>    The negation of <paramref name="match" />. </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Semantics.Semantics.IsNullOrWhiteSpace(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring)">
+            <summary>
+                Checks if <paramref name="s" /> is null or contains only white space character.
+            </summary>
+            <param name="s">The string to test.</param>
+            <returns>True if <paramref name="s" /> is null or contains only white space character.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Semantics.Semantics.Matches(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression)">
+            <summary>
+                Checks if <paramref name="s" /> fully matches regular expression <paramref name="r" />.
+            </summary>
+            <param name="s">The string to test.</param>
+            <param name="r">The regular expression.</param>
+            <returns>True if <paramref name="r" /> fully matches <paramref name="s" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Semantics.Semantics.StartsWith(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression)">
+            <summary>
+                Checks if <paramref name="s" /> starts with regular expression <paramref name="r" />.
+            </summary>
+            <param name="s">The string to test.</param>
+            <param name="r">The regular expression.</param>
+            <returns>True if <paramref name="r" /> matches the beginning of <paramref name="s" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Semantics.Semantics.EndsWith(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression)">
+            <summary>
+                Checks if <paramref name="s" /> starts with regular expression <paramref name="r" />.
+            </summary>
+            <param name="s">The string to test.</param>
+            <param name="r">The regular expression.</param>
+            <returns>True if <paramref name="r" /> matches the end of <paramref name="s" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Semantics.Semantics.Contains(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.LearningCacheSubstring,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.RegularExpression,System.Int32)">
+            <summary>
+                Checks if <paramref name="s" /> contains <paramref name="k" /> matches of the regular expression
+                <paramref name="r" />.
+            </summary>
+            <param name="s">The string to test.</param>
+            <param name="r">The regular expression.</param>
+            <param name="k">The number of matches.</param>
+            <returns>True if <paramref name="r" /> matches <paramref name="s" /> exactly <paramref name="k" /> times.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Conditionals.Semantics.Semantics.True">
+            <summary>
+                The predicate always returns true.
+            </summary>
+            <returns>True.</returns>
+        </member>
+    </members>
+</doc>

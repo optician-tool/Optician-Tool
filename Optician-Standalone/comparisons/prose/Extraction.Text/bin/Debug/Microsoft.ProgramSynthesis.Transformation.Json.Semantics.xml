@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Transformation.Json.Semantics</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics">
+            <summary>
+                The implementations of the operators in the JSON Transformation language.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.Object(Newtonsoft.Json.Linq.JProperty)">
+            <summary>
+            Creates a (singleton) <see cref="T:Newtonsoft.Json.Linq.JObject"/> from a <see cref="T:Newtonsoft.Json.Linq.JProperty"/>.
+            </summary>
+            <param name="property">The property.</param>
+            <returns>The constructed object.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.Append(Newtonsoft.Json.Linq.JProperty,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            Creates a new <see cref="T:Newtonsoft.Json.Linq.JObject"/> by appending a <see cref="T:Newtonsoft.Json.Linq.JProperty"/> to an <see cref="T:Newtonsoft.Json.Linq.JObject"/>.
+            </summary>
+            <param name="property">The property.</param>
+            <param name="obj">The object to append to.</param>
+            <returns>Returns the constructed object.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.FlattenObject(Newtonsoft.Json.Linq.JToken,Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+            Flattens the token at <paramref name="path"/> starting from <paramref name="x"/>.
+            For example, this method flattens { "a": { "b" : [1, 2 ] }} to {"a.b[0]": 1, "a.b.[1]": 2}.
+            </summary>
+            <param name="x">The input token.</param>
+            <param name="path">The path</param>
+            <returns>The flattened object.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.Array(System.Collections.Generic.IEnumerable{Newtonsoft.Json.Linq.JToken})">
+            <summary>
+            Creates a <see cref="T:Newtonsoft.Json.Linq.JArray"/> from a list of elements.
+            </summary>
+            <param name="elements">The list of elements.</param>
+            <returns>The constructed array.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.ToArray(Newtonsoft.Json.Linq.JToken,Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+            Converts a <see cref="T:Newtonsoft.Json.Linq.JObject"/> (at <paramref name="path"/> starting from <paramref name="x"/>) to a <see cref="T:Newtonsoft.Json.Linq.JArray"/>.
+            </summary>
+            <param name="x">The starting token.</param>
+            <param name="path">The path.</param>
+            <returns>The converted array.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.Property(System.String,Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Creates a <see cref="T:Newtonsoft.Json.Linq.JProperty"/> from a key and a value.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+            <returns>The constructed property.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.Key(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Creates a key from a leaf value.
+            </summary>
+            <param name="selectValue">The value to create the key</param>
+            <returns>The constructed key.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.ConstKey(System.String)">
+            <summary>
+            Creates a key from a constant string.
+            </summary>
+            <param name="str">The constant string.</param>
+            <returns>The constructed key.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.Value(System.String)">
+            <summary>
+            Creates a value from a key.
+            </summary>
+            <param name="selectKey">The key to create the value.</param>
+            <returns>The constructed value.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.ConstValue(System.String)">
+            <summary>
+            Creates a value from a constant string.
+            </summary>
+            <param name="str">The constant string.</param>
+            <returns>The constructed value.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.SelectObject(Newtonsoft.Json.Linq.JToken,Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+            Selects a <see cref="T:Newtonsoft.Json.Linq.JObject"/> from a path.
+            </summary>
+            <param name="x">The source token.</param>
+            <param name="path">The path.</param>
+            <returns>The object.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.SelectProperty(Newtonsoft.Json.Linq.JToken,Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+            Selects a <see cref="T:Newtonsoft.Json.Linq.JProperty"/> from a path.
+            </summary>
+            <param name="x">The source token.</param>
+            <param name="path">The path.</param>
+            <returns>The destination property.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.SelectKey(Newtonsoft.Json.Linq.JToken,Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+            Selects a key from a path. 
+            </summary>
+            <param name="x">The source token.</param>
+            <param name="path">The path.</param>
+            <returns>The key.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.SelectValue(Newtonsoft.Json.Linq.JToken,Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+            Selects a value from a path. 
+            </summary>
+            <param name="x">The source token.</param>
+            <param name="path">The path.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.SelectArray(Newtonsoft.Json.Linq.JToken,Microsoft.ProgramSynthesis.Wrangling.Json.JPath)">
+            <summary>
+            Selects a <see cref="T:Newtonsoft.Json.Linq.JArray"/> from a path. 
+            </summary>
+            <param name="x">The source token.</param>
+            <param name="path">The path.</param>
+            <returns>The array.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.FlattenObject(Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            Flattens a <see cref="T:Newtonsoft.Json.Linq.JObject"/>.
+            </summary>
+            <param name="obj">The object to flatten.</param>
+            <returns>The flattened object.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Json.Semantics.Semantics.ToArray(Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            Transforms an object to an array by making each object's key value pair into an array element.
+            </summary>
+            <param name="obj">The object to be transformed.</param>
+            <returns>The array transformed from the object.</returns>
+        </member>
+    </members>
+</doc>

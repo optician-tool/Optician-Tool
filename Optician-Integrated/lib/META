@@ -1,0 +1,12 @@
+# OASIS_START
+# DO NOT EDIT (digest: 6fcc6587b00d1a62e818badf1f68c52d)
+version = "1.0.0"
+description = "The Boomerang Language"
+requires = "hbase str threads ubase lenssynth"
+archive(byte) = "boomerang.cma"
+archive(byte, plugin) = "boomerang.cma"
+archive(native) = "boomerang.cmxa"
+archive(native, plugin) = "boomerang.cmxs"
+exists_if = "boomerang.cma"
+# OASIS_STOP
+

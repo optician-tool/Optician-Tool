@@ -1,0 +1,64 @@
+module Extr-quant = 
+
+let LOWERCASE
+  : regexp =
+  "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" 
+
+let UPPERCASE
+  : regexp =
+  "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" 
+
+let DIGIT
+  : regexp =
+  "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" 
+
+let CHARACTER : regexp = LOWERCASE | UPPERCASE 
+
+let WSP : regexp = (" " | "\n" | "\t") . (" " | "\n" | "\t")*  
+
+let NUMBER : regexp = DIGIT . DIGIT*  
+
+let TEXT : regexp = (CHARACTER | " ")*  
+
+let NONEMPTYTEXT : regexp = (CHARACTER | " ") . (CHARACTER | " ")*  
+
+let NUMERICTEXT : regexp = (CHARACTER | " " | DIGIT)*  
+
+let THINGANDAMOUNT : regexp = TEXT . DIGIT . NUMERICTEXT 
+
+let AMOUNT_EXTRACTED
+  : regexp =
+  "amount: " . DIGIT . NUMERICTEXT . "\nworthless text: " . TEXT 
+  
+let extract_amount = synth THINGANDAMOUNT <=> AMOUNT_EXTRACTED with
+#{string * string}[
+"hey look we sure have a lot of corn we have 35 OZ",
+"amount: 35 OZ\nworthless text: hey look we sure have a lot of corn we have "]

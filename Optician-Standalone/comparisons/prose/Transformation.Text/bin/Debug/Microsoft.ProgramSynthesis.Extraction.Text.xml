@@ -1,0 +1,521 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Extraction.Text</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Constraints.RegionNegativeExample">
+            <summary>
+                The negative example for <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.RegionLearner" /> to learn <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.RegionProgram" />.
+                The output of the program on this example's input should not overlap with the example's output.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Constraints.RegionNegativeExample.#ctor(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Constructs an example from the input and the output.
+            </summary>
+            <param name="input">The input <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />.</param>
+            <param name="noOverlapWithOutput">
+                The <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> that the program output on <paramref name="input" />
+                should not overlap.
+            </param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Constraints.SequenceNegativeExample">
+            <summary>
+                The negative example for <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.SequenceLearner" /> to learn <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.SequenceProgram" />.
+                The sequence output of the program on this example's input should not overlap with the example's output.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Constraints.SequenceNegativeExample.#ctor(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Constructs an example from the input and the output.
+            </summary>
+            <param name="input">The input <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />.</param>
+            <param name="noOverlapWithOutput">
+                The <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> that the program sequence output on <paramref name="input" />
+                should not overlap.
+            </param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Constraints.SequenceExample">
+            <summary>
+                The sequence example for <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.SequenceLearner" /> to learn <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.SequenceProgram" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Constraints.SequenceExample.#ctor(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})">
+            <summary>
+                Constructs an example from the input and the output.
+            </summary>
+            <param name="input">The input <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />.</param>
+            <param name="outputPrefix">A prefix of the intended subsequence.</param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.Constraints.RegionExample">
+            <summary>
+                The input/output example for <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.RegionLearner" /> to learn <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.RegionProgram" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Constraints.RegionExample.#ctor(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Constructs an example from the input and the output.
+            </summary>
+            <param name="input">The input <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />.</param>
+            <param name="output">The output <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />.</param>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.ExtractionLearner.MaxInputSize">
+            <summary>
+                When the length of the input file exceeds this number, Extraction.Text takes every long time to learn.
+                If that is the case, we trim the input file, do the learning on the trimmed file,
+                and execute the learned program on the original file.
+                Reducing this number will make the learning faster, but the disadvantage is it will
+                potentially increase the number of examples, because we can only verify the output on a
+                (short) prefix of the file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Loader.Instance">
+            <summary>
+                Singleton instance of <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Loader" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.Loader.CreateProgram(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.Wrangling.ExtractionKind,Microsoft.ProgramSynthesis.Wrangling.ReferenceKind,System.Nullable{System.Double})">
+            <summary>
+                Wraps a <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" /> in an <see cref="T:Microsoft.ProgramSynthesis.Wrangling.IExtractionProgram`1" />,
+                so it can be more easily used for extraction tasks.
+            </summary>
+            <param name="programNode">The program AST as a Microsoft.ProgramSynthesis <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" />.</param>
+            <param name="extractionKind">The kind of program.</param>
+            <param name="refKind">The kind of reference the program expects as input.</param>
+            <param name="score">The computed score of the program.</param>
+            <returns>
+                A <see cref="T:Microsoft.ProgramSynthesis.Wrangling.IExtractionProgram`1" /> wrapping a lower-level <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" /> of the AST of
+                an extraction program.
+            </returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.Loader.VersionParsers">
+            <summary>
+                Pairs of (version, parser) in descending order.
+                If the current assembly version greater than or equal to the (version) key, use the (parser) value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.RegionProgram">
+            <summary>
+                Represents a program to extract a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> from a text file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.RegionProgram.#ctor(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.Wrangling.ReferenceKind,System.Nullable{System.Double})">
+            <summary>
+                Constructs an Extraction.Text region program from its properties.
+            </summary>
+            <param name="programNode">The core framework program node.</param>
+            <param name="refKind">The reference kind.</param>
+            <param name="score">The ranking score.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.RegionProgram.Run(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})">
+            <summary>
+                <para>
+                    Executes the program on a referencing region.
+                    If the program is a region program, the result is the first element in the output list.
+                </para>
+                <para>
+                    The output list may contain null.
+                    The reason is the training examples are not representative enough (i.e., <paramref name="references" />
+                    contains new, unseen structures).
+                </para>
+            </summary>
+            <param name="references">The referencing region to run the program on.</param>
+            <returns>An output sequence of regions</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.RegionProgram.Run(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Run on a single reference, but work incorrectly if there are sibling references.
+            </summary>
+            <param name="reference">The reference region. Only works properly if this is a parent reference.</param>
+            <returns>The region extracted from <paramref name="reference" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.RegionLearner">
+            <summary>
+                The main (singleton) class to learn Extraction.Text programs.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.RegionLearner.ExtraK">
+            <summary>
+                Microsoft.ProgramSynthesis only learns k programs for each child. If all of these programs produce bad
+                output (e.g., has null), the "best" program is "after" these k. We learn extra programs
+                with the hope that these extra programs contain the best program. The disadvantage is
+                learning time is larger.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.RegionLearner.Instance">
+            <summary>
+                The singleton instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.RegionLearner.ScoreFeature">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.FeatureInfo" /> used for ranking the top-k programs in <see cref="M:Microsoft.ProgramSynthesis.Wrangling.ProgramLearner`3.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{`1,`2}},System.Int32,System.Collections.Generic.IEnumerable{`1},System.Nullable{System.Threading.CancellationToken})" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.RegionLearner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}},System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <paramref name="k" /> top-ranked <b>region</b> extraction program from the given positive and negative
+                examples.
+                Returns all tied results in case of a tie.
+            </summary>
+            <param name="constraints">The constraints.</param>
+            <param name="k">The number of programs returned.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn and
+                rank programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The <paramref name="k" /> top-ranked extraction programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.RegionLearner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}},System.Int32,System.Text.RegularExpressions.Regex,System.Text.RegularExpressions.Regex,System.Text.RegularExpressions.Regex,System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <paramref name="k" /> top-ranked <b>region</b> extraction program from the given positive examples, negative
+                examples,
+                and the matching regular expressions of the extracted region.
+                Returns all tied results in case of a tie.
+            </summary>
+            <param name="constraints">The constraints.</param>
+            <param name="k">The number of programs returned.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn and
+                rank programs.
+            </param>
+            <param name="lookBehindRegex">The regular expression which the extracted region should follows.</param>
+            <param name="contentRegex">The regular expression that matches the extracted region.</param>
+            <param name="lookAheadRegex">The regular expression which follows the extracted region.</param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The <paramref name="k" /> top-ranked extraction programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.RegionLearner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <b>all</b> region extraction program from the given positive examples, negative examples,
+                and the matching regular expressions of the extracted region.
+            </summary>
+            <param name="constraints">The constraints.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn and
+                rank programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The set of all satisfying extraction programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.RegionLearner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}},System.Text.RegularExpressions.Regex,System.Text.RegularExpressions.Regex,System.Text.RegularExpressions.Regex,System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <b>all</b> region extraction program from the given positive examples, negative examples,
+                and the matching regular expressions of the extracted region.
+            </summary>
+            <param name="constraints">The constraints.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn and
+                rank programs.
+            </param>
+            <param name="lookBehindRegex">The regular expression which the extracted region should follows.</param>
+            <param name="contentRegex">The regular expression that matches the extracted region.</param>
+            <param name="lookAheadRegex">The regular expression which follows the extracted region.</param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The set of all satisfying extraction programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.RegionLearner.IdentifyReferencesAndImplicitExamples(System.Collections.Generic.IReadOnlyList{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}},System.Collections.Generic.IReadOnlyList{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.List{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}}@,System.Collections.Generic.List{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}@)">
+            <summary>
+                Identifies the relation ship between the learning field and the reference field.
+                If the reference is sibling, converts the reference fields in the examples and the additional references
+                into parent regions. That is, the reference now is parent (instead of sibling).
+                We also infer the implicit negative examples.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.RegionLearner.TrimmedPositives(Microsoft.ProgramSynthesis.Wrangling.ReferenceKind,System.Collections.Generic.List{Microsoft.ProgramSynthesis.Wrangling.Constraints.CorrespondingMemberEquals{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}})">
+            <summary>
+                Trims the input string to learn faster.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.SequenceSession">
+            <summary>
+                A sequence learning session to learn <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.SequenceProgram" />.
+                See <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3" /> for the API for learning sessions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SequenceSession.#ctor(Microsoft.ProgramSynthesis.Wrangling.Session.IJournalStorage,System.Globalization.CultureInfo,Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger)">
+            <param name="journalStorage">
+                Backing store for the journal of user actions used to adapt to user preferences. May be
+                null to not save this data.
+            </param>
+            <param name="culture">
+                The <see cref="T:System.Globalization.CultureInfo" /> to use when learning programs; accessible using
+                <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3.Culture" />. Used to select preferred date and number formats and
+                defaults for other culture-specific settings.
+            </param>
+            <param name="logger">
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger" /> implementation to use for providing telemetry information.
+            </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SequenceSession.CreateStringRegion(System.String)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> for a string.
+            </summary>
+            <param name="s">The input string.</param>
+            <returns>The corresponding <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.SequenceLearner">
+            <summary>
+                The main (singleton) class to learn Extraction.Text programs.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Extraction.Text.SequenceLearner.ExtraK">
+            <summary>
+                Microsoft.ProgramSynthesis only learns k programs for each child. If all of these programs produce bad
+                output (e.g., has null), the "best" program is "after" these k. We learn extra programs
+                with the hope that these extra programs contain the best program. The disadvantage is
+                learning time is larger.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.SequenceLearner.Instance">
+            <summary>
+                The singleton instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Extraction.Text.SequenceLearner.ScoreFeature">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.FeatureInfo" /> used for ranking the top-k programs in <see cref="M:Microsoft.ProgramSynthesis.Wrangling.ProgramLearner`3.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{`1,`2}},System.Int32,System.Collections.Generic.IEnumerable{`1},System.Nullable{System.Threading.CancellationToken})" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SequenceLearner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}}},System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <paramref name="k" /> top-ranked <b>sequence</b> extraction program from the given positive examples and
+                negative examples.
+                Returns all tied results in case of a tie.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="k">The number of programs returned.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps learn and
+                rank programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The <paramref name="k" /> top-ranked extraction programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SequenceLearner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}}},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}},System.Int32,System.Text.RegularExpressions.Regex,System.Text.RegularExpressions.Regex,System.Text.RegularExpressions.Regex,System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <paramref name="k" /> top-ranked <b>sequence</b> extraction program from the given positive examples,
+                negative examples,
+                and the matching regular expressions of the extracted sequence.
+                Returns all tied results in case of a tie.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="k">The number of programs returned.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps rank
+                learnt programs.
+            </param>
+            <param name="lookBehindRegex">The regular expression which all regions in the extracted sequence should follows.</param>
+            <param name="contentRegex">The regular expression that matches all regions in the extracted sequence.</param>
+            <param name="lookAheadRegex">The regular expression which follows all regions in the extracted sequence.</param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The <paramref name="k" /> top-ranked extraction programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SequenceLearner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}}},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <b>all</b> sequence extraction program from the given positive examples, negative examples,
+                and the matching regular expressions of the extracted sequence.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps rank
+                learnt programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The set of all satisfying extraction programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SequenceLearner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}}},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}},System.Text.RegularExpressions.Regex,System.Text.RegularExpressions.Regex,System.Text.RegularExpressions.Regex,System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learns <b>all</b> sequence extraction program from the given positive examples, negative examples,
+                and the matching regular expressions of the extracted sequence.
+            </summary>
+            <param name="constraints">The examples.</param>
+            <param name="additionalInputs">
+                The set of additional references that do not have output examples, which helps rank
+                learnt programs.
+            </param>
+            <param name="lookBehindRegex">The regular expression which all regions in the extracted sequence should follows.</param>
+            <param name="contentRegex">The regular expression that matches all regions in the extracted sequence.</param>
+            <param name="lookAheadRegex">The regular expression which follows all regions in the extracted sequence.</param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The set of all satisfying extraction programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SequenceLearner.IdentifyReferencesAndImplicitExamples(System.Collections.Generic.IReadOnlyList{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}}},System.Collections.Generic.IReadOnlyList{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.List{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}}}}@,System.Collections.Generic.List{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}@)">
+            <summary>
+                Identifies the relation ship between the learning field and the reference field.
+                If the reference is sibling, converts the reference fields in the examples and the additional references
+                into parent regions. That is, the reference now is parent (instead of sibling).
+                We also infer the implicit negative examples.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SequenceLearner.TrimmedPositives(Microsoft.ProgramSynthesis.Wrangling.ReferenceKind,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.MemberPrefix{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion}})">
+            <summary>
+                Trims the input string to learn faster.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.NamespaceDoc">
+            <summary>
+                <see href="https://microsoft.github.io/prose/documentation/extraction-text/intro/">Extraction.Text</see>
+                extracts data from semi-structured text files using examples.
+                The main entry points are <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.ExtractionLearner" /> and <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.SchemaLearner" /> which learn
+                <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.RegionProgram" />/<see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.SequenceProgram" /> and <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.SchemaProgram" /> objects respectively.
+                <p>
+                    <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.ParaphrasingFiles" /> can be used
+                    for paraphrasing programs into natural language. <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Language" /> gives access
+                    to the grammar for customized learning scenarios.
+                </p>
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.SequenceProgram">
+            <summary>
+                Represents a program to extract a sequence of <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />s from a text file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SequenceProgram.#ctor(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.Wrangling.ReferenceKind,System.Nullable{System.Double})">
+            <summary>
+                Constructs an Extraction.Text sequence program from its properties.
+            </summary>
+            <param name="programNode">The core framework program node.</param>
+            <param name="refKind">The reference kind.</param>
+            <param name="score">The ranking score.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SequenceProgram.Run(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})">
+            <summary>
+                <para>
+                    Executes the program on a referencing region.
+                    If the program is a region program, the result is the first element in the output list.
+                </para>
+                <para>
+                    The output list may contain null.
+                    The reason is the training examples are not representative enough (i.e., <paramref name="references" />
+                    contains new, unseen structures).
+                </para>
+            </summary>
+            <param name="references">The referencing regions to run the program on.</param>
+            <returns>An output sequence of regions</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SequenceProgram.Run(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion)">
+            <summary>
+                Run on a single reference, but work incorrectly if there are sibling references.
+            </summary>
+            <param name="reference">The reference region. Only works properly if this is a parent reference.</param>
+            <returns>The sequence extracted from <paramref name="reference" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.SchemaLearner">
+            <summary>
+            The main class to learn Extraction.Text schema programs.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SchemaLearner.GetLearner">
+            <summary>
+            Gets the <see cref="T:Microsoft.ProgramSynthesis.Wrangling.ExtractionLearner`3"/> used to learn individual programs.
+            </summary>
+            <returns>The learner for programs that make up the learned schema programs.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SchemaLearner.Select(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Tuple{System.UInt32,System.UInt32})">
+            <summary>
+            Select a substring from a string.
+            </summary>
+            <param name="stringRegion">The input string.</param>
+            <param name="selector">The pair of positions to select from.</param>
+            <returns>The output substring.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SchemaLearner.StringToInput(System.String)">
+            <summary>
+            Create a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion"/> from a string.
+            </summary>
+            <param name="input">The input string.</param>
+            <returns>The string region.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SchemaLearner.Wrap(Microsoft.ProgramSynthesis.Wrangling.SchemaParser.SchemaGrammar{Microsoft.ProgramSynthesis.Extraction.Text.SequenceProgram,Microsoft.ProgramSynthesis.Extraction.Text.RegionProgram,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})">
+            <summary>
+                Wraps a <see cref="T:Microsoft.ProgramSynthesis.Wrangling.SchemaParser.SchemaGrammar`3" /> in a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.SchemaProgram" />.
+            </summary>
+            <param name="grammar">The schema grammar being wrapped.</param>
+            <returns>A <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.SchemaProgram" /> referencing <paramref name="grammar" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.SchemaProgram">
+            <summary>
+            Represents a schema program.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SchemaProgram.#ctor(Microsoft.ProgramSynthesis.Wrangling.SchemaParser.SchemaGrammar{Microsoft.ProgramSynthesis.Extraction.Text.SequenceProgram,Microsoft.ProgramSynthesis.Extraction.Text.RegionProgram,Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion})">
+            <summary>
+            Constructs a schema program.
+            </summary>
+            <param name="sg"></param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.SchemaProgram.Select(Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion,System.Tuple{System.UInt32,System.UInt32})">
+            <summary>
+            Select a substring from a string.
+            </summary>
+            <param name="stringRegion">The input string.</param>
+            <param name="selector">The pair of positions to select from.</param>
+            <returns>The output substring.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.ParaphrasingFiles">
+            <summary>
+            Extracts the files for paraphrasing and description (not used)
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.ParaphrasingFiles.#ctor(System.String)">
+            <summary>
+            Constructor for paraphrasing files
+            </summary>
+            <param name="language"></param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Extraction.Text.RegionSession">
+            <summary>
+                A region learning session to learn <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.RegionProgram"/>. 
+                See <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3" /> for the API for learning sessions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.RegionSession.#ctor(Microsoft.ProgramSynthesis.Wrangling.Session.IJournalStorage,System.Globalization.CultureInfo,Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger)">
+            <param name="journalStorage">
+                Backing store for the journal of user actions used to adapt to user preferences. May be
+                null to not save this data.
+            </param>
+            <param name="culture">
+                The <see cref="T:System.Globalization.CultureInfo" /> to use when learning programs; accessible using
+                <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3.Culture" />. Used to select preferred date and number formats and
+                defaults for other culture-specific settings.
+            </param>
+            <param name="logger">
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger" /> implementation to use for providing telemetry information.
+            </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Extraction.Text.RegionSession.CreateStringRegion(System.String)">
+            <summary>
+                Creates a <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" /> for a string.
+            </summary>
+            <param name="s">The input string.</param>
+            <returns>The corresponding <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />.</returns>
+        </member>
+    </members>
+</doc>

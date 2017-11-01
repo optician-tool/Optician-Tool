@@ -1,0 +1,4 @@
+PKG core lwt oUnit ppx_deriving.std ppx_hash
+S src
+B _build
+B _build/src

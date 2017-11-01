@@ -1,0 +1,1600 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ProgramSynthesis.Transformation.Text</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction">
+            <summary>
+                A constraint that represents an entity extraction.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction.Extractor">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.EntityExtraction.Entities.EntityBasedTokenizer" /> that is to be used in this extraction.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction.K">
+            <summary>
+                The instance number of the entity to extract.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction.ColumnName">
+            <summary>
+                The name of the column in the <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow"/> from which the entity is to be extraction.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction.EntityType">
+            <summary>
+                The type of entities to be extracted. See <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction.EntityType"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction.#ctor(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.ExtractByEntity.TokenizerCollectionToExtractor,System.Int32,System.String)">
+            <summary>
+                Constructor.
+            </summary>
+            <param name="extractor">The extractor to use.</param>
+            <param name="k">The instance number of the entity to extract.</param>
+            <param name="columnName">The name of the column from which the entity is to be extracted.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction.Equals(Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction)">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction.SetOptions(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options)">
+            <summary>
+                Set the options defined by this constraint in <paramref name="options" />.
+            </summary>
+            <param name="options">The <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options"/> object to mutate.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalEntityExtraction.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor">
+            <summary>
+                A constraint that represents an external extraction.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor.Extractor">
+            <summary>
+                The <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.CustomExtraction.CustomExtractor" /> associated with this constraint.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor.#ctor(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.CustomExtraction.CustomExtractor)">
+            <summary>
+                Constructor.
+            </summary>
+            <param name="extractor">The <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.CustomExtraction.CustomExtractor" /> to use with this constraint.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor.SetOptions(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor.Equals(Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor)">
+            <summary>
+                Determines if this <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor" /> is equal to <paramref name="other" />.
+            </summary>
+            <param name="other">The other <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor" /> object.</param>
+            <returns><c>true</c> if <c>this</c> is equal to <paramref name="other" />, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor.Equals(System.Object)">
+            <summary>Determines whether the specified object is equal to the current object.</summary>
+            <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+            <param name="other">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ExternalExtractor.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidTransformation">
+            <summary>
+                Forbid the use of some subset of the transformations in the Transformation.Text language.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidTransformation.#ctor(Microsoft.ProgramSynthesis.Transformation.Text.Description.TransformationKind)">
+            <summary>
+                Constructs a constraint for selecting a subset of the Transformation.Text language to omit.
+            </summary>
+            <param name="forbiddenTransformations">
+                Bitmask of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Description.TransformationKind" />s to disallow in the synthesized
+                program.
+            </param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidTransformation.ForbiddenTransformations">
+            <summary>
+                Bitmask of the transformations which may not be synthesized.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidTransformation.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidTransformation.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidTransformation.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidTransformation.SetOptions(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options)">
+            <summary>
+                Set the options defined by this constraint in <paramref name="options" />.
+            </summary>
+            <param name="options">The <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options" /> object to mutate.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidTransformation.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.AllowConstantProgram">
+            <summary>
+                Allow constant programs (i.e. programs that always return the same string, regardless of their input) to be
+                synthesized. Normally they are forbidden.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.AllowConstantProgram.Instance">
+            <summary>
+                Singleton instance of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.AllowConstantProgram" />
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.AllowConstantProgram.SetOptions(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options)">
+            <summary>
+                Set the options defined by this constraint in <paramref name="options" />.
+            </summary>
+            <param name="options">The <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options" /> object to mutate.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.AllowConstantProgram.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.AllowConstantProgram.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.AllowConstantProgram.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.AllowConstantProgram.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority">
+            <summary>
+                Constraint on which input columns are used. Input columns are given in priority order as a list of sets of columns.
+                Columns from the first set are tried; if that fails to generate a program, then columns from the second set are
+                also used. This continues until all of the sets are included as possible input columns.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.String}})">
+            <summary>
+                Construct a new column priority constraint.
+            </summary>
+            <param name="priority">A prioritized list of sets of column names to use.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority.Priority">
+            <summary>
+                The priority order of the columns to be used. The union of all of the column sets is the set of all input columns
+                that may be used. Programs that use only the first set will be ranked higher than those that also use the second,
+                etc.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority.Equals(Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority.Equals(System.Object)">
+            <summary>Determines whether the specified object is equal to the current object.</summary>
+            <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+            <param name="other">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.FallbackToLookup">
+            <summary>
+                Controls whether a lookup program (i.e. programs that work only on exactly the inputs they have been given examples
+                for) will be synthesized.
+            </summary>
+            <seealso cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.FallbackToLookup.LookupFallbackMode" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.FallbackToLookup.#ctor(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.LookupFallbackMode)">
+            <summary>
+                Constructs a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.FallbackToLookup" /> constraint which controls how synthesis will handle failing the normal
+                case and deciding to either fall back to a lookup program or return no program at all.
+            </summary>
+            <param name="lookupFallbackMode">The <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.FallbackToLookup.LookupFallbackMode" />.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.FallbackToLookup.LookupFallbackMode">
+            <summary>
+                The <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.FallbackToLookup.LookupFallbackMode" /> which controls what happens when no program can be learned normally, leaving
+                a lookup program or no program at all as the only options.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.FallbackToLookup.SetOptions(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options)">
+            <summary>
+                Set the options defined by this constraint in <paramref name="options" />.
+            </summary>
+            <param name="options">The <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options" /> object to mutate.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.FallbackToLookup.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.FallbackToLookup.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.FallbackToLookup.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.FallbackToLookup.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidConstantProgram">
+            <summary>
+                Forbid constant programs (i.e. programs that always return the same string, regardless of their input) to be
+                synthesized. Normally they are forbidden.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidConstantProgram.Instance">
+            <summary>
+                Singleton instance of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidConstantProgram" />
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidConstantProgram.SetOptions(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options)">
+            <summary>
+                Set the options defined by this constraint in <paramref name="options" />.
+            </summary>
+            <param name="options">The <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options" /> object to mutate.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidConstantProgram.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidConstantProgram.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidConstantProgram.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ForbidConstantProgram.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns">
+            <summary>
+                Constraint that output must consist of the concatenation of multiple columns.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.#ctor(System.Collections.Generic.IEnumerable{System.String},System.String,System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+                Constructs a merge columns constraint.
+            </summary>
+            <param name="columns">
+                If not null, then exactly this list of columns must be merged together, in order (possibly with
+                constant strings in the middle). The list may not contain repeats.
+            </param>
+            <param name="separator">
+                The string used to separate the columns or <c>null</c> if it should be learned. Note that if
+                this is <c>null</c> and examples are given, then the examples are allowed to use different separators like "A, B;
+                C|" where "A", "B", and "C" are the contents of the columns. If non-<c>null</c>, <paramref name="constants" /> must
+                be <c>null</c>.
+            </param>
+            <param name="constants">
+                If not <c>null</c>, the strings placed before, between, and after the columns. This may only be non-<c>null</c> if
+                <paramref name="columns" /> is non-<c>null</c> and must be exactly one item longer than
+                <paramref name="columns" />. The first item is the start of the output, the last is the end, and the rest are the
+                separators in order. If non-<c>null</c>, <paramref name="separator" /> must be <c>null</c>.
+            </param>
+            <param name="isSoft">If true, this constraint is not required to be satisfied.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.#ctor(System.Collections.Generic.IEnumerable{System.String},System.String,System.Boolean)">
+            <summary>
+                Constructs a merge columns constraint.
+            </summary>
+            <param name="columns">
+                If not null, then exactly this list of columns must be merged together, in order (possibly with
+                constant strings in the middle). The list may not contain repeats.
+            </param>
+            <param name="separator">
+                The string used to separate the columns or <c>null</c> if it should be learned. Note that if
+                this is <c>null</c> and examples are given, then the examples are allowed to use different separators like "A, B;
+                C|" where "A", "B", and "C" are the contents of the columns.
+            </param>
+            <param name="isSoft">If true, this constraint is not required to be satisfied.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.#ctor(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+                Constructs a merge columns constraint.
+            </summary>
+            <param name="columns">
+                Exactly this list of columns must be merged together, in order (possibly with constant strings in the middle). The
+                list may not contain repeats or <c>null</c>s.
+            </param>
+            <param name="constants">
+                If not <c>null</c>, the strings placed before, between, and after the columns. This may only be non-<c>null</c> if
+                <paramref name="columns" /> is non-<c>null</c> and must be exactly one item longer than <paramref name="columns" />
+                . The
+                first item is the start of the output, the last is the end, and the rest are the separators in order.
+            </param>
+            <param name="isSoft">If true, this constraint is not required to be satisfied.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.Separator">
+            <summary>
+                The string used to separate the columns or <c>null</c> if it should be learned. Note that if
+                this is <c>null</c> and examples are given, then the examples are allowed to use different separators like "A, B;
+                C|" where "A", "B", and "C" are the contents of the columns.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.Constants">
+            <summary>
+                If not <c>null</c>, the strings placed before, between, and after the columns. This may only be non-<c>null</c> if
+                <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.Columns" /> is non-<c>null</c> and must be exactly one item longer than <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.Columns" />. The
+                first item is the start of the output, the last is the end, and the rest are the separators in order.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.IsSoft">
+            <summary>
+                If true, this constraint is not required to be satisfied.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.Columns">
+            <summary>
+                If not null, then exactly this set of columns must be merged together. The column names are unordered. Otherwise,
+                any columns may be merged together.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.Equals(Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.SetOptions(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options)">
+            <summary>
+                Set the options defined by this constraint in <paramref name="options" />.
+            </summary>
+            <param name="options">The <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options" /> object to mutate.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.ToString">
+            <summary>Returns a string that represents the current object.</summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.SingleInputDateFormat">
+            <summary>
+                Limit date parsing to use a single format. Note that the actual list of date formats may contain multiple formats
+                in the case that one of them is the single format and the others are that format but also parse some additional
+                information that is discarded. For example, "yyyy-MM-dd" and "yyyy-MM-dd HH:mm:ss" will be allowed as only the date
+                will actually be used; parsing the time as well will be allowed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.SingleInputDateFormat.Instance">
+            <summary>
+                Singleton instance of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.SingleInputDateFormat" />
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.SingleInputDateFormat.SetOptions(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options)">
+            <summary>
+                Set the options defined by this constraint in <paramref name="options" />.
+            </summary>
+            <param name="options">The <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.Witnesses.Options" /> object to mutate.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.SingleInputDateFormat.Equals(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>Indicates whether the current constraint is equal to another constraint.</summary>
+            <param name="other">A constraint to compare with this constraint.</param>
+            <returns>true if the current constraint is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.SingleInputDateFormat.ConflictsWith(Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Checks if these constraints are obviously not valid together. That is, just by considering this and
+                <paramref name="other" /> it is easy to tell that no program could possibly satisfy both of them. For instance, the
+                two constraints could be examples that give different outputs.
+            </summary>
+            <param name="other">The constraint to check for conflicts.</param>
+            <returns>
+                True if the conjunction of the specifications of this constraint and <paramref name="other" /> is
+                <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.SingleInputDateFormat.Valid(Microsoft.ProgramSynthesis.Program{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <summary>
+                Validate a program against this constraint.
+            </summary>
+            <param name="program">The program that needs to validate.</param>
+            <returns>The validation result.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.SingleInputDateFormat.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile">
+            <summary>
+                An profile for a column that detects entities which can be extracted from the column,
+                given the data in the column.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile.Threshold">
+            <summary>
+                The minimum fraction of rows in which an entity must be detected for any index K, before we
+                suggest the Kth instance of the entity as an extractable entity.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile.RowSampleSize">
+            <summary>
+                The number of rows to sample in the event that the column contains more than this many records.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile.ColumnName">
+            <summary>
+                The name of this column.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile.TokenizerCollection">
+            <summary>
+                The <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile.TokenizerCollection"/> of <see cref="T:Microsoft.ProgramSynthesis.Wrangling.EntityExtraction.Entities.EntityBasedTokenizer"/>s that are 
+                pertinent to this column of data.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile.ColumnData">
+            <summary>
+                The data in this column, represented as a sequence of strings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile.EntityCounts">
+            <summary>
+                The entity types, together with the counts of number of occurences in <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile.ColumnData" /> for each type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile.EntityInstances">
+            <summary>
+                A sequence of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance" />s detected in the column.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile.CreateAsync(System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Boolean)">
+            <summary>
+                Creates a new <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile" /> for a column of data.
+            </summary>
+            <param name="columnName">The name of the column whose data is provided in <paramref name="columnData" />.</param>
+            <param name="columnData">The data values in the column to be profiled.</param>
+            <param name="allowSubsumedEntities">Should entities that are completely subsumed by other entities be retained?</param>
+            <returns>
+                A task that will produce the <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile" /> corresponding to the data
+                <paramref name="columnData" />, when executed to completion.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile.CreateAsync(System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.Collections.Generic.IReadOnlyList{System.String}}},System.Boolean)">
+            <summary>
+                Creates a sequence of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile" />s for multiple columns of data.
+            </summary>
+            <param name="columns">
+                A sequence of tuples, where the first component is the name of the column and the second
+                component is a sequence of strings that represent the values in the column.
+            </param>
+            <param name="allowSubsumedEntities">Should entities that are completely subsumed by other entities be retained?</param>
+            <returns>
+                A task that will produce a sequence of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile" />s, corresponding to the data in
+                <paramref name="columns" />, when executed to completion.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile.ExtractionConstraintsFor(Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance)">
+            <summary>
+                Creates a set of extraction constraints to extract a given entity instance.
+            </summary>
+            <param name="entityInstance">
+                The <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance" /> object representing the instance of the entity to be
+                extracted.
+            </param>
+            <returns>
+                A set of constraints, that when passed to a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Learner" />, generates a program that extracts the
+                specified instance of the entity.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                <paramref name="entityInstance" /> does not correspond to an entity and/or instance
+                that is present in this <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.ColumnProfile" />.
+            </exception>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance">
+            <summary>
+                Represents an instance of an entity.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance.EntityType">
+            <summary>
+                The entity type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance.InstanceNumber">
+            <summary>
+                The instance number of <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance.EntityType" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance.#ctor(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.ExtractByEntity.EntityType,System.Int32)">
+            <summary>
+                Constructs a representation of an instance of a specific class of entity.
+            </summary>
+            <param name="entityType">The type of the entity. See <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance.EntityType" />.</param>
+            <param name="instanceNumber">The instance number of the <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance.EntityType" />.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance.Equals(Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ExtractByEntity.EntityInstance.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.MlRankingMode">
+            <summary>
+                <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Session.RankingMode" /> for using the machine-learning-based ranking scheme.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.MlRankingMode.Instance">
+            <summary>
+                Singleton instance of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.MlRankingMode" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.MlRankingMode.ToString">
+            <summary>Returns a string that represents the current object.</summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Program">
+            <summary>
+                Class for running Transformation.Text string transformation programs. Transformation.Text programs take one or more
+                input strings, extract some information from them, and concatenate that information into an output string.
+                A given Transformation.Text program takes a fixed number of input strings, which are normally wrapped using the
+                <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.InputRow" /> type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Program.#ctor(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Constructor for wrapping a Transformation.Text program.
+            </summary>
+            <param name="programNode">The learnt program.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Program.ColumnsUsed">
+            <summary>
+                The names of the columns used by this program.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Program.OutputTypes">
+            <summary>
+                The possible types of outputs of this program.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Program.Run(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow)">
+            <summary>
+                Run the Transformation.Text program on an input row.
+            </summary>
+            <param name="input">An input row (<see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow" />) on which to run the Transformation.Text program.</param>
+            <returns>
+                The result of running the Transformation.Text program which may be a <see cref="T:System.String" /> or <c>null</c> (or
+                other strongly typed values in the future).
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Program.Run(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IIndexableRow)">
+            <summary>
+                Run the Transformation.Text program on an input row, looking up columns by index instead of name to improve
+                performance.
+            </summary>
+            <param name="input">
+                An input <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IIndexableRow" /> which accepts indices corresponding to
+                <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Program.ColumnsUsed" />.
+            </param>
+            <returns>
+                The result of running the Transformation.Text program which may be a <see cref="T:System.String" /> or <c>null</c> (or
+                other strongly typed values in the future).
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Program.GetInputType(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.String)">
+            <summary>
+                Gets the type column <paramref name="columnName" /> of <paramref name="row" /> is interpeted as by this program.
+            </summary>
+            <param name="row">The input row.</param>
+            <param name="columnName">The input column.</param>
+            <returns>The type the specified cell in the input will be used as.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Program.GetInputTypes(System.String)">
+            <summary>
+                Gets the types inputs in the specified column may be interpreted as by this program.
+            </summary>
+            <param name="columnName">Name of the input column. Must be one of <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Program.ColumnsUsed" />.</param>
+            <returns>The types values in the input column <paramref name="columnName" /> may be used as.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Program.ComputeOutputProvenance(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow)">
+            <summary>
+                Finds the correspondences between the input and output to explain where the output came from.
+            </summary>
+            <param name="input">The input to compute provenance for.</param>
+            <returns>
+                An ordered list of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.OutputProvenance" />s; the <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.OutputProvenance.OutputSubstring" />s
+                concatenated in order result in the output of this program. The rest of the information explains how each of those
+                substrings was computed.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Program.ComputeOutputProvenance(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,Microsoft.ProgramSynthesis.Transformation.Text.Semantics.ValueSubstring)">
+            <summary>
+                Finds the correspondences between the input and output to explain where the output came from.
+            </summary>
+            <param name="node">The branch program node.</param>
+            <param name="input">The input to compute provenance for.</param>
+            <param name="output">The precomputed output of this program on the <paramref name="input" />.</param>
+            <returns>
+                An ordered list of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.OutputProvenance" />s; the <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.OutputProvenance.OutputSubstring" />s
+                concatenated in order result in the output of this program. The rest of the information explains how each of those
+                substrings was computed.
+            </returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Program.AllTransformations">
+            <summary>
+                The descriptions for all transformations this program can perform. This list is referenced by the output of
+                <see cref="M:Microsoft.ProgramSynthesis.Transformation.Text.Program.ComputeOutputProvenance(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow)" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Program.Describe(System.Globalization.CultureInfo)">
+            <summary>
+                Describes the functionality of the program at a high level.
+                Returns null if program description is not available.
+            </summary>
+            <param name="cultureInfo">The culture info.</param>
+            <returns>The program description (null if not available)</returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Program.Branches">
+            <summary>
+                The list of branches in the program, each of which is a pair of conjunctive predicate and the branch program.
+                The last branch predicate is always null.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.DynamicTokenExtractor">
+            <summary>
+                Static methods for extracting dynamic tokens for FlashFill; also used by the profiler.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Transformation.Text.DynamicTokenExtractor.NonUniquePenalty">
+            <summary>
+                Amount subtracted from the score of a dynamic token if it appears more than once in an input string.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ProgramSynthesis.Transformation.Text.DynamicTokenExtractor.PositionedConcreteTokenLengthComparer">
+            <summary>
+                Compares <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.DynamicTokenExtractor.PositionedConcreteToken" />s based on the length of the <see cref="T:Microsoft.ProgramSynthesis.Extraction.Text.Semantics.StringRegion" />s they
+                match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.DynamicTokenExtractor.ExtractDynamicTokens(System.Collections.Generic.IReadOnlyList{System.String})">
+            <summary>
+                Proposes dynamic tokens based on the entries in an input column.
+                These are substrings that are common to all of the inputs.
+            </summary>
+            <param name="inputColumn">The entries in the input column.</param>
+            <returns>Extracted dynamic tokens.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Example">
+            <summary>
+                An example for a Transformation.Text learning task. An example consists of an <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.InputRow" /> and an output
+                string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Example.#ctor(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.String,System.Boolean)">
+            <summary>
+                Constructs an example with the given input and output.
+            </summary>
+            <param name="input">The example input</param>
+            <param name="output">The desired output on that input</param>
+            <param name="isSoft">If true, this example is not required to be satisfied.</param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.InputRow">
+            <summary>
+                An input to a Transformation.Text program. Consists of one or more strings.
+                Note that all inputs to a given Transformation.Text program must have the same number of strings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.Row">
+            <summary>
+                The row index of this input, used for sort order of this input.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.#ctor(System.String[])">
+            <summary>
+                Constructs a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.InputRow"/> with the given input strings.
+            </summary>
+            <param name="inputStrings">The strings for this input</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.#ctor(System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.Int32})">
+            <summary>
+                Constructs a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.InputRow"/> with the given input strings.
+            </summary>
+            <param name="inputStrings">The strings for this input</param>
+            <param name="row">
+                Sort key to be used when sorting <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.InputRow" /> or
+                <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Constraints.Example`2" />.
+            </param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.InputStrings">
+            <summary>
+                The input strings contained by this object.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.ColumnNames">
+            <summary>
+                Optional field giving the names of all of the columns in the row. Note that if this is missing during learning,
+                then the set of available column names will have to be provided in some other way.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.TryGetValue(System.String,System.Object@)">
+            <summary>
+                Gets the value of the column named <paramref name="columnName" /> and puts it in <paramref name="value" /> if
+                possible.
+            </summary>
+            <param name="columnName">The name of the column to get.</param>
+            <param name="value">
+                The value of the column. The <see cref="M:System.Object.ToString" /> of this value will be used. Future versions may
+                use other information for certain input types.
+            </param>
+            <returns>
+                <code>true</code> if the column exists and <paramref name="value" /> has been populated, or <code>false</code>
+                otherwise.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.Equals(Microsoft.ProgramSynthesis.Transformation.Text.InputRow)">
+            <summary>
+                Indicates whether the current object represents the same input as another <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.InputRow" />.
+            </summary>
+            <returns>
+                true if the current object's <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.InputStrings" /> property is equal to that of the <paramref name="other" />
+                parameter; otherwise, false.
+            </returns>
+            <param name="other">A <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.InputRow" /> to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.Equals(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+            true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.CompareTo(Microsoft.ProgramSynthesis.Transformation.Text.InputRow)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object. 
+            </summary>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The return value has these meanings: Value Meaning Less than zero This instance precedes <paramref name="other"/> in the sort order.  Zero This instance occurs in the same position in the sort order as <paramref name="other"/>. Greater than zero This instance follows <paramref name="other"/> in the sort order. 
+            </returns>
+            <param name="other">An object to compare with this instance. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.ToString">
+            <summary>
+                Returns a string of <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.InputStrings" />.
+            </summary>
+            <returns>
+                A string containing all of <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.InputRow.InputStrings" />.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.SessionJsonSerializerSettings">
+            <summary>
+            Serializer settings to be used with Json.Net when serializing or deserializing a Session object.
+            This is normally exposed through a static property on the Session class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.SessionJsonSerializerSettings.Initialize">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.SessionJsonSerializerSettings.SessionTypes">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.SessionJsonSerializerSettings.ValueTypes">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.SessionJsonSerializerSettings.ConstraintTypes">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Branch">
+            <summary>
+                A branch of a Transformation.Text <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Branch.#ctor(Microsoft.ProgramSynthesis.AST.ProgramNode,Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>Initializes a new instance of the <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Branch" /> class.</summary>
+            <param name="predicate">The predicate deciding whether to take this branch.</param>
+            <param name="body">The computation done on this branch.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Branch.Predicate">
+            <summary>
+                The predicate deciding whether to take this branch.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Branch.Body">
+            <summary>
+                The computation done on this branch.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Learner">
+            <summary>
+                Learner for learning <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" />s by example. Provides some helpers in addition to the
+                inherited methods for avoiding explicitly constructing <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.InputRow" /> values when they aren't
+                needed.
+            </summary>
+            <seealso cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Learner.Instance" />
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Learner.Instance">
+            <summary>
+                Instance of this class using the normal ranking score.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Learner.MlRankerInstance">
+            <summary>
+                Instance of this class using the ML-based ranking score.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Learner.ScoreFeature">
+            <summary>
+                The "Score" feature of the Transformation.Text language which is used to rank programs.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Learner.LearnAllImpl_PreRewrite(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object}},System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow},System.Nullable{System.Int32},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learn a <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /> of all programs satisfying the training constraints.
+            </summary>
+            <param name="trainingConstraints">The set of constraints.</param>
+            <param name="additionalInputs">
+                The set of additional inputs that do not have output examples, which helps rank learned
+                programs when <paramref name="k" /> is not null.
+            </param>
+            <param name="k">The number of top programs or null for all programs.</param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>
+                All programs satisfying the training examples (or the best <paramref name="k" /> if <paramref name="k" /> is
+                not null).
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Learner.ConstantProgramSetPartition">
+            <summary>
+                A partition of a Transformation.Text <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /> into <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Learner.ConstantProgramSetPartition.Constant" /> and
+                <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Learner.ConstantProgramSetPartition.NonConstant" /> parts. This is a specialized <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.UnionProgramSet" /> where all of the
+                constant-valued programs are in one space and all of the programs which depend on the input are in the other space.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Learner.ConstantProgramSetPartition.Constant">
+            <summary>
+                A <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /> of constant-valued programs only.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Learner.ConstantProgramSetPartition.NonConstant">
+            <summary>
+                A <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /> of programs that depend on the input only.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Learner.ConstantProgramSetFilter">
+            <summary>
+                Visitor to generate a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Learner.ConstantProgramSetPartition" /> for any <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /> of symbol "f" or
+                above in the grammar.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Learner.LearnAll(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object}},System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learn a <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /> of all programs satisfying the training examples.
+            </summary>
+            <param name="constraints">The set of input-output examples.</param>
+            <param name="additionalInputs">
+                The set of additional inputs that do not have output examples, which helps rank learned
+                programs.
+            </param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>All programs satisfying the training examples as a <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Learner.TopKFromProgramSet(Microsoft.ProgramSynthesis.VersionSpace.ProgramSet)">
+            <summary>
+                Helper to convert <see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /> to IEnumerable of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" />.
+            </summary>
+            <param name="programSet"><see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" /> containing a top-k result.</param>
+            <returns>
+                An IEnumerable of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" /> objects corresponding to all of the programs in
+                <paramref name="programSet" />.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Learner.LearnTopK(System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Wrangling.Constraints.Constraint{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object}},System.Int32,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+                Learn <paramref name="k" /> top-ranked <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" />s for a given set of input-output examples.
+            </summary>
+            <param name="constraints">The set of constraints.</param>
+            <param name="additionalInputs">
+                The set of additional inputs that do not have constraints, which helps rank learned
+                programs.
+            </param>
+            <param name="k">The number of top program scores (may be more than <paramref name="k" /> programs in case of ties).</param>
+            <param name="cancel">
+                The token to monitor for cancellation requests. The default value is
+                <see cref="P:System.Threading.CancellationToken.None" />.
+            </param>
+            <returns>The top-k ranked <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" />s</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Loader">
+            <summary>
+                Factory class for loading serialized <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program"/>s.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Loader.Instance">
+            <summary>
+                Singleton instance of <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Loader" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Loader.Load(System.String,Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)">
+            <summary>
+                Loads a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" /> which was serialized using
+                <see cref="M:Microsoft.ProgramSynthesis.Program`2.Serialize(Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)" />.
+            </summary>
+            <param name="serializedProgram">
+                A string generated by <see cref="M:Microsoft.ProgramSynthesis.Program`2.Serialize(Microsoft.ProgramSynthesis.AST.ASTSerializationFormat)" /> representing a
+                <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program"/>.
+            </param>
+            <param name="serializationFormat">The serialization format of <paramref name="serializedProgram" />.</param>
+            <returns>A <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" /> equivalent to the one converted to the input string.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Loader.Create(Microsoft.ProgramSynthesis.AST.ProgramNode)">
+            <summary>
+                Wraps a <see cref="T:Microsoft.ProgramSynthesis.AST.ProgramNode" /> in a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" />. <paramref name="program" /> must be a
+                valid program for a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" />.
+            </summary>
+            <param name="program">The code of the program.</param>
+            <returns>A strongly-typed <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" /> object wrapping <paramref name="program" />.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.NamespaceDoc">
+            <summary>
+                <see href="https://microsoft.github.io/prose/documentation/flashfill/intro/">Transformation.Text</see>
+                learns string transformation tasks. The main entry point is <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Session" />
+                which supports learning Transformation.Text <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" />s. <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Loader" />
+                supports deserializing <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" />s.
+                <p>
+                    The <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow" /> and <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Example" /> types are used for
+                    interacting with <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Program" />. <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ParaphrasingFiles" /> can be used
+                    for paraphrasing programs into natural language. <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Language" /> gives access
+                    to the grammar for customized learning scenarios. <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Learner" /> provides the legacy API for learning
+                    programs; new users should use <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Session" /> instead.
+                </p>
+            </summary>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.ParaphrasingFiles">
+            <summary>
+                Extracts the files for paraphrasing and description (not used).
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ParaphrasingFiles.#ctor(System.String)">
+            <summary>
+                Constructs the Transformation.Text paraphrasing files for the specified language.
+            </summary>
+            <param name="language">
+                An <see href="https://en.wikipedia.org/wiki/IETF_language_tag">IETF language tag</see> of the localized
+                "paraphrase" JSON dictionary for Transformation.Text.
+            </param>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.RowUtil">
+            <summary>
+                Extension methods for <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.RowUtil.AsState(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow)">
+            <summary>
+                Wraps an <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow" /> in a <see cref="T:Microsoft.ProgramSynthesis.State" /> for use with <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Language.Grammar" />.
+            </summary>
+            <param name="row">The input row.</param>
+            <returns>The input <see cref="T:Microsoft.ProgramSynthesis.State" /> containing <paramref name="row" /> as the input.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.RowUtil.AsState(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IIndexableRow)">
+            <summary>
+                Wraps an <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IIndexableRow" /> in a <see cref="T:Microsoft.ProgramSynthesis.State" /> for use with <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Language.Grammar" />.
+            </summary>
+            <param name="row">The input row.</param>
+            <returns>The input <see cref="T:Microsoft.ProgramSynthesis.State" /> containing <paramref name="row" /> as the input.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Session">
+            <summary>
+                A Transformation.Text learning session. See <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3" /> for the API for
+                learning sessions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Session.#ctor(Microsoft.ProgramSynthesis.Wrangling.Session.IJournalStorage,System.Globalization.CultureInfo,Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger)">
+            <summary>
+                Creates a new Transformation.Text learning session.
+            </summary>
+            <param name="journalStorage">
+                Backing store for the journal of user actions used to adapt to user preferences. May be
+                null to not save this data.
+            </param>
+            <param name="culture">
+                The <see cref="T:System.Globalization.CultureInfo" /> to use when learning programs; accessible using
+                <see cref="P:Microsoft.ProgramSynthesis.Wrangling.Session.Session`3.Culture" />. Used to select preferred date and number formats and
+                defaults for other culture-specific settings.
+            </param>
+            <param name="logger">
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Logging.ILogger" /> implementation to use for providing telemetry information.
+            </param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Session.JsonSerializerSettings">
+            <summary>
+            Pass this property to json.net when serializing or deserializing a session object.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Session.JsonSerializerSettingsInstance">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Session.ColumnPriorityConstraint">
+            <summary>
+                The most recent <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority"/> constraint, or <c>null</c> if there are none.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Session.MergesWithColumns">
+            <summary>
+                All of the <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns"/> constraints that provide a <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.MergeColumns.Columns"/> value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Session.ColumnPriority">
+            <summary>
+                The <see cref="P:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority.Priority" />, which may or may not be from a
+                <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Constraints.ColumnPriority" /> constraint.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.Session.AllColumns">
+            <summary>
+                The set of names of all columns referenced by the constraints/inputs.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Session.TrackedLearningMetrics(Microsoft.ProgramSynthesis.Wrangling.Session.LearnProgramRequest{Microsoft.ProgramSynthesis.Transformation.Text.Program,Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Session.LearnerFor(Microsoft.ProgramSynthesis.Wrangling.Session.RankingMode)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Session.GetTopKQuestionsAsync(System.Nullable{System.Int32},System.Nullable{System.Double},System.Collections.Generic.IEnumerable{System.Type},System.Threading.CancellationToken)">
+            <summary>
+                Gets the top questions to ask the user, if any.
+            </summary>
+            <param name="k">An optional maximum number of questions to return.</param>
+            <param name="confidenceThreshold">An optional minimum confidence for questions to be returned.</param>
+            <param name="allowedTypes">
+                An optional set of types of questions to return. If <c>null</c>, all types will be returned.
+            </param>
+            <param name="cancel"></param>
+            <returns>A ranked list of questions to ask the user to improve the generated program.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Session.ClusterInputsUsingOnlyInputs(Microsoft.ProgramSynthesis.Wrangling.Session.LearnProgramRequest{Microsoft.ProgramSynthesis.Transformation.Text.Program,Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object},System.Double,System.Threading.CancellationToken)">
+            <summary>
+                Partition the inputs into clusters using only the inputs themselves. Cluster selection should be such that if an
+                example is provided for at least one input in each cluster, then the desired program should be synthesized (if
+                expressible). The number of clusters returned can be tuned using <paramref name="confidenceThreshold" />, where a
+                lower threshold corresponds to more clusters (i.e. clusters are split even if there's low confidence in creating
+                additional clusters).
+            </summary>
+            <param name="request">
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Session.LearnProgramRequest`3" /> encompassing the information the
+                user has provided so far.
+            </param>
+            <param name="confidenceThreshold">
+                A number in [0,1] representing how confident the algorithm should be in the clusters
+                it creates where higher thresholds correspond to more certain that the cluster is needed and therefore fewer
+                clusters. A threshold of 1 means to only split clusters when completely certain.
+            </param>
+            <param name="cancel">Cancellation token.</param>
+            <returns>
+                A list of clusters sorted in descending order by confidence where a cluster is a tuple of a list of inputs in
+                that cluster and a confidence value (higher values mean the user should look at those inputs first).
+            </returns>
+            <seealso cref="M:Microsoft.ProgramSynthesis.Wrangling.Session.NonInteractiveSession`3.ClusterInputsUsingVsa(Microsoft.ProgramSynthesis.Wrangling.Session.NonInteractiveSession{`0,`1,`2}.ClusterInputsUsingVsaRequest,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Session.ClusterInputsUsingVsa(Microsoft.ProgramSynthesis.Wrangling.Session.NonInteractiveSession{Microsoft.ProgramSynthesis.Transformation.Text.Program,Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Object}.ClusterInputsUsingVsaRequest,System.Threading.CancellationToken)">
+            <summary>
+                Cluster inputs using the VSA (<see cref="T:Microsoft.ProgramSynthesis.VersionSpace.ProgramSet" />) of
+                <see cref="F:Microsoft.ProgramSynthesis.Wrangling.Session.NonInteractiveSession`3.ClusterInputsUsingVsaRequest.AllPrograms" />
+                consistent with <see cref="F:Microsoft.ProgramSynthesis.Wrangling.Session.NonInteractiveSession`3.ClusterInputsUsingVsaRequest.Request" />.
+                Cluster selection should be such that if an example is provided for at least one input in each cluster, then the
+                desired program should be synthesized (if expressible). The number of clusters returned can be tuned using
+                <see cref="F:Microsoft.ProgramSynthesis.Wrangling.Session.NonInteractiveSession`3.ClusterInputsUsingVsaRequest.ConfidenceThreshold" />,
+                where a lower threshold corresponds to more clusters (i.e. clusters are split even if there's low confidence in
+                creating additional clusters).
+            </summary>
+            <param name="ciuRequest">
+                The <see cref="T:Microsoft.ProgramSynthesis.Wrangling.Session.NonInteractiveSession`3.ClusterInputsUsingVsaRequest" />
+                wrapping the arguments to this method.
+            </param>
+            <param name="cancel">Cancellation token.</param>
+            <returns>
+                A list of clusters sorted in descending order by confidence where a cluster is a tuple of a list of inputs in
+                that cluster and a confidence value (higher values mean the user should look at those inputs first).
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Session.ChooseSignificantInputFromCluster(System.Collections.Generic.IReadOnlyList{Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow})">
+            <summary>
+                Selects a representative input from a cluster of inputs. <paramref name="cluster" /> is a single cluster, so any of
+                its elements should be an acceptable representative of the cluster, but a DSL may wish to override this to select
+                the best representative.
+            </summary>
+            <param name="cluster">A collection of inputs which are all similar to each other.</param>
+            <returns>An element of <paramref name="cluster" /> determined to be representative.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.TransformationTextPythonGeneratedFunction.GenerateCode">
+            <summary>
+                Generates code for this function. This code need not be "executable"
+                in and of itself if the target language does not treat functions as
+                first class "values".
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.PythonModule">
+            <summary>
+                A representation of a Python module.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.PythonModule.#ctor(System.String)">
+            <summary>
+                Constructor.
+            </summary>
+            <param name="name">The name of this Python module</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.PythonModule.Bind(System.String,Microsoft.ProgramSynthesis.Translation.IGeneratedFunction{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.PythonModule.ClearBindings">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.PythonModule.GenerateCode(System.String)">
+            <summary>
+                Generates code for all the functions that have been bound to a name in this module.
+            </summary>
+            <param name="headerModuleReference">
+                A reference to the header module that the code in this module is dependent on.
+            </param>
+            <returns>A representation of the code for this module.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.PythonModule.GenerateUnisolatedCode(System.String)">
+            <summary>
+                Generates unisolated code, i.e., code that executes/lives in the global namespace,
+                provided subclasses override this method appropriately.
+                The default behavior is to call <see cref="M:Microsoft.ProgramSynthesis.Translation.Module`1.GenerateCode(`0)" />.
+            </summary>
+            <param name="headerModuleReference">
+                A references to a header module that the code in this module is dependent on.
+            </param>
+            <returns>A representation of the code corresponding to this module.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.PythonTranslator">
+            <summary>
+                A Python translator for the Transformation.Text DSL. Like the
+                <see cref="T:Microsoft.ProgramSynthesis.Translation.Python.PythonTranslator`3" /> class,
+                this class is not thread safe.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.PythonTranslator.CreateModule(System.String)">
+            <summary>
+                Creates a new module with the given name.
+            </summary>
+            <param name="moduleName">The name of the module to create.</param>
+            <returns>A new <see cref="T:Microsoft.ProgramSynthesis.Translation.Module`1" /> named <paramref name="moduleName" />.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.PythonTranslator.Translate(Microsoft.ProgramSynthesis.Transformation.Text.Program,Microsoft.ProgramSynthesis.Translation.Module{System.String},System.String)">
+            <summary>
+                Translates a program <paramref name="root" /> into a representation of a function corresponding to the program
+                <paramref name="root" />.
+            </summary>
+            <param name="root">The program to be translated.</param>
+            <param name="translationModule">The module into which all lambdas in the program will be placed.</param>
+            <param name="headerModuleReference">
+                The name of the module in which any auxiliary functions required for this program
+                are assumed to reside. e.g. semantics for various operators, any datatypes required by the program, etc.
+            </param>
+            <returns>
+                A <see cref="T:Microsoft.ProgramSynthesis.Translation.GeneratedFunction`1" /> that corresponds to the translation of the program
+                <paramref name="root" />.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.PythonTranslator.GenerateHeaderModule(Microsoft.ProgramSynthesis.Transformation.Text.Program,System.String)">
+            <summary>
+                Generates a module containing the header (if any) for
+                the given program <paramref name="p" />.
+                The header can include any definitions required for the generated
+                program corresponding to <paramref name="p" /> to execute.
+            </summary>
+            <param name="p">A generated program</param>
+            <param name="headerModuleName">The name of the header module.</param>
+            <returns>
+                A <see cref="T:Microsoft.ProgramSynthesis.Translation.Module`1" /> which contains the definitions that all code generated by this translator can
+                implicitly depend on.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.PythonTranslator.GenerateOperatorApplication(System.String,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Translation.SSARegister{System.String}})">
+            <summary>
+                Generates an application of the operator named <paramref name="operatorName" />
+                with <paramref name="arguments" /> as its arguments.
+            </summary>
+            <param name="operatorName">The name of the operator which is to be applied.</param>
+            <param name="arguments">The arguments to the operator <paramref name="operatorName" />.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.PythonTranslator.GenerateLiteralRepresentation(System.Object,System.Type)">
+            <summary>
+                Generates the representation of the literal in the target language.
+            </summary>
+            <param name="literalValue">An <see cref="T:System.Object" /> representing the value of the literal.</param>
+            <param name="literalType">The type of the literal.</param>
+            <returns>
+                A representation of <paramref name="literalValue" /> interpreted as a value
+                of the type <paramref name="literalType" /> in the target language.
+            </returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.ToPythonExtensions">
+            <summary>
+                Utility functions to support translation to Python.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.Python.ToPythonExtensions.ToPython(Microsoft.ProgramSynthesis.Transformation.Text.Program,System.String,System.String,System.String)">
+            <summary>
+                Translate a program into Python.
+            </summary>
+            <param name="p">The program to translate.</param>
+            <param name="programName">The name of the translated Python function.</param>
+            <param name="moduleName">The name of the module in which the translated function is to reside.</param>
+            <param name="headerModuleName">The name of the module in which the PROSE semantics functions reside.</param>
+            <returns>A string that represents a self contained translation of <paramref name="p" /> into Python.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Translation.R.RModule">
+            <summary>
+                A class that represents an R module.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.R.RModule.#ctor(System.String)">
+            <summary>
+                Constructor.
+            </summary>
+            <param name="name">The name of this module.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.R.RModule.Bind(System.String,Microsoft.ProgramSynthesis.Translation.IGeneratedFunction{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.R.RModule.GenerateCode(System.String)">
+            <summary>
+                Generates code for all the functions that have been bound to a name in this module.
+            </summary>
+            <param name="headerModuleReference">
+                A reference to the header module that the code in this module is dependent on.
+            </param>
+            <returns>A representation of the code for this module.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Translation.R.RTranslator">
+            <summary>
+                An R translator for the Transformation.Text DSL.
+                Like the base class <see cref="T:Microsoft.ProgramSynthesis.Translation.R.RTranslator`3" />,
+                this class is not thread safe.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.R.RTranslator.GenerateOperatorApplication(System.String,System.Collections.Generic.IEnumerable{Microsoft.ProgramSynthesis.Translation.SSARegister{System.String}})">
+            <summary>
+                Generates an application of the operator named <paramref name="operatorName"/>
+                with <paramref name="arguments"/> as its arguments.
+            </summary>
+            <param name="operatorName">The name of the operator which is to be applied</param>
+            <param name="arguments">The arguments to the operator <paramref name="operatorName"/></param>
+            <returns>A representation of the operator application in Python.</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.R.RTranslator.GenerateLiteralRepresentation(System.Object,System.Type)">
+            <summary>
+                Generates the representation of the literal in the target language.
+            </summary>
+            <param name="literalValue">An <see cref="T:System.Object" /> representing the value of the literal.</param>
+            <param name="literalType">The type of the literal.</param>
+            <returns>
+                A representation of <paramref name="literalValue"/> interpreted as a value
+                of the type <paramref name="literalType"/> in the target language.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.R.RTranslator.GenerateHeaderModule(Microsoft.ProgramSynthesis.Transformation.Text.Program,System.String)">
+            <summary>
+                Generates the header (if any) for the given program <paramref name="p"/>
+                The header can include any definitions required for the generated
+                program corresponding to <paramref name="p"/> to execute.
+            </summary>
+            <param name="p">A generated program</param>
+            <param name="headerModuleName">The name of the header module.</param>
+            <returns>A representation of the header</returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.R.RTranslator.CreateModule(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.Translation.R.ToRExtensions">
+            <summary>
+                Utility functions to support translation to R.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.Translation.R.ToRExtensions.ToR(Microsoft.ProgramSynthesis.Transformation.Text.Program,System.String,System.String,System.String)">
+            <summary>
+                Translate a program into R.
+            </summary>
+            <param name="p">The program to translate.</param>
+            <param name="programName">The name of the translated R function.</param>
+            <param name="moduleName">The name of the module in which the translated function is to reside.</param>
+            <param name="headerModuleName">The name of the module in which the PROSE semantics functions reside.</param>
+            <returns>A string that represents a self contained translation of <paramref name="p" /> into R.</returns>
+        </member>
+        <member name="T:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow">
+            <summary>
+                An <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow" /> with <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow" /> as the mapped type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow.#ctor(System.Collections.Immutable.IImmutableDictionary{System.String,Microsoft.ProgramSynthesis.Transformation.Text.Semantics.ValueSubstring})">
+            <summary>
+                Constructs a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow" /> from an immutable mapping of column names to
+                <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.ValueSubstring" />s.
+            </summary>
+            <param name="values">An immutable mapping of column names to <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.ValueSubstring" /> objects.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow.#ctor(System.Collections.Generic.IDictionary{System.String,Microsoft.ProgramSynthesis.Transformation.Text.Semantics.ValueSubstring})">
+            <summary>
+                Constructs a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow" /> from a possibly mutable mapping of column names to
+                <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.ValueSubstring" />s.
+            </summary>
+            <param name="values">A mapping of column names to <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.ValueSubstring" /> objects.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow.#ctor(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+                Constructs a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow" /> from a possibly mutable mapping of column names to
+                <code>string</code> objects.
+            </summary>
+            <param name="values">A mapping of column names to <code>string</code> objects.</param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow.#ctor(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+                Constructs a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow" /> from an object implementing <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow" />.
+            </summary>
+            <param name="row">
+                The <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow" /> object corresponding to the <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow" /> to be
+                constructed.
+            </param>
+            <param name="columns">
+                An optional set of names for the columns. If specified, these names will be used for columns,
+                rather than the names used in the argument <paramref name="row" />.
+            </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow.Equals(Microsoft.ProgramSynthesis.Transformation.Text.Semantics.IRow)">
+            <summary>
+                Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+                true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow.ColumnNames">
+            <summary>
+                Optional field giving the names of all of the columns in the row. Note that if this is missing during learning,
+                then the set of available column names will have to be provided in some other way.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow.TryGetValue(System.String,System.Object@)">
+            <summary>
+                Gets the value of the column named <paramref name="columnName" /> and puts it in <paramref name="value" /> if
+                possible.
+            </summary>
+            <param name="columnName">The name of the column to get.</param>
+            <param name="value">
+                The value of the column. The <see cref="M:System.Object.ToString" /> of this value will be used. Future versions may
+                use other information for certain input types.
+            </param>
+            <returns>
+                <code>true</code> if the column exists and <paramref name="value" /> has been populated, or <code>false</code>
+                otherwise.
+            </returns>
+        </member>
+        <member name="P:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow.Item(System.String)">
+            <summary>
+                Gets the value of the column named <paramref name="columnName" /> in this row.
+            </summary>
+            <param name="columnName">The name of the column to get.</param>
+            <returns>
+                The value of the column as a <see cref="T:Microsoft.ProgramSynthesis.Transformation.Text.Semantics.ValueSubstring"/>.
+            </returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">May be thrown if <paramref name="columnName" /> is not a valid column name.</exception>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow.Equals(System.Object)">
+            <summary>
+                Determines whether the specified object is equal to the current object.
+            </summary>
+            <returns>
+                true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow.GetHashCode">
+            <summary>
+                Serves as the default hash function.
+            </summary>
+            <returns>
+                A hash code for the current object.
+            </returns>
+        </member>
+        <member name="M:Microsoft.ProgramSynthesis.Transformation.Text.ValueSubstringRow.ToString">
+            <summary>Returns a string that represents the current object.</summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+    </members>
+</doc>
